@@ -34,6 +34,8 @@ public:
 	
 	GBuiltInType(BuiltIn builtIn, Variance variance) : builtInType(builtIn), GType(variance) { }
 	
+	~GBuiltInType() override = default;
+	
 };
 
 #endif /* GTypeType_h */

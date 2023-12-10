@@ -64,7 +64,7 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 	
 	identifierToGValueMap[identifier] = value;
 	
-	return new GDeclaration(identifier, value);
+	return new GDeclaration(identifier, type, value);
 	
 }
 
@@ -73,6 +73,8 @@ std::string GDeclaration::description() const {
 }
 
 Value* GDeclaration::generateIR(IRGenerator* generator) const {
+	// do we have to generate ir for the type?
+	type->generateIR(generator);
 	Value* irValue = value->generateIR(generator);
 	generator->identifierToValueMap[identifier] = irValue;
 	return irValue;

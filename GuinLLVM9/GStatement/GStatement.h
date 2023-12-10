@@ -28,6 +28,8 @@ public:
 	
 	virtual Value* generateIR(IRGenerator* generator) const = 0;
 	
+	virtual ~GStatement() = default;
+	
 };
 
 #endif /* GStatement_h */

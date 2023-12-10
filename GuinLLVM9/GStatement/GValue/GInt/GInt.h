@@ -28,6 +28,8 @@ public:
 	
 	GType* typeOf() const override;
 	
+	~GInt() override = default;
+	
 };
 
 #endif /* GInt_h */

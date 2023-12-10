@@ -26,6 +26,8 @@ public:
 	
 	GType* typeOf() const override;
 	
+	~GBool() override = default;
+	
 };
 
 #endif /* GBool_h */
