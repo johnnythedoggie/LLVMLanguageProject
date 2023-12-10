@@ -14,7 +14,13 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 	
 	auto originalTokens = tokens;
 	
-	if (tokens.front().value != "const") {
+	Variance variance;
+	
+	if (tokens.front().value == "const") {
+		variance = Variance::Const;
+	} else if (tokens.front().value == "let") {
+		variance = Variance::Let;
+	} else {
 		return nullptr;
 	}
 	
@@ -61,6 +67,12 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 		tokens = originalTokens;
 		return nullptr;
 	}
+	
+	if (variance == Variance::Const && value->variance != Variance::Const) {
+		assert(false && "Cannot assign non-constant value to constant identifier.");
+	}
+	
+	value->variance = variance;
 	
 	identifierToGValueMap[identifier] = value;
 	
