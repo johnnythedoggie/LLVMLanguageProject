@@ -81,7 +81,16 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 }
 
 std::string GDeclaration::description() const {
-	return "const " + identifier + ": " + value->typeOf()->description() + " = " + value->description();
+	std::string varianceName;
+	switch (value->variance) {
+		case Variance::Const:
+			varianceName = "const";
+			break;
+		case Variance::Let:
+			varianceName = "let";
+			break;
+	}
+	return varianceName + " " + identifier + ": " + value->typeOf()->description() + " = " + value->description();
 }
 
 Value* GDeclaration::generateIR(IRGenerator* generator) const {
