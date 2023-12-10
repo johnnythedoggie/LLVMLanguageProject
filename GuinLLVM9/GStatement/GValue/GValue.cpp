@@ -10,6 +10,7 @@
 #include "GInt.h"
 #include "GType.h"
 #include "GIdentifier.h"
+#include "GVoid.h"
 
 GValue* GValue::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue*>& identifierToGValueMap) {
 	
@@ -23,6 +24,12 @@ GValue* GValue::fromTokens(std::queue<Token>& tokens, std::map<std::string, GVal
 	
 	if (typeValue) {
 		return typeValue;
+	}
+	
+	GVoid* voidValue = GVoid::fromTokens(tokens, identifierToGValueMap);
+	
+	if (voidValue) {
+		return voidValue;
 	}
 	
 	GValue* identifierValue = GIdentifier::fromTokens(tokens, identifierToGValueMap);

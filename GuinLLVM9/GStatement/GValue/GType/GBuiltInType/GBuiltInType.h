@@ -15,7 +15,7 @@ class GBuiltInType: public GType {
 public:
 	
 	enum class BuiltIn {
-		Type, Int, Bool
+		Type, Int, Bool, Void, Never
 	};
 	
 	
@@ -29,6 +29,10 @@ public:
 				return "Int";
 			case BuiltIn::Bool:
 				return "Bool";
+			case BuiltIn::Void:
+				return "Void";
+			case BuiltIn::Never:
+				return "Never";
 		}
 	}
 	

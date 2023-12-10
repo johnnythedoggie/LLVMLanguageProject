@@ -19,6 +19,7 @@
 		FB3EC85C2B2572F600581DE6 /* GBuiltInType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8552B2572F500581DE6 /* GBuiltInType.cpp */; };
 		FB3EC8652B25906B00581DE6 /* GBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8622B25906B00581DE6 /* GBool.cpp */; };
 		FB3EC8662B25906B00581DE6 /* GInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8632B25906B00581DE6 /* GInt.cpp */; };
+		FB3EC8692B265B0E00581DE6 /* GVoid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8672B265B0E00581DE6 /* GVoid.cpp */; };
 		FB606E3E2B08799E00AFF855 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB606E3D2B08799E00AFF855 /* main.cpp */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +60,8 @@
 		FB3EC8612B25906B00581DE6 /* GInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInt.h; sourceTree = "<group>"; };
 		FB3EC8622B25906B00581DE6 /* GBool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBool.cpp; sourceTree = "<group>"; };
 		FB3EC8632B25906B00581DE6 /* GInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInt.cpp; sourceTree = "<group>"; };
+		FB3EC8672B265B0E00581DE6 /* GVoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GVoid.cpp; sourceTree = "<group>"; };
+		FB3EC8682B265B0E00581DE6 /* GVoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GVoid.h; sourceTree = "<group>"; };
 		FB606E3A2B08799E00AFF855 /* GuinLLVM9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GuinLLVM9; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB606E3D2B08799E00AFF855 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FB606E442B087B7C00AFF855 /* GuinLLVM9.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuinLLVM9.entitlements; sourceTree = "<group>"; };
@@ -122,6 +125,7 @@
 				FB3EC84D2B256EB500581DE6 /* GIdentifer */,
 				FB3EC8302B2525C700581DE6 /* GType */,
 				FB3EC8642B25906B00581DE6 /* GInt */,
+				FB3EC86A2B265B2300581DE6 /* GVoid */,
 				FB3EC8602B25906B00581DE6 /* GBool */,
 			);
 			path = GValue;
@@ -180,6 +184,15 @@
 				FB3EC8632B25906B00581DE6 /* GInt.cpp */,
 			);
 			path = GInt;
+			sourceTree = "<group>";
+		};
+		FB3EC86A2B265B2300581DE6 /* GVoid */ = {
+			isa = PBXGroup;
+			children = (
+				FB3EC8682B265B0E00581DE6 /* GVoid.h */,
+				FB3EC8672B265B0E00581DE6 /* GVoid.cpp */,
+			);
+			path = GVoid;
 			sourceTree = "<group>";
 		};
 		FB606E312B08799E00AFF855 = {
@@ -278,6 +291,7 @@
 				FB3EC84C2B255D6700581DE6 /* GDeclaration.cpp in Sources */,
 				FB3EC85C2B2572F600581DE6 /* GBuiltInType.cpp in Sources */,
 				FB3EC8662B25906B00581DE6 /* GInt.cpp in Sources */,
+				FB3EC8692B265B0E00581DE6 /* GVoid.cpp in Sources */,
 				FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */,
 				FB3EC8652B25906B00581DE6 /* GBool.cpp in Sources */,
 				FB3EC8292B2515F500581DE6 /* GStatement.cpp in Sources */,

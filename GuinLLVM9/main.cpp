@@ -14,11 +14,8 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		const a: Bool = false
-		const b: Int = 5
-		const d: Type = Int
-		const last_test: Type = d
-		const test: d = 45
+		const some_type: Type = Never
+		let void_value: Void = ()
 	)");
 	auto statements = Parser().getStatementsFrom(tokens);
 	
