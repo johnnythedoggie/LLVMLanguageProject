@@ -24,6 +24,11 @@ GPureFunctionType* GPureFunctionType::fromTokens(std::queue<Token>& tokens, std:
 		return nullptr;
 	}
 	
+	if (inputType->typeOf()->description() != "Type") {
+		tokens = originalTokens;
+		return nullptr;
+	}
+	
 	if (tokens.front().value != "->") {
 		tokens = originalTokens;
 		return nullptr;
@@ -34,6 +39,11 @@ GPureFunctionType* GPureFunctionType::fromTokens(std::queue<Token>& tokens, std:
 	auto outputType = GValue::fromTokens(tokens, identifierToGValueMap);
 	
 	if (!outputType) {
+		tokens = originalTokens;
+		return nullptr;
+	}
+	
+	if (outputType->typeOf()->description() != "Type") {
 		tokens = originalTokens;
 		return nullptr;
 	}
