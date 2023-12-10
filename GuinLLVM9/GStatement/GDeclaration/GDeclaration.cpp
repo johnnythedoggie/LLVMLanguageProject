@@ -49,6 +49,10 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 		return nullptr;
 	}
 	
+	if (type->variance != Variance::Const) {
+		assert(false && "Cannot create identifer with non constant type.");
+	}
+	
 	if (tokens.front().value != "=") {
 		tokens = originalTokens;
 		return nullptr;
@@ -69,7 +73,7 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 	}
 	
 	if (variance == Variance::Const && value->variance != Variance::Const) {
-		assert(false && "Cannot assign non-constant value to constant identifier.");
+		assert(false && "Cannot assign non constant value to constant identifier.");
 	}
 	
 	value->variance = variance;
