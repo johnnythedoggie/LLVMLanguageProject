@@ -24,7 +24,6 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '`':
 		case '!':
 		case '@':
-		case '#':
 		case '$':
 		case '%':
 		case '^':
@@ -41,6 +40,8 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '>':
 		case '?':
 			return CharacterType::Symbol;
+		case '#':
+			return CharacterType::CommentSymbol;
 	}
 	
 	if (isalpha(character) || character == '_') {
@@ -73,6 +74,7 @@ bool Tokenizer::shouldPushIndependently(CharacterType characterType) {
 		case CharacterType::NewLine:
 		case CharacterType::OpenParen:
 		case CharacterType::CloseParen:
+		case CharacterType::CommentSymbol:
 			return true;
 		default:
 			return false;
@@ -95,6 +97,8 @@ Token::TokenType Tokenizer::getTokenTypeForCharacterType(CharacterType character
 			return Token::TokenType::OpenParen;
 		case CharacterType::CloseParen:
 			return Token::TokenType::CloseParen;
+		case CharacterType::CommentSymbol:
+			return Token::TokenType::CommentStart;
 			
 		default:
 			assert(false && "Cannot get token tyoe for this character type.");

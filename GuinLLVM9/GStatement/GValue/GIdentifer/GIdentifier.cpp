@@ -19,6 +19,10 @@ GValue* GIdentifier::fromTokens(std::queue<Token>& tokens, std::map<std::string,
 	
 	std::string id = tokens.front().value;
 	
+	if (!identifierToGValueMap.contains(id)) {
+		return nullptr;
+	}
+	
 	tokens.pop();
 	
 	return identifierToGValueMap[id];

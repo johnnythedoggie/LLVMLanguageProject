@@ -18,6 +18,8 @@
 
 class Parser {
 	
+	void removeComments(std::queue<Token>& tokens) const;
+	
 public:
 	
 	std::map<std::string, GValue*> identifierToGValueMap = {};
