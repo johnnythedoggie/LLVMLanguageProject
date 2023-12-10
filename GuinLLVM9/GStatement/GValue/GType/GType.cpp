@@ -7,10 +7,15 @@
 
 #include "GType.h"
 #include "GBuiltInType.h"
+#include "GPureFunctionType.h"
 
 GType* GType::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue*>& identifierToGValueMap) {
 	
-	// Here for tuple types and function types and stuff...
+	GPureFunctionType* funcType = GPureFunctionType::fromTokens(tokens, identifierToGValueMap);
+	
+	if (funcType) {
+		return funcType;
+	}
 	
 	return nullptr;
 	
