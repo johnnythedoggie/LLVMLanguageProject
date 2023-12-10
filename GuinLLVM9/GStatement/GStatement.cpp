@@ -15,6 +15,8 @@ bool GStatement::hasNewLineNext(const std::queue<Token>& tokens) {
 
 GStatement* GStatement::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue*>& identifierToGValueMap) {
 	
+	auto storedTokens = tokens;
+	
 	GStatement* result = nullptr;
 	
 	while (hasNewLineNext(tokens)) {
@@ -30,6 +32,11 @@ GStatement* GStatement::fromTokens(std::queue<Token>& tokens, std::map<std::stri
 	}
 	
 	if (!result) {
+		return nullptr;
+	}
+	
+	if (!tokens.empty() && !hasNewLineNext(tokens)) {
+		tokens = storedTokens;
 		return nullptr;
 	}
 	
