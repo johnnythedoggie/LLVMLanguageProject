@@ -21,6 +21,8 @@ struct Token {
 		IntegerLiteral,
 		OpenParen,
 		CloseParen,
+		OpenBracket,
+		CloseBracket,
 		NewLine,
 		CommentStart
 	};
@@ -39,6 +41,8 @@ class Tokenizer {
 		NewLine, // the newline character
 		OpenParen, // '('
 		CloseParen, // ')'
+		OpenBracket, // '{'
+		CloseBracket, // '}'
 		WhiteSpace, // spaces and tabs
 		CommentSymbol, // The '#' symbol used to start comments
 		Unkown // all other characters

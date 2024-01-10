@@ -14,6 +14,10 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 			return CharacterType::OpenParen;
 		case ')':
 			return CharacterType::CloseParen;
+		case '{':
+			return CharacterType::OpenBracket;
+		case '}':
+			return CharacterType::CloseBracket;
 		case ' ':
 		case '\t':
 			return CharacterType::WhiteSpace;
@@ -74,6 +78,8 @@ bool Tokenizer::shouldPushIndependently(CharacterType characterType) {
 		case CharacterType::NewLine:
 		case CharacterType::OpenParen:
 		case CharacterType::CloseParen:
+		case CharacterType::OpenBracket:
+		case CharacterType::CloseBracket:
 		case CharacterType::CommentSymbol:
 			return true;
 		default:
@@ -97,6 +103,10 @@ Token::TokenType Tokenizer::getTokenTypeForCharacterType(CharacterType character
 			return Token::TokenType::OpenParen;
 		case CharacterType::CloseParen:
 			return Token::TokenType::CloseParen;
+		case CharacterType::OpenBracket:
+			return Token::TokenType::OpenBracket;
+		case CharacterType::CloseBracket:
+			return Token::TokenType::CloseBracket;
 		case CharacterType::CommentSymbol:
 			return Token::TokenType::CommentStart;
 			
