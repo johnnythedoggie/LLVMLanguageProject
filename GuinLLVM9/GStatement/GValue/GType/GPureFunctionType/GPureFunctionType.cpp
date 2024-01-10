@@ -52,10 +52,10 @@ GPureFunctionType* GPureFunctionType::fromTokens(std::queue<Token>& tokens, std:
 	
 	Variance variance;
 	
-	if (inputType->variance == Variance::Const && outputType->variance == Variance::Const) {
-		variance = Variance::Const;
+	if (inputType->variance == Variance::CONST && outputType->variance == Variance::CONST) {
+		variance = Variance::CONST;
 	} else {
-		variance = Variance::Let;
+		variance = Variance::LET;
 	}
 	
 	return new GPureFunctionType(inputType, outputType, variance);

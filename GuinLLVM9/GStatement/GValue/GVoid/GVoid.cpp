@@ -26,7 +26,7 @@ GVoid* GVoid::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue
 	
 	tokens.pop();
 	
-	return new GVoid(Variance::Const);
+	return new GVoid(Variance::CONST);
 	
 }
 
@@ -36,5 +36,5 @@ Value* GVoid::generateIR(IRGenerator* generator) const {
 }
 
 GType* GVoid::typeOf() const {
-	return new GBuiltInType(GBuiltInType::BuiltIn::Void, Variance::Const);
+	return new GBuiltInType(GBuiltInType::BuiltIn::Void, Variance::CONST);
 }

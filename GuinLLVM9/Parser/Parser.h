@@ -26,7 +26,7 @@ public:
 	
 	Parser() {
 		
-		const Variance constant = Variance::Const;
+		const Variance constant = Variance::CONST;
 		
 		identifierToGValueMap["true"] = new GBool(true, constant);
 		identifierToGValueMap["false"] = new GBool(false, constant);

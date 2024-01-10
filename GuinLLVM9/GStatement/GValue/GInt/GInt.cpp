@@ -28,7 +28,7 @@ GInt* GInt::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue*>
 	
 	tokens.pop();
 	
-	return new GInt(value, Variance::Const);
+	return new GInt(value, Variance::CONST);
 	
 }
 
@@ -39,5 +39,5 @@ Value* GInt::generateIR(IRGenerator* generator) const {
 }
 
 GType* GInt::typeOf() const {
-	return new GBuiltInType(GBuiltInType::BuiltIn::Int, Variance::Const);
+	return new GBuiltInType(GBuiltInType::BuiltIn::Int, Variance::CONST);
 }

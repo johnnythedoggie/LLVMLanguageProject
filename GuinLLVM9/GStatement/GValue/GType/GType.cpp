@@ -22,5 +22,5 @@ GType* GType::fromTokens(std::queue<Token>& tokens, std::map<std::string, GValue
 }
 
 GType* GType::typeOf() const {
-	return new GBuiltInType(GBuiltInType::BuiltIn::Type, Variance::Const);
+	return new GBuiltInType(GBuiltInType::BuiltIn::Type, Variance::CONST);
 }

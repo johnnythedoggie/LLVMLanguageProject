@@ -17,9 +17,9 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 	Variance variance;
 	
 	if (tokens.front().value == "const") {
-		variance = Variance::Const;
+		variance = Variance::CONST;
 	} else if (tokens.front().value == "let") {
-		variance = Variance::Let;
+		variance = Variance::LET;
 	} else {
 		return nullptr;
 	}
@@ -49,7 +49,7 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 		return nullptr;
 	}
 	
-	if (type->variance != Variance::Const) {
+	if (type->variance != Variance::CONST) {
 		assert(false && "Cannot create identifer with non constant type.");
 	}
 	
@@ -72,7 +72,7 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 		return nullptr;
 	}
 	
-	if (variance == Variance::Const && value->variance != Variance::Const) {
+	if (variance == Variance::CONST && value->variance != Variance::CONST) {
 		assert(false && "Cannot assign non constant value to constant identifier.");
 	}
 	
@@ -87,10 +87,10 @@ GDeclaration* GDeclaration::fromTokens(std::queue<Token>& tokens, std::map<std::
 std::string GDeclaration::description() const {
 	std::string varianceName;
 	switch (value->variance) {
-		case Variance::Const:
+		case Variance::CONST:
 			varianceName = "const";
 			break;
-		case Variance::Let:
+		case Variance::LET:
 			varianceName = "let";
 			break;
 	}

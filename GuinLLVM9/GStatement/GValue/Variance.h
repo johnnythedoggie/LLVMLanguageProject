@@ -9,7 +9,7 @@
 #define Variance_h
 
 enum class Variance {
-	Const, Let // , Var
+	CONST, LET // , Var
 };
 
 #endif /* Variance_h */

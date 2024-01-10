@@ -16,5 +16,5 @@ Value* GBool::generateIR(IRGenerator* generator) const {
 }
 
 GType* GBool::typeOf() const {
-	return new GBuiltInType(GBuiltInType::BuiltIn::Bool, Variance::Const);
+	return new GBuiltInType(GBuiltInType::BuiltIn::Bool, Variance::CONST);
 }
