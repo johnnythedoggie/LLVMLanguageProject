@@ -9,19 +9,14 @@
 /* Begin PBXBuildFile section */
 		FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */; };
 		FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81D2B24360900581DE6 /* Parser.cpp */; };
-		FB3EC8252B250E9000581DE6 /* IRGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8232B250E9000581DE6 /* IRGenerator.cpp */; };
-		FB3EC8292B2515F500581DE6 /* GStatement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8272B2515F500581DE6 /* GStatement.cpp */; };
+		FB3EC8252B250E9000581DE6 /* Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8232B250E9000581DE6 /* Compiler.cpp */; };
 		FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC82B2B2517B900581DE6 /* llvm.h */; };
-		FB3EC8352B25267200581DE6 /* GValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8342B25267200581DE6 /* GValue.cpp */; };
-		FB3EC83B2B252AAC00581DE6 /* GType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC83A2B252AAC00581DE6 /* GType.cpp */; };
-		FB3EC84C2B255D6700581DE6 /* GDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC84A2B255D6700581DE6 /* GDeclaration.cpp */; };
-		FB3EC8502B256EC700581DE6 /* GIdentifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC84E2B256EC700581DE6 /* GIdentifier.cpp */; };
-		FB3EC85C2B2572F600581DE6 /* GBuiltInType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8552B2572F500581DE6 /* GBuiltInType.cpp */; };
-		FB3EC8652B25906B00581DE6 /* GBool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8622B25906B00581DE6 /* GBool.cpp */; };
-		FB3EC8662B25906B00581DE6 /* GInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8632B25906B00581DE6 /* GInt.cpp */; };
-		FB3EC8692B265B0E00581DE6 /* GVoid.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC8672B265B0E00581DE6 /* GVoid.cpp */; };
-		FB3EC86D2B26639400581DE6 /* GPureFunctionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC86C2B26639400581DE6 /* GPureFunctionType.cpp */; };
 		FB606E3E2B08799E00AFF855 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB606E3D2B08799E00AFF855 /* main.cpp */; };
+		FB9508D72B4F926A0012BFFA /* PStatement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508D52B4F926A0012BFFA /* PStatement.cpp */; };
+		FB9508DC2B4F92A20012BFFA /* PDeclaration.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508DA2B4F92A20012BFFA /* PDeclaration.cpp */; };
+		FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508DE2B4F936B0012BFFA /* PValue.cpp */; };
+		FB9508E42B4F94240012BFFA /* PInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508E22B4F94240012BFFA /* PInt.cpp */; };
+		FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508E62B4F94AD0012BFFA /* PIdentifier.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -41,33 +36,22 @@
 		FB3EC81D2B24360900581DE6 /* Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		FB3EC81F2B25037400581DE6 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		FB3EC8202B250D5900581DE6 /* Tokenizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tokenizer.h; sourceTree = "<group>"; };
-		FB3EC8232B250E9000581DE6 /* IRGenerator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = IRGenerator.cpp; sourceTree = "<group>"; };
-		FB3EC8242B250E9000581DE6 /* IRGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IRGenerator.h; sourceTree = "<group>"; };
-		FB3EC8272B2515F500581DE6 /* GStatement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GStatement.cpp; sourceTree = "<group>"; };
-		FB3EC8282B2515F500581DE6 /* GStatement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GStatement.h; sourceTree = "<group>"; };
+		FB3EC8232B250E9000581DE6 /* Compiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Compiler.cpp; sourceTree = "<group>"; };
+		FB3EC8242B250E9000581DE6 /* Compiler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Compiler.hpp; sourceTree = "<group>"; };
 		FB3EC82B2B2517B900581DE6 /* llvm.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = llvm.h; sourceTree = "<group>"; };
-		FB3EC8342B25267200581DE6 /* GValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GValue.cpp; sourceTree = "<group>"; };
-		FB3EC8362B25267D00581DE6 /* GValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GValue.h; sourceTree = "<group>"; };
-		FB3EC83A2B252AAC00581DE6 /* GType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GType.cpp; sourceTree = "<group>"; };
-		FB3EC83C2B252AB700581DE6 /* GType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GType.h; sourceTree = "<group>"; };
-		FB3EC84A2B255D6700581DE6 /* GDeclaration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GDeclaration.cpp; sourceTree = "<group>"; };
-		FB3EC84B2B255D6700581DE6 /* GDeclaration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GDeclaration.h; sourceTree = "<group>"; };
-		FB3EC84E2B256EC700581DE6 /* GIdentifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GIdentifier.cpp; sourceTree = "<group>"; };
-		FB3EC84F2B256EC700581DE6 /* GIdentifier.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GIdentifier.h; sourceTree = "<group>"; };
-		FB3EC8522B2570CB00581DE6 /* Variance.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Variance.h; sourceTree = "<group>"; };
-		FB3EC8552B2572F500581DE6 /* GBuiltInType.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBuiltInType.cpp; sourceTree = "<group>"; };
-		FB3EC8582B2572F500581DE6 /* GBuiltInType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBuiltInType.h; sourceTree = "<group>"; };
-		FB3EC85F2B25906B00581DE6 /* GBool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBool.h; sourceTree = "<group>"; };
-		FB3EC8612B25906B00581DE6 /* GInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GInt.h; sourceTree = "<group>"; };
-		FB3EC8622B25906B00581DE6 /* GBool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GBool.cpp; sourceTree = "<group>"; };
-		FB3EC8632B25906B00581DE6 /* GInt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GInt.cpp; sourceTree = "<group>"; };
-		FB3EC8672B265B0E00581DE6 /* GVoid.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GVoid.cpp; sourceTree = "<group>"; };
-		FB3EC8682B265B0E00581DE6 /* GVoid.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GVoid.h; sourceTree = "<group>"; };
-		FB3EC86C2B26639400581DE6 /* GPureFunctionType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GPureFunctionType.cpp; sourceTree = "<group>"; };
-		FB3EC86E2B2663A200581DE6 /* GPureFunctionType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GPureFunctionType.h; sourceTree = "<group>"; };
 		FB606E3A2B08799E00AFF855 /* GuinLLVM9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GuinLLVM9; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB606E3D2B08799E00AFF855 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FB606E442B087B7C00AFF855 /* GuinLLVM9.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuinLLVM9.entitlements; sourceTree = "<group>"; };
+		FB9508D52B4F926A0012BFFA /* PStatement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PStatement.cpp; sourceTree = "<group>"; };
+		FB9508D62B4F926A0012BFFA /* PStatement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PStatement.hpp; sourceTree = "<group>"; };
+		FB9508DA2B4F92A20012BFFA /* PDeclaration.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PDeclaration.cpp; sourceTree = "<group>"; };
+		FB9508DB2B4F92A20012BFFA /* PDeclaration.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PDeclaration.hpp; sourceTree = "<group>"; };
+		FB9508DE2B4F936B0012BFFA /* PValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PValue.cpp; sourceTree = "<group>"; };
+		FB9508DF2B4F936B0012BFFA /* PValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PValue.hpp; sourceTree = "<group>"; };
+		FB9508E22B4F94240012BFFA /* PInt.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PInt.cpp; sourceTree = "<group>"; };
+		FB9508E32B4F94240012BFFA /* PInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PInt.hpp; sourceTree = "<group>"; };
+		FB9508E62B4F94AD0012BFFA /* PIdentifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PIdentifier.cpp; sourceTree = "<group>"; };
+		FB9508E72B4F94AD0012BFFA /* PIdentifier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PIdentifier.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,117 +79,18 @@
 			children = (
 				FB3EC81F2B25037400581DE6 /* Parser.h */,
 				FB3EC81D2B24360900581DE6 /* Parser.cpp */,
+				FB9508D82B4F92710012BFFA /* PStatement */,
 			);
 			path = Parser;
 			sourceTree = "<group>";
 		};
-		FB3EC8262B250E9E00581DE6 /* IRGenerator */ = {
+		FB3EC8262B250E9E00581DE6 /* Compiler */ = {
 			isa = PBXGroup;
 			children = (
-				FB3EC8242B250E9000581DE6 /* IRGenerator.h */,
-				FB3EC8232B250E9000581DE6 /* IRGenerator.cpp */,
+				FB3EC8242B250E9000581DE6 /* Compiler.hpp */,
+				FB3EC8232B250E9000581DE6 /* Compiler.cpp */,
 			);
-			path = IRGenerator;
-			sourceTree = "<group>";
-		};
-		FB3EC82A2B25160600581DE6 /* GStatement */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC8282B2515F500581DE6 /* GStatement.h */,
-				FB3EC8272B2515F500581DE6 /* GStatement.cpp */,
-				FB3EC82D2B25259E00581DE6 /* GValue */,
-				FB3EC8492B255D4100581DE6 /* GDeclaration */,
-			);
-			path = GStatement;
-			sourceTree = "<group>";
-		};
-		FB3EC82D2B25259E00581DE6 /* GValue */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC8522B2570CB00581DE6 /* Variance.h */,
-				FB3EC8362B25267D00581DE6 /* GValue.h */,
-				FB3EC8342B25267200581DE6 /* GValue.cpp */,
-				FB3EC84D2B256EB500581DE6 /* GIdentifer */,
-				FB3EC8302B2525C700581DE6 /* GType */,
-				FB3EC8642B25906B00581DE6 /* GInt */,
-				FB3EC86A2B265B2300581DE6 /* GVoid */,
-				FB3EC8602B25906B00581DE6 /* GBool */,
-			);
-			path = GValue;
-			sourceTree = "<group>";
-		};
-		FB3EC8302B2525C700581DE6 /* GType */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC83C2B252AB700581DE6 /* GType.h */,
-				FB3EC83A2B252AAC00581DE6 /* GType.cpp */,
-				FB3EC86B2B26637500581DE6 /* GPureFunctionType */,
-				FB3EC8572B2572F500581DE6 /* GBuiltInType */,
-			);
-			path = GType;
-			sourceTree = "<group>";
-		};
-		FB3EC8492B255D4100581DE6 /* GDeclaration */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC84B2B255D6700581DE6 /* GDeclaration.h */,
-				FB3EC84A2B255D6700581DE6 /* GDeclaration.cpp */,
-			);
-			path = GDeclaration;
-			sourceTree = "<group>";
-		};
-		FB3EC84D2B256EB500581DE6 /* GIdentifer */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC84F2B256EC700581DE6 /* GIdentifier.h */,
-				FB3EC84E2B256EC700581DE6 /* GIdentifier.cpp */,
-			);
-			path = GIdentifer;
-			sourceTree = "<group>";
-		};
-		FB3EC8572B2572F500581DE6 /* GBuiltInType */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC8582B2572F500581DE6 /* GBuiltInType.h */,
-				FB3EC8552B2572F500581DE6 /* GBuiltInType.cpp */,
-			);
-			path = GBuiltInType;
-			sourceTree = "<group>";
-		};
-		FB3EC8602B25906B00581DE6 /* GBool */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC85F2B25906B00581DE6 /* GBool.h */,
-				FB3EC8622B25906B00581DE6 /* GBool.cpp */,
-			);
-			path = GBool;
-			sourceTree = "<group>";
-		};
-		FB3EC8642B25906B00581DE6 /* GInt */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC8612B25906B00581DE6 /* GInt.h */,
-				FB3EC8632B25906B00581DE6 /* GInt.cpp */,
-			);
-			path = GInt;
-			sourceTree = "<group>";
-		};
-		FB3EC86A2B265B2300581DE6 /* GVoid */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC8682B265B0E00581DE6 /* GVoid.h */,
-				FB3EC8672B265B0E00581DE6 /* GVoid.cpp */,
-			);
-			path = GVoid;
-			sourceTree = "<group>";
-		};
-		FB3EC86B2B26637500581DE6 /* GPureFunctionType */ = {
-			isa = PBXGroup;
-			children = (
-				FB3EC86E2B2663A200581DE6 /* GPureFunctionType.h */,
-				FB3EC86C2B26639400581DE6 /* GPureFunctionType.cpp */,
-			);
-			path = GPureFunctionType;
+			path = Compiler;
 			sourceTree = "<group>";
 		};
 		FB606E312B08799E00AFF855 = {
@@ -230,12 +115,60 @@
 				FB606E442B087B7C00AFF855 /* GuinLLVM9.entitlements */,
 				FB606E3D2B08799E00AFF855 /* main.cpp */,
 				FB3EC82B2B2517B900581DE6 /* llvm.h */,
-				FB3EC82A2B25160600581DE6 /* GStatement */,
 				FB3EC8212B250E5900581DE6 /* Tokenizer */,
-				FB3EC8262B250E9E00581DE6 /* IRGenerator */,
+				FB3EC8262B250E9E00581DE6 /* Compiler */,
 				FB3EC8222B250E6400581DE6 /* Parser */,
 			);
 			path = GuinLLVM9;
+			sourceTree = "<group>";
+		};
+		FB9508D82B4F92710012BFFA /* PStatement */ = {
+			isa = PBXGroup;
+			children = (
+				FB9508D62B4F926A0012BFFA /* PStatement.hpp */,
+				FB9508D52B4F926A0012BFFA /* PStatement.cpp */,
+				FB9508DD2B4F93590012BFFA /* PValue */,
+				FB9508D92B4F928E0012BFFA /* PDeclaration */,
+			);
+			path = PStatement;
+			sourceTree = "<group>";
+		};
+		FB9508D92B4F928E0012BFFA /* PDeclaration */ = {
+			isa = PBXGroup;
+			children = (
+				FB9508DB2B4F92A20012BFFA /* PDeclaration.hpp */,
+				FB9508DA2B4F92A20012BFFA /* PDeclaration.cpp */,
+			);
+			path = PDeclaration;
+			sourceTree = "<group>";
+		};
+		FB9508DD2B4F93590012BFFA /* PValue */ = {
+			isa = PBXGroup;
+			children = (
+				FB9508DF2B4F936B0012BFFA /* PValue.hpp */,
+				FB9508DE2B4F936B0012BFFA /* PValue.cpp */,
+				FB9508E52B4F94800012BFFA /* PIdentifier */,
+				FB9508E12B4F94140012BFFA /* PInt */,
+			);
+			path = PValue;
+			sourceTree = "<group>";
+		};
+		FB9508E12B4F94140012BFFA /* PInt */ = {
+			isa = PBXGroup;
+			children = (
+				FB9508E32B4F94240012BFFA /* PInt.hpp */,
+				FB9508E22B4F94240012BFFA /* PInt.cpp */,
+			);
+			path = PInt;
+			sourceTree = "<group>";
+		};
+		FB9508E52B4F94800012BFFA /* PIdentifier */ = {
+			isa = PBXGroup;
+			children = (
+				FB9508E72B4F94AD0012BFFA /* PIdentifier.hpp */,
+				FB9508E62B4F94AD0012BFFA /* PIdentifier.cpp */,
+			);
+			path = PIdentifier;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,21 +228,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB3EC83B2B252AAC00581DE6 /* GType.cpp in Sources */,
 				FB606E3E2B08799E00AFF855 /* main.cpp in Sources */,
 				FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */,
 				FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */,
-				FB3EC8252B250E9000581DE6 /* IRGenerator.cpp in Sources */,
-				FB3EC8502B256EC700581DE6 /* GIdentifier.cpp in Sources */,
-				FB3EC84C2B255D6700581DE6 /* GDeclaration.cpp in Sources */,
-				FB3EC85C2B2572F600581DE6 /* GBuiltInType.cpp in Sources */,
-				FB3EC8662B25906B00581DE6 /* GInt.cpp in Sources */,
-				FB3EC8692B265B0E00581DE6 /* GVoid.cpp in Sources */,
+				FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */,
+				FB9508D72B4F926A0012BFFA /* PStatement.cpp in Sources */,
+				FB3EC8252B250E9000581DE6 /* Compiler.cpp in Sources */,
+				FB9508E42B4F94240012BFFA /* PInt.cpp in Sources */,
 				FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */,
-				FB3EC8652B25906B00581DE6 /* GBool.cpp in Sources */,
-				FB3EC86D2B26639400581DE6 /* GPureFunctionType.cpp in Sources */,
-				FB3EC8292B2515F500581DE6 /* GStatement.cpp in Sources */,
-				FB3EC8352B25267200581DE6 /* GValue.cpp in Sources */,
+				FB9508DC2B4F92A20012BFFA /* PDeclaration.cpp in Sources */,
+				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,35 +9,36 @@
 #define Parser_h
 
 #include "Tokenizer.h"
-#include "GStatement.h"
 #include <optional>
 #include <string>
 
-#include "GBool.h"
-#include "GBuiltInType.h"
+
+#include "PStatement.hpp"
+#include "PDeclaration.hpp"
+#include "PValue.hpp"
+#include "PInt.hpp"
+#include "PIdentifier.hpp"
+
+#include <queue>
 
 class Parser {
 	
-	void removeComments(std::queue<Token>& tokens) const;
+	void formatTokens(std::queue<Token>& tokens) const;
+	
+	PStatement* parseStatement(std::queue<Token>& tokens);
+	PDeclaration* parseDeclaration(std::queue<Token>& tokens);
+	PValue* parseValue(std::queue<Token>& tokens);
+	PValue* parseParenedValue(std::queue<Token>& tokens);
+	PInt* parseInt(std::queue<Token>& tokens);
+	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
+	
+	bool atEndOfLine(const std::queue<Token>& tokens) const;
 	
 public:
 	
-	std::map<std::string, GValue*> identifierToGValueMap = {};
+	std::map<std::string, PValue*> constIdentifierAlias = {};
 	
-	Parser() {
-		
-		const Variance constant = Variance::CONST;
-		
-		identifierToGValueMap["true"] = new GBool(true, constant);
-		identifierToGValueMap["false"] = new GBool(false, constant);
-		identifierToGValueMap["Bool"] = new GBuiltInType(GBuiltInType::BuiltIn::Bool, constant);
-		identifierToGValueMap["Int"] = new GBuiltInType(GBuiltInType::BuiltIn::Int, constant);
-		identifierToGValueMap["Type"] = new GBuiltInType(GBuiltInType::BuiltIn::Type, constant);
-		identifierToGValueMap["Void"] = new GBuiltInType(GBuiltInType::BuiltIn::Void, constant);
-		identifierToGValueMap["Never"] = new GBuiltInType(GBuiltInType::BuiltIn::Never, constant);
-	}
-	
-	std::queue<GStatement*> getStatementsFrom(std::queue<Token> tokens);
+	std::queue<PStatement*> parse(std::queue<Token>& tokens);
 	
 };
 

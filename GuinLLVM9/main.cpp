@@ -9,40 +9,26 @@
 #include <vector>
 #include <iostream>
 
-#include "IRGenerator.h"
+#include "Tokenizer.h"
+#include "Parser.h"
 
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		const A: Type = Int
-		const B: Type = Bool
-		const C: Type = pure A -> B
+		
 	)");
-	auto statements = Parser().getStatementsFrom(tokens);
+	auto statements = Parser().parse(tokens);
+	
+	Compiler* compiler = new Compiler();
 	
 	while (!statements.empty()) {
-		std::cout << statements.front()->description() << ";\n";
+		statements.front()->compile(compiler);
 		statements.pop();
 	}
 	
 	std::cout << "\n\n";
 	
-	IRGenerator compiler = IRGenerator(statements);
-	
-	/*
-	auto entryBlock = BasicBlock::Create(*myContext, "entry", function);
-	myBuilder->SetInsertPoint(entryBlock);
-	
-	Value* tmp = myBuilder->CreateBinOp(Instruction::Mul, function->arg_begin(), ConstantFP::get(*myContext, APFloat((double)3.45)), "tmp");
-	
-	Value* tmp2 = myBuilder->CreateBinOp(Instruction::Mul, tmp, tmp, "tmp2");
-	
-	myBuilder->CreateRet(tmp2);
-	
-	verifyFunction(*function);
-	
-	function->print(errs());
-	*/
+	compiler->close();
 	
 	return 0;
 	

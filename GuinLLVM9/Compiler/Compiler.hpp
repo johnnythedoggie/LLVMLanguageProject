@@ -1,5 +1,5 @@
 //
-//  IRGenerator.h
+//  Compiler.h
 //  GuinLLVM9
 //
 //  Created by Jason Turner on 12/9/23.
@@ -9,22 +9,23 @@
 #define IRGenerator_h
 
 #include "llvm.h"
-#include "Parser.h"
 #include <memory>
 
-class IRGenerator {
+class Compiler {
 	
-	void generate(std::queue<GStatement*> statements);
+	Function* mainFunction = nullptr;
 	
 public:
+	
+	void close();
 	
 	LLVMContext* llvmContext;
 	Module* llvmModule;
 	IRBuilder<>* llvmBuilder;
 	
-	std::map<std::string, Value*> identifierToValueMap;
+	std::map<std::string, Value*> valueForIdentifier = {};
 	
-	IRGenerator(std::queue<GStatement*> statements);
+	Compiler();
 	
 };
 
