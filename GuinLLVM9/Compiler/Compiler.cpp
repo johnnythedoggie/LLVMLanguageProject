@@ -6,12 +6,20 @@
 //
 
 #include "Compiler.hpp"
-#include "ConstantIntType.hpp"
 #include "ValueHandler.hpp"
+
+#include "ConstantIntType.hpp"
+#include "ConstantBoolType.hpp"
+#include "ConstantBoolValue.hpp"
+#include "ConstantTypeType.hpp"
 
 Compiler::Compiler() {
 	
 	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new ConstantIntType(), "Int");
+	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(true), "Int");
+	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(false), "Int");
+	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new ConstantBoolType(), "Int");
+	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Int");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);

@@ -15,13 +15,7 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		const typeOfX = Int
-		let x = input()
-		input()
-		let y = input()
-		output(5)
-		output(x)
-		output(y)
+		
 	)");
 	auto statements = Parser().parse(tokens);
 	

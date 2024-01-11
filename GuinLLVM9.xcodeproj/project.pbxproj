@@ -29,6 +29,8 @@
 		FB95092E2B508A310012BFFA /* ConstantIntType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95092C2B508A310012BFFA /* ConstantIntType.cpp */; };
 		FB9509322B50904E0012BFFA /* PAssignment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509302B50904E0012BFFA /* PAssignment.cpp */; };
 		FB9509362B50AD3D0012BFFA /* ConstantTypeType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */; };
+		FB95093A2B50B0000012BFFA /* ConstantBoolValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */; };
+		FB95093E2B50B0790012BFFA /* ConstantBoolType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +89,10 @@
 		FB9509312B50904E0012BFFA /* PAssignment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PAssignment.hpp; sourceTree = "<group>"; };
 		FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTypeType.cpp; sourceTree = "<group>"; };
 		FB9509352B50AD3D0012BFFA /* ConstantTypeType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTypeType.hpp; sourceTree = "<group>"; };
+		FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBoolValue.cpp; sourceTree = "<group>"; };
+		FB9509392B50B0000012BFFA /* ConstantBoolValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantBoolValue.hpp; sourceTree = "<group>"; };
+		FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBoolType.cpp; sourceTree = "<group>"; };
+		FB95093D2B50B0790012BFFA /* ConstantBoolType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantBoolType.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +224,7 @@
 			children = (
 				FB9508EB2B4FA6F90012BFFA /* ConstantValue.hpp */,
 				FB9508EA2B4FA6F90012BFFA /* ConstantValue.cpp */,
+				FB95093B2B50B0060012BFFA /* ConstantBoolValue */,
 				FB95092B2B5088E60012BFFA /* ConstantIntValue */,
 				FB9509062B5067700012BFFA /* ConstantType */,
 			);
@@ -268,6 +275,7 @@
 				FB9509082B5067A10012BFFA /* ConstantType.hpp */,
 				FB9509072B5067A10012BFFA /* ConstantType.cpp */,
 				FB9509372B50AD430012BFFA /* ConstantTypeType */,
+				FB95093F2B50B0830012BFFA /* ConstantBoolType */,
 				FB95092F2B508A370012BFFA /* ConstantIntType */,
 			);
 			path = ConstantType;
@@ -307,6 +315,24 @@
 				FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */,
 			);
 			path = ConstantTypeType;
+			sourceTree = "<group>";
+		};
+		FB95093B2B50B0060012BFFA /* ConstantBoolValue */ = {
+			isa = PBXGroup;
+			children = (
+				FB9509392B50B0000012BFFA /* ConstantBoolValue.hpp */,
+				FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */,
+			);
+			path = ConstantBoolValue;
+			sourceTree = "<group>";
+		};
+		FB95093F2B50B0830012BFFA /* ConstantBoolType */ = {
+			isa = PBXGroup;
+			children = (
+				FB95093D2B50B0790012BFFA /* ConstantBoolType.hpp */,
+				FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */,
+			);
+			path = ConstantBoolType;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -371,6 +397,7 @@
 				FB606E3E2B08799E00AFF855 /* main.cpp in Sources */,
 				FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */,
 				FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */,
+				FB95093E2B50B0790012BFFA /* ConstantBoolType.cpp in Sources */,
 				FB9508FA2B4FB8E50012BFFA /* test.ll in Sources */,
 				FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */,
 				FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */,
@@ -388,6 +415,7 @@
 				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
 				FB9508F82B4FB4E30012BFFA /* PInput.cpp in Sources */,
 				FB95092E2B508A310012BFFA /* ConstantIntType.cpp in Sources */,
+				FB95093A2B50B0000012BFFA /* ConstantBoolValue.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
