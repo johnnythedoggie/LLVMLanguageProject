@@ -9,9 +9,6 @@
 #define Compiler_h
 
 #include "llvm.h"
-#include <memory>
-
-#include "PVariance.hpp"
 #include "CompilerValue.hpp"
 
 class Compiler {
@@ -24,10 +21,11 @@ public:
 	Module* llvmModule;
 	IRBuilder<>* llvmBuilder;
 	
-	std::map<std::string, CompilerValue> valueForIdentifier = {};
+	std::map<std::string, CompilerValue*> valueForIdentifier;
 	void close();
 	Compiler();
 	
 };
+
 
 #endif /* Compiler_h */

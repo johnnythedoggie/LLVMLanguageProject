@@ -6,6 +6,7 @@
 //
 
 #include "POutput.hpp"
+#include "ConstantIntType.hpp"
 
 Value* POutput::format = nullptr;
 Function* POutput::printf = nullptr;
@@ -26,6 +27,12 @@ void POutput::setup(Compiler* compiler) {
 void POutput::compile(Compiler* compiler) {
 	
 	if (!printf) setup(compiler);
+	
+	std::string inputType = ConstantIntType().identifierString();
+	std::string argumentType = argument->getConstantType(compiler)->identifierString();
+	
+	std::string errorMessage = "Cannot output non-integer input.";
+	if (argumentType != inputType) throw errorMessage;
 	
 	Value* llvmArgument = argument->getLLVMValue(compiler);
 	

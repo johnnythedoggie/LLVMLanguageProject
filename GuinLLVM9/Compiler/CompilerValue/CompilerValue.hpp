@@ -8,12 +8,24 @@
 #ifndef CompilerValue_hpp
 #define CompilerValue_hpp
 
+// #include "PValue.hpp"
 #include "llvm.h"
 #include "PVariance.hpp"
 
+// I really don't understand what's going on, this fixes it though.
+class ConstantValue; // #include "ConstantValue.hpp"
+class ConstantType; // #include "ConstantType.hpp"
+
 struct CompilerValue {
+	
 	PVariance variance;
-	Value* llvmValue;
+	ConstantType* constantType = nullptr;
+	
+	Value* dynamicValueLocation = nullptr; // VAR
+	Value* staticValue = nullptr; // LET
+	ConstantValue* constantValue = nullptr; // CONST
+	
 };
 
 #endif /* CompilerValue_hpp */
+

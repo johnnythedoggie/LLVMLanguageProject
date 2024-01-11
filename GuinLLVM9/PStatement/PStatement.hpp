@@ -8,8 +8,6 @@
 #ifndef PStatement_hpp
 #define PStatement_hpp
 
-#include "Tokenizer.h"
-#include <queue>
 #include "Compiler.hpp"
 
 class PStatement {

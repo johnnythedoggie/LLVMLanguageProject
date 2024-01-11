@@ -10,7 +10,7 @@
 
 #include "PValue.hpp"
 
-class PInt : public PValue {
+class PInt: public PValue {
 	
 public:
 	
@@ -20,9 +20,10 @@ public:
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	
-	void compile(Compiler* compiler) override;
-	PVariance getVariance(Compiler* compiler) override;
+	ConstantValue* getConstantValue(Compiler* compiler) override;
+	ConstantType* getConstantType(Compiler* compiler) override;
 	
+	PVariance getVariance(Compiler* compiler) override;
 	
 };
 

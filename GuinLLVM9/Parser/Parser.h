@@ -9,8 +9,8 @@
 #define Parser_h
 
 #include "Tokenizer.h"
-#include <optional>
 #include <string>
+#include <queue>
 
 #include "PStatement.hpp"
 #include "PDeclaration.hpp"
@@ -19,8 +19,7 @@
 #include "PIdentifier.hpp"
 #include "PInput.hpp"
 #include "POutput.hpp"
-
-#include <queue>
+#include "PAssignment.hpp"
 
 class Parser {
 	
@@ -34,6 +33,7 @@ class Parser {
 	PValue* parseParenedValue(std::queue<Token>& tokens);
 	PInt* parseInt(std::queue<Token>& tokens);
 	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
+	PValue* parseAssignmentContinuation(std::queue<Token>& tokens);
 	
 	bool atEndOfLine(const std::queue<Token>& tokens) const;
 	

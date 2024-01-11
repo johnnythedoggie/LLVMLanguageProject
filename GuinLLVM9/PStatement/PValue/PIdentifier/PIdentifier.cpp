@@ -6,36 +6,33 @@
 //
 
 #include "PIdentifier.hpp"
-
+#include "ValueHandler.hpp"
 
 Value* PIdentifier::getLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	
-	CompilerValue compilerValue = compiler->valueForIdentifier[identifier];
-	
-	if (compilerValue.variance == PVariance::VAR) {
-		return compiler->llvmBuilder->CreateLoad(compilerValue.llvmValue);
-	} else {
-		return compilerValue.llvmValue;
-	}
-}
-
-void PIdentifier::compile(Compiler* compiler) {
-	// do nothing
-	return;
+	return ValueHandler::getLLVMValue(compiler->valueForIdentifier[identifier], compiler);
 }
 
 PVariance PIdentifier::getVariance(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	return compiler->valueForIdentifier[identifier].variance;
+	return compiler->valueForIdentifier[identifier]->variance;
 }
 
 Value* PIdentifier::getMemoryLocation(Compiler* compiler) {
 	std::string errorMessage = "Error getting memory location.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	CompilerValue compilerValue = compiler->valueForIdentifier[identifier];
-	if (compilerValue.variance != PVariance::VAR) throw errorMessage;
-	return compilerValue.llvmValue;
+	return ValueHandler::getLLVMLocation(compiler->valueForIdentifier[identifier], compiler);
+}
+
+ConstantValue* PIdentifier::getConstantValue(Compiler* compiler) {
+	std::string errorMessage = "Identifer cannot be used before it is defined.";
+	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
+	if (compiler->valueForIdentifier[identifier]->variance != PVariance::CONST) return nullptr;
+	return compiler->valueForIdentifier[identifier]->constantValue;
+}
+
+ConstantType* PIdentifier::getConstantType(Compiler* compiler) {
+	return compiler->valueForIdentifier[identifier]->constantType;
 }

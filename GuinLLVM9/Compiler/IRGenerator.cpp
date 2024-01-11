@@ -6,12 +6,8 @@
 //
 
 #include "Compiler.hpp"
-#include "ConstantIntType.hpp"
-#include "ValueHandler.hpp"
 
 Compiler::Compiler() {
-	
-	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new ConstantIntType(), "Int");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);
@@ -20,10 +16,10 @@ Compiler::Compiler() {
 	FunctionType* mainFunctionType = FunctionType::get(Type::getVoidTy(*llvmContext), {}, false);
 	
 	mainFunction = Function::Create(
-		mainFunctionType,
-		Function::ExternalLinkage,
-		"main",
-		llvmModule
+		 mainFunctionType,
+		 Function::ExternalLinkage,
+		 "main",
+		 llvmModule
 	);
 	
 	auto entryBlock = BasicBlock::Create(*llvmContext, "entry", mainFunction);

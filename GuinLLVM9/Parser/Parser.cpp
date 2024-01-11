@@ -44,9 +44,18 @@ void Parser::formatTokens(std::queue<Token>& tokens) const {
 PStatement* Parser::parseStatement(std::queue<Token>& tokens) {
 	PStatement* result;
 	result = parseDeclaration(tokens);
-	if (!result) result = parseInput(tokens);
 	if (!result) result = parseOutput(tokens);
-	if (!result) result = parseValue(tokens);
+	if (!result) {
+		PValue* left = parseValue(tokens);
+		if (left) {
+			PValue* right = parseAssignmentContinuation(tokens);
+			if (right) {
+				result = new PAssignment(left, right);
+			} else {
+				result = left;
+			}
+		}
+	}
 	if (!result) return nullptr;
 	std::string errorMessage = "Expected end of statement after statement.";
 	if (tokens.front().type != Token::TokenType::NewLine) throw errorMessage;
@@ -82,11 +91,13 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 
 PValue* Parser::parseValue(std::queue<Token>& tokens) {
 	PValue* result;
-	result = parseInt(tokens);
+	result = parseInput(tokens);
 	if (result) return result;
 	result = parseIdentifier(tokens);
 	if (result) return result;
 	result = parseParenedValue(tokens);
+	if (result) return result;
+	result = parseInt(tokens);
 	if (result) return result;
 	return nullptr;
 }
@@ -99,7 +110,8 @@ PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
 	PValue* value = parseValue(tokens);
 	if (!value) throw errorMessage;
 	if (tokens.front().value != ")") throw errorMessage;
-	return nullptr;
+	tokens.pop();
+	return value;
 }
 
 
@@ -140,9 +152,11 @@ PInput* Parser::parseInput(std::queue<Token>& tokens) {
 	if (tokens.front().value != "input") return nullptr;
 	std::string errorMessage = "Failed to parse input command.";
 	tokens.pop();
-	PIdentifier* identifier = parseIdentifier(tokens);
-	if (!identifier) throw errorMessage;
-	return new PInput(identifier);
+	if (tokens.front().value != "(") throw errorMessage;
+	tokens.pop();
+	if (tokens.front().value != ")") throw errorMessage;
+	tokens.pop();
+	return new PInput();
 }
 
 POutput* Parser::parseOutput(std::queue<Token>& tokens) {
@@ -155,3 +169,12 @@ POutput* Parser::parseOutput(std::queue<Token>& tokens) {
 	return new POutput(value);
 }
 
+PValue* Parser::parseAssignmentContinuation(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "=") return nullptr;
+	tokens.pop();
+	PValue* value = parseValue(tokens);
+	std::string errorMessage = "Assignment requires a right hand side.";
+	if (!value) throw errorMessage;
+	return value;
+}

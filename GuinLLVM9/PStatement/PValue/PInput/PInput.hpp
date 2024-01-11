@@ -1,31 +1,33 @@
 //
-//  PIdentifier.hpp
+//  PInput.hpp
 //  GuinLLVM9
 //
 //  Created by Jason Turner on 1/10/24.
 //
 
-#ifndef PIdentifier_hpp
-#define PIdentifier_hpp
+#ifndef PInput_hpp
+#define PInput_hpp
 
-#include <string>
 #include "PValue.hpp"
+#include "PIdentifier.hpp"
 
-class PIdentifier : public PValue {
+class PInput: public PValue {
+	
+	static Value* format;
+	static Function* scanf;
+	
+	static void setup(Compiler* compiler);
 	
 public:
 	
-	std::string identifier;
-	
-	PIdentifier(std::string identifier) : identifier(identifier) { }
+	PInput() { }
 	
 	ConstantValue* getConstantValue(Compiler* compiler) override;
 	ConstantType* getConstantType(Compiler* compiler) override;
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;
-	Value* getMemoryLocation(Compiler* compiler) override;
 	
 };
 
-#endif /* PIdentifier_hpp */
+#endif /* PInput_hpp */
