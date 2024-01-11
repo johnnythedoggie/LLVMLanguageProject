@@ -8,15 +8,9 @@
 #ifndef PDeclaration_hpp
 #define PDeclaration_hpp
 
-#include "PStatement.hpp"
+#include "PVariance.hpp"
 #include "PValue.hpp"
 #include <string>
-
-enum class PVariance {
-	CONST,
-	LET,
-	VAR
-};
 
 class PDeclaration: public PStatement {
 	

@@ -33,6 +33,4 @@ void Compiler::close() {
 	
 	verifyFunction(*mainFunction);
 	
-	mainFunction->print(errs());
-	
 }

@@ -18,9 +18,10 @@ public:
 	
 	PInt(int value) : value(value) { }
 	
-	Value* getValue(Compiler* compiler) override;
+	Value* getLLVMValue(Compiler* compiler) override;
 	
 	void compile(Compiler* compiler) override;
+	PVariance getVariance(Compiler* compiler) override;
 	
 	
 };

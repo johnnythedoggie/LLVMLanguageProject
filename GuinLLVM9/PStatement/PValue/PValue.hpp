@@ -10,11 +10,12 @@
 
 #include "PStatement.hpp"
 
-class PValue : public PStatement {
+class PValue: public PStatement {
 	
 public:
 	
-	virtual Value* getValue(Compiler* compiler) = 0;
+	virtual Value* getLLVMValue(Compiler* compiler) = 0;
+	virtual PVariance getVariance(Compiler* compiler) = 0;
 	
 	// virtual void compile(Compiler* compiler) = 0;
 	

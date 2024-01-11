@@ -12,12 +12,13 @@
 #include <optional>
 #include <string>
 
-
 #include "PStatement.hpp"
 #include "PDeclaration.hpp"
 #include "PValue.hpp"
 #include "PInt.hpp"
 #include "PIdentifier.hpp"
+#include "PInput.hpp"
+#include "POutput.hpp"
 
 #include <queue>
 
@@ -25,6 +26,8 @@ class Parser {
 	
 	void formatTokens(std::queue<Token>& tokens) const;
 	
+	POutput* parseOutput(std::queue<Token>& tokens);
+	PInput* parseInput(std::queue<Token>& tokens);
 	PStatement* parseStatement(std::queue<Token>& tokens);
 	PDeclaration* parseDeclaration(std::queue<Token>& tokens);
 	PValue* parseValue(std::queue<Token>& tokens);

@@ -19,8 +19,9 @@ public:
 	
 	PIdentifier(std::string identifier) : identifier(identifier) { }
 	
-	
-	Value* getValue(Compiler* compiler) override;
+	Value* getLLVMValue(Compiler* compiler) override;
+	PVariance getVariance(Compiler* compiler) override;
+	Value* getMemoryLocation(Compiler* compiler);
 	
 	void compile(Compiler* compiler) override;
 	

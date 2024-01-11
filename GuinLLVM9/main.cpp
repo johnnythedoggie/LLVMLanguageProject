@@ -15,7 +15,13 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		
+		let x = 4
+		var y = 0
+		input y
+		let z = y
+		output x
+		output y
+		output z
 	)");
 	auto statements = Parser().parse(tokens);
 	
@@ -29,6 +35,9 @@ int main() {
 	std::cout << "\n\n";
 	
 	compiler->close();
+	
+	compiler->llvmModule->print(outs(), nullptr);
+
 	
 	return 0;
 	

@@ -5,11 +5,14 @@
 //  Created by Jason Turner on 12/9/23.
 //
 
-#ifndef IRGenerator_h
-#define IRGenerator_h
+#ifndef Compiler_h
+#define Compiler_h
 
 #include "llvm.h"
 #include <memory>
+
+#include "PVariance.hpp"
+#include "CompilerValue.hpp"
 
 class Compiler {
 	
@@ -17,16 +20,14 @@ class Compiler {
 	
 public:
 	
-	void close();
-	
 	LLVMContext* llvmContext;
 	Module* llvmModule;
 	IRBuilder<>* llvmBuilder;
 	
-	std::map<std::string, Value*> valueForIdentifier = {};
-	
+	std::map<std::string, CompilerValue> valueForIdentifier = {};
+	void close();
 	Compiler();
 	
 };
 
-#endif /* IRGenerator_h */
+#endif /* Compiler_h */

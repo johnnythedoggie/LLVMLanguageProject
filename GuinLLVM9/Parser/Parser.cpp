@@ -41,16 +41,11 @@ void Parser::formatTokens(std::queue<Token>& tokens) const {
 	
 }
 
-
-bool Parser::atEndOfLine(const std::queue<Token>& tokens) const {
-	if (tokens.empty()) return true;
-	if (tokens.front().type == Token::TokenType::NewLine) return true;
-	return false;
-}
-
 PStatement* Parser::parseStatement(std::queue<Token>& tokens) {
 	PStatement* result;
 	result = parseDeclaration(tokens);
+	if (!result) result = parseInput(tokens);
+	if (!result) result = parseOutput(tokens);
 	if (!result) result = parseValue(tokens);
 	if (!result) return nullptr;
 	std::string errorMessage = "Expected end of statement after statement.";
@@ -114,7 +109,7 @@ PInt* Parser::parseInt(std::queue<Token>& tokens) {
 	int value = 0;
 	for (const char digit : tokens.front().value) {
 		value *= 10;
-		value += digit;
+		value += digit - '0';
 	}
 	tokens.pop();
 	return new PInt(value);
@@ -139,3 +134,24 @@ std::queue<PStatement*> Parser::parse(std::queue<Token>& tokens) {
 	}
 	return results;
 }
+
+PInput* Parser::parseInput(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "input") return nullptr;
+	std::string errorMessage = "Failed to parse input command.";
+	tokens.pop();
+	PIdentifier* identifier = parseIdentifier(tokens);
+	if (!identifier) throw errorMessage;
+	return new PInput(identifier);
+}
+
+POutput* Parser::parseOutput(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "output") return nullptr;
+	std::string errorMessage = "Failed to parse output command.";
+	tokens.pop();
+	PValue* value = parseValue(tokens);
+	if (!value) throw errorMessage;
+	return new POutput(value);
+}
+
