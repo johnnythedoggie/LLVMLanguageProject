@@ -39,6 +39,8 @@
 		FB9509622B51154C0012BFFA /* ConstantOutputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509602B51154C0012BFFA /* ConstantOutputFunction.cpp */; };
 		FB9509662B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509642B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp */; };
 		FB95096A2B51C8770012BFFA /* PFunctionDefinition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509682B51C8770012BFFA /* PFunctionDefinition.cpp */; };
+		FB95096E2B51F6390012BFFA /* Scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95096C2B51F6390012BFFA /* Scope.cpp */; };
+		FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509702B51F92B0012BFFA /* PArgument.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -117,6 +119,10 @@
 		FB9509652B51C46E0012BFFA /* ConstantUserDefinedFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantUserDefinedFunction.hpp; sourceTree = "<group>"; };
 		FB9509682B51C8770012BFFA /* PFunctionDefinition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PFunctionDefinition.cpp; sourceTree = "<group>"; };
 		FB9509692B51C8770012BFFA /* PFunctionDefinition.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PFunctionDefinition.hpp; sourceTree = "<group>"; };
+		FB95096C2B51F6390012BFFA /* Scope.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scope.cpp; sourceTree = "<group>"; };
+		FB95096D2B51F6390012BFFA /* Scope.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scope.hpp; sourceTree = "<group>"; };
+		FB9509702B51F92B0012BFFA /* PArgument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PArgument.cpp; sourceTree = "<group>"; };
+		FB9509712B51F92B0012BFFA /* PArgument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PArgument.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,7 @@
 				FB3EC8242B250E9000581DE6 /* Compiler.hpp */,
 				FB9509042B5063630012BFFA /* Compiler.cpp */,
 				FB9508F42B4FAE5C0012BFFA /* CompilerValue */,
+				FB95096F2B51F6430012BFFA /* Scope */,
 			);
 			path = Compiler;
 			sourceTree = "<group>";
@@ -217,6 +224,7 @@
 			children = (
 				FB9508DF2B4F936B0012BFFA /* PValue.hpp */,
 				FB9508DE2B4F936B0012BFFA /* PValue.cpp */,
+				FB9509732B51F9430012BFFA /* PArgument */,
 				FB9508E52B4F94800012BFFA /* PIdentifier */,
 				FB9509472B50B9280012BFFA /* PFunctionType */,
 				FB9508E12B4F94140012BFFA /* PInt */,
@@ -439,6 +447,24 @@
 			path = PFunctionDefinition;
 			sourceTree = "<group>";
 		};
+		FB95096F2B51F6430012BFFA /* Scope */ = {
+			isa = PBXGroup;
+			children = (
+				FB95096D2B51F6390012BFFA /* Scope.hpp */,
+				FB95096C2B51F6390012BFFA /* Scope.cpp */,
+			);
+			path = Scope;
+			sourceTree = "<group>";
+		};
+		FB9509732B51F9430012BFFA /* PArgument */ = {
+			isa = PBXGroup;
+			children = (
+				FB9509712B51F92B0012BFFA /* PArgument.hpp */,
+				FB9509702B51F92B0012BFFA /* PArgument.cpp */,
+			);
+			path = PArgument;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -514,11 +540,13 @@
 				FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */,
 				FB9508D72B4F926A0012BFFA /* PStatement.cpp in Sources */,
 				FB9509662B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp in Sources */,
+				FB95096E2B51F6390012BFFA /* Scope.cpp in Sources */,
 				FB9508E42B4F94240012BFFA /* PInt.cpp in Sources */,
 				FB9509052B5063630012BFFA /* Compiler.cpp in Sources */,
 				FB9509522B50CC970012BFFA /* ConstantVoidType.cpp in Sources */,
 				FB9509322B50904E0012BFFA /* PAssignment.cpp in Sources */,
 				FB9508F02B4FAC270012BFFA /* PVariance.cpp in Sources */,
+				FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */,
 				FB9508EC2B4FA6F90012BFFA /* ConstantValue.cpp in Sources */,
 				FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */,
 				FB95095E2B50DA010012BFFA /* PFunctionCall.cpp in Sources */,

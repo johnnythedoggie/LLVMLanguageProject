@@ -16,7 +16,14 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		
+		let callThreeTimes = ((Void -> Void) -> Void) {
+			$ void
+			$ void
+			$ void
+		}
+		callThreeTimes ((Void -> Void) {
+			output (input void)
+		})
 	)");
 	
 	auto statements = Parser().parse(tokens);

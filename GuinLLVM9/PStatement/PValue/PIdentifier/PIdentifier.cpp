@@ -34,5 +34,7 @@ ConstantValue* PIdentifier::getConstantValue(Compiler* compiler) {
 }
 
 ConstantType* PIdentifier::getConstantType(Compiler* compiler) {
+	std::string errorMessage = "Identifer cannot be used before it is defined.";
+	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
 	return compiler->valueForIdentifier[identifier]->constantType;
 }

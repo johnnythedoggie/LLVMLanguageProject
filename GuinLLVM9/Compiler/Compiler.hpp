@@ -10,6 +10,7 @@
 
 #include "llvm.h"
 #include "CompilerValue.hpp"
+#include "Scope.hpp"
 
 class Compiler {
 	
@@ -22,6 +23,9 @@ public:
 	IRBuilder<>* llvmBuilder;
 	
 	std::map<std::string, CompilerValue*> valueForIdentifier;
+	Scope scope;
+	
+	
 	void close();
 	Compiler();
 	

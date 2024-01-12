@@ -21,11 +21,13 @@
 #include "PFunctionType.hpp"
 #include "PFunctionCall.hpp"
 #include "PFunctionDefinition.hpp"
+#include "PArgument.hpp"
 
 class Parser {
 	
 	void formatTokens(std::queue<Token>& tokens) const;
 	
+	PArgument* parseArgument(std::queue<Token>& tokens);
 	PStatement* parseStatement(std::queue<Token>& tokens);
 	PDeclaration* parseDeclaration(std::queue<Token>& tokens);
 	PValue* parseProtectedValue(std::queue<Token>& tokens);

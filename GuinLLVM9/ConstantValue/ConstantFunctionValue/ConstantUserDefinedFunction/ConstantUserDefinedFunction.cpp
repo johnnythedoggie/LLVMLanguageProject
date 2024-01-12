@@ -23,6 +23,8 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	IRBuilder<>::InsertPoint previousLocation = compiler->llvmBuilder->saveIP();
 	auto savedIdentifiers = compiler->valueForIdentifier;
 	compiler->valueForIdentifier = {};
+	Scope savedScope = compiler->scope;
+	compiler->scope = { inputType, function->args().begin() };
 	
 	for (auto x : savedIdentifiers) {
 		if (x.second->variance == PVariance::CONST) {
@@ -44,7 +46,7 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	// Put back how things were
 	compiler->valueForIdentifier = savedIdentifiers;
 	compiler->llvmBuilder->restoreIP(previousLocation);
-	
+	compiler->scope = savedScope;
 }
 
 Value* ConstantUserDefinedFunction::getLLVMValue(Compiler* compiler) {

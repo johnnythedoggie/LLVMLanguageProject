@@ -89,6 +89,8 @@ PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	if (result) return result;
 	result = parseInt(tokens);
 	if (result) return result;
+	result = parseArgument(tokens);
+	if (result) return result;
 	return nullptr;
 }
 
@@ -196,4 +198,11 @@ PFunctionDefinition* Parser::parseOptionalFunctionDefinitionContinuation(PValue*
 	if (tokens.front().value != "}") throw errorMessage;
 	tokens.pop();
 	return new PFunctionDefinition(value, statements);
+}
+
+PArgument* Parser::parseArgument(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "$") return nullptr;
+	tokens.pop();
+	return new PArgument();
 }
