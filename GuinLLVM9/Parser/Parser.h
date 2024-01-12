@@ -20,6 +20,7 @@
 #include "PAssignment.hpp"
 #include "PFunctionType.hpp"
 #include "PFunctionCall.hpp"
+#include "PFunctionDefinition.hpp"
 
 class Parser {
 	
@@ -36,6 +37,7 @@ class Parser {
 	PFunctionType* parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens);
 	PStatement* parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens);
 	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value, std::queue<Token>& tokens);
+	PFunctionDefinition* parseOptionalFunctionDefinitionContinuation(PValue* value, std::queue<Token>& tokens);
 	
 	bool atEndOfLine(const std::queue<Token>& tokens) const;
 	

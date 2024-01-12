@@ -11,14 +11,14 @@
 
 #include "Tokenizer.h"
 #include "Parser.h"
-#include "ConstantInputFunction.hpp"
-#include "ConstantVoid.hpp"
+#include "Compiler.hpp"
 
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		output (input (output 5))
+		
 	)");
+	
 	auto statements = Parser().parse(tokens);
 	
 	Compiler* compiler = new Compiler();

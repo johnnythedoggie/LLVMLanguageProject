@@ -8,7 +8,6 @@
 #ifndef ConstantOutputFunction_hpp
 #define ConstantOutputFunction_hpp
 
-
 #include "ConstantFunctionValue.hpp"
 #include "ConstantVoidType.hpp"
 #include "ConstantIntType.hpp"
@@ -22,11 +21,10 @@ class ConstantOutputFunction: public ConstantFunctionValue {
 public:
 	
 	ConstantOutputFunction()
-	: ConstantFunctionValue("output", new ConstantIntType(), new ConstantVoidType()) { }
+	: ConstantFunctionValue(new ConstantIntType(), new ConstantVoidType()) { }
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	
 };
-
 
 #endif /* ConstantOutputFunction_hpp */

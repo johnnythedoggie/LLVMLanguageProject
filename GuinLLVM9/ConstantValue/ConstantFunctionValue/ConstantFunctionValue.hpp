@@ -15,12 +15,15 @@ class ConstantFunctionValue: public ConstantValue {
 	
 public:
 	
-	std::string name;
+	static int globalIdentifier;
+	
+	int identifier;
+	
 	ConstantType* inputType;
 	ConstantType* outputType;
 	
-	ConstantFunctionValue(std::string name, ConstantType* inputType, ConstantType* outputType)
-		: name(name), inputType(inputType), outputType(outputType) { }
+	ConstantFunctionValue(ConstantType* inputType, ConstantType* outputType)
+		: identifier(globalIdentifier++), inputType(inputType), outputType(outputType) { }
 	
 	ConstantType* getConstantType() override;
 	

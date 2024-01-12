@@ -21,7 +21,7 @@ class ConstantInputFunction: public ConstantFunctionValue {
 public:
 	
 	ConstantInputFunction()
-	 : ConstantFunctionValue("input", new ConstantVoidType(), new ConstantIntType()) { }
+	 : ConstantFunctionValue(new ConstantVoidType(), new ConstantIntType()) { }
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	

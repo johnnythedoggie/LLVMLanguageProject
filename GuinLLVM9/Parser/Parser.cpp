@@ -98,6 +98,8 @@ PValue* Parser::parseValue(std::queue<Token>& tokens) {
 	if (functionType) return functionType;
 	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
 	if (functionCall) return functionCall;
+	PFunctionDefinition* functionDefinition = parseOptionalFunctionDefinitionContinuation(value, tokens);
+	if (functionDefinition) return functionDefinition;
 	return value;
 }
 
@@ -106,8 +108,10 @@ PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
 	if (tokens.front().value != "(") return nullptr;
 	std::string errorMessage = "Failed to parse parenthesized value.";
 	tokens.pop();
+	if (tokens.front().value == "\n") tokens.pop();
 	PValue* value = parseValue(tokens);
 	if (!value) throw errorMessage;
+	if (tokens.front().value == "\n") tokens.pop();
 	if (tokens.front().value != ")") throw errorMessage;
 	tokens.pop();
 	return value;
@@ -174,4 +178,22 @@ PFunctionCall* Parser::parseOptionalFunctionCallContinuation(PValue* value, std:
 	PValue* argument = parseProtectedValue(tokens);
 	if (!argument) return nullptr;
 	return new PFunctionCall(value, argument);
+}
+
+PFunctionDefinition* Parser::parseOptionalFunctionDefinitionContinuation(PValue* value, std::queue<Token>& tokens) {
+	if (!value) return nullptr;
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "{") return nullptr;
+	std::string errorMessage = "Error parsing function body.";
+	tokens.pop();
+	if (tokens.front().value == "\n") tokens.pop();
+	std::queue<PStatement*> statements = {};
+	while (!tokens.empty() && tokens.front().value != "}") {
+		PStatement* statement = parseStatement(tokens);
+		if (!statement) throw errorMessage;
+		statements.push(statement);
+	}
+	if (tokens.front().value != "}") throw errorMessage;
+	tokens.pop();
+	return new PFunctionDefinition(value, statements);
 }

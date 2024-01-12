@@ -8,8 +8,10 @@
 #include "ConstantFunctionValue.hpp"
 #include "ConstantFunctionType.hpp"
 
+int ConstantFunctionValue::globalIdentifier = 0;
+
 std::string ConstantFunctionValue::identifierString() {
-	return "{" + name + ", " + inputType->identifierString() + ", " + outputType->identifierString() + "}";
+	return "function" + std::to_string(identifier);
 }
 
 ConstantType* ConstantFunctionValue::getConstantType() {
