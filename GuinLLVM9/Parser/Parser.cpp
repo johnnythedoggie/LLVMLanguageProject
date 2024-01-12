@@ -44,7 +44,6 @@ void Parser::formatTokens(std::queue<Token>& tokens) const {
 PStatement* Parser::parseStatement(std::queue<Token>& tokens) {
 	PStatement* result;
 	result = parseDeclaration(tokens);
-	if (!result) result = parseOutput(tokens);
 	if (!result) {
 		PValue* left = parseValue(tokens);
 		result = parseOptionalAssignmentContinuation(left, tokens);
@@ -84,8 +83,6 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 
 PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	PValue* result;
-	//result = parseInput(tokens);
-	//if (result) return result;
 	result = parseIdentifier(tokens);
 	if (result) return result;
 	result = parseParenedValue(tokens);
@@ -147,16 +144,6 @@ std::queue<PStatement*> Parser::parse(std::queue<Token>& tokens) {
 		results.push(statement);
 	}
 	return results;
-}
-
-POutput* Parser::parseOutput(std::queue<Token>& tokens) {
-	if (tokens.empty()) return nullptr;
-	if (tokens.front().value != "output") return nullptr;
-	std::string errorMessage = "Failed to parse output command.";
-	tokens.pop();
-	PValue* value = parseValue(tokens);
-	if (!value) throw errorMessage;
-	return new POutput(value);
 }
 
 PFunctionType* Parser::parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens) {
