@@ -12,5 +12,13 @@ std::string ConstantFunctionType::identifierString() {
 }
 
 Type* ConstantFunctionType::getLLVMType(Compiler* compiler) {
-	return FunctionType::get(outputType->getLLVMType(compiler), { inputType->getLLVMType(compiler) }, false);
+	return getLLVMFunctionType(compiler)->getPointerTo();
+}
+
+FunctionType* ConstantFunctionType::getLLVMFunctionType(Compiler* compiler) {
+	return FunctionType::get(
+		outputType->getLLVMType(compiler),
+		{ inputType->getLLVMType(compiler) },
+		false
+	);
 }

@@ -22,6 +22,9 @@ public:
 	
 	std::string identifierString() override;
 	
+	FunctionType* getLLVMFunctionType(Compiler* compiler);
+	
+	// this will give a pointer to the LLVMFunctionType.
 	Type* getLLVMType(Compiler* compiler) override;
 	
 };

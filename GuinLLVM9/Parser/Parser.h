@@ -21,6 +21,7 @@
 #include "POutput.hpp"
 #include "PAssignment.hpp"
 #include "PFunctionType.hpp"
+#include "PFunctionCall.hpp"
 
 class Parser {
 	
@@ -36,8 +37,9 @@ class Parser {
 	PInt* parseInt(std::queue<Token>& tokens);
 	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
 	
-	PValue* parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens);
+	PFunctionType* parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens);
 	PStatement* parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens);
+	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value, std::queue<Token>& tokens);
 	
 	bool atEndOfLine(const std::queue<Token>& tokens) const;
 	

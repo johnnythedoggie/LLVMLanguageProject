@@ -14,6 +14,7 @@
 #include "ConstantTypeType.hpp"
 #include "ConstantVoid.hpp"
 #include "ConstantVoidType.hpp"
+#include "ConstantInputFunction.hpp"
 
 Compiler::Compiler() {
 	
@@ -24,6 +25,7 @@ Compiler::Compiler() {
 	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Type");
 	valueForIdentifier["void"] = ValueHandler::newConstantValue(this, new ConstantVoid(), "void");
 	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new ConstantVoidType(), "Void");
+	valueForIdentifier["input"] = ValueHandler::newConstantValue(this, new ConstantInputFunction(), "input");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);

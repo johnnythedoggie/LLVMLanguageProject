@@ -84,8 +84,8 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 
 PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	PValue* result;
-	result = parseInput(tokens);
-	if (result) return result;
+	//result = parseInput(tokens);
+	//if (result) return result;
 	result = parseIdentifier(tokens);
 	if (result) return result;
 	result = parseParenedValue(tokens);
@@ -97,7 +97,11 @@ PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 
 PValue* Parser::parseValue(std::queue<Token>& tokens) {
 	PValue* value = parseProtectedValue(tokens);
-	return parseOptionalFunctionTypeContinuation(value, tokens);
+	PFunctionType* functionType = parseOptionalFunctionTypeContinuation(value, tokens);
+	if (functionType) return functionType;
+	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
+	if (functionCall) return functionCall;
+	return value;
 }
 
 PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
@@ -167,10 +171,10 @@ POutput* Parser::parseOutput(std::queue<Token>& tokens) {
 	return new POutput(value);
 }
 
-PValue* Parser::parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens) {
+PFunctionType* Parser::parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens) {
 	if (!value) return nullptr;
-	if (tokens.empty()) return value;
-	if (tokens.front().value != "->") return value;
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "->") return nullptr;
 	tokens.pop();
 	PValue* rightValue = parseProtectedValue(tokens);
 	std::string errorMessage = "Function type requires a right hand side.";
@@ -189,3 +193,10 @@ PStatement* Parser::parseOptionalAssignmentContinuation(PValue* value, std::queu
 	return new PAssignment(value, rightValue);
 }
 
+PFunctionCall* Parser::parseOptionalFunctionCallContinuation(PValue* value, std::queue<Token>& tokens) {
+	if (!value) return nullptr;
+	if (tokens.empty()) return nullptr;
+	PValue* argument = parseProtectedValue(tokens);
+	if (!argument) return nullptr;
+	return new PFunctionCall(value, argument);
+}

@@ -1,17 +1,15 @@
 //
-//  PInput.cpp
+//  ConstantInputFunction.cpp
 //  GuinLLVM9
 //
-//  Created by Jason Turner on 1/10/24.
+//  Created by Jason Turner on 1/11/24.
 //
 
-#include "PInput.hpp"
-#include "ConstantIntType.hpp"
-#include "ConstantVoid.hpp"
+#include "ConstantInputFunction.hpp"
 
-Function* PInput::input = nullptr;
+Function* ConstantInputFunction::input = nullptr;
 
-void PInput::setup(Compiler* compiler) {
+void ConstantInputFunction::setup(Compiler* compiler) {
 	
 	std::vector<Type*> scanfArgTypes = { Type::getInt8PtrTy(*compiler->llvmContext) };
 	FunctionType* scanfType = FunctionType::get(compiler->llvmBuilder->getInt32Ty(), scanfArgTypes, true);
@@ -54,26 +52,11 @@ void PInput::setup(Compiler* compiler) {
 	
 	input = inputFunction;
 	
-}
-
-ConstantValue* PInput::getConstantValue(Compiler* compiler) {
-	return nullptr;
-}
-
-ConstantType* PInput::getConstantType(Compiler* compiler) {
-	return new ConstantIntType();
-}
-
-Value* PInput::getLLVMValue(Compiler* compiler) {
+	input->setName("input");
 	
+}
+
+Value* ConstantInputFunction::getLLVMValue(Compiler* compiler) {
 	if (!input) setup(compiler);
-	
-	Value* voidValue = ConstantVoid().getLLVMValue(compiler);
-	
-	return compiler->llvmBuilder->CreateCall(input, { voidValue });
-	
-}
-
-PVariance PInput::getVariance(Compiler* compiler) {
-	return PVariance::LET;
+	return input;
 }

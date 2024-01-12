@@ -13,8 +13,7 @@
 
 class PInput: public PValue {
 	
-	static Value* format;
-	static Function* scanf;
+	static Function* input;
 	
 	static void setup(Compiler* compiler);
 	

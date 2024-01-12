@@ -11,11 +11,15 @@
 
 #include "Tokenizer.h"
 #include "Parser.h"
+#include "ConstantInputFunction.hpp"
+#include "ConstantVoid.hpp"
 
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		var x = void
+		var y = input
+		var z = y
+		z void
 	)");
 	auto statements = Parser().parse(tokens);
 	
