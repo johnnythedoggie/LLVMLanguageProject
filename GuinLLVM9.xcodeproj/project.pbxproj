@@ -19,7 +19,6 @@
 		FB9508EC2B4FA6F90012BFFA /* ConstantValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508EA2B4FA6F90012BFFA /* ConstantValue.cpp */; };
 		FB9508F02B4FAC270012BFFA /* PVariance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508EE2B4FAC270012BFFA /* PVariance.cpp */; };
 		FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508F12B4FAD720012BFFA /* CompilerValue.cpp */; };
-		FB9508F82B4FB4E30012BFFA /* PInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508F62B4FB4E30012BFFA /* PInput.cpp */; };
 		FB9508FA2B4FB8E50012BFFA /* test.ll in Sources */ = {isa = PBXBuildFile; fileRef = FB9508F92B4FB8E50012BFFA /* test.ll */; };
 		FB9508FE2B4FBB1F0012BFFA /* POutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508FC2B4FBB1F0012BFFA /* POutput.cpp */; };
 		FB9509052B5063630012BFFA /* Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509042B5063630012BFFA /* Compiler.cpp */; };
@@ -78,8 +77,6 @@
 		FB9508EF2B4FAC270012BFFA /* PVariance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PVariance.hpp; sourceTree = "<group>"; };
 		FB9508F12B4FAD720012BFFA /* CompilerValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CompilerValue.cpp; sourceTree = "<group>"; };
 		FB9508F22B4FAD720012BFFA /* CompilerValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CompilerValue.hpp; sourceTree = "<group>"; };
-		FB9508F62B4FB4E30012BFFA /* PInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PInput.cpp; sourceTree = "<group>"; };
-		FB9508F72B4FB4E30012BFFA /* PInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PInput.hpp; sourceTree = "<group>"; };
 		FB9508F92B4FB8E50012BFFA /* test.ll */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm.llvm; path = test.ll; sourceTree = "<group>"; };
 		FB9508FC2B4FBB1F0012BFFA /* POutput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = POutput.cpp; sourceTree = "<group>"; };
 		FB9508FD2B4FBB1F0012BFFA /* POutput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = POutput.hpp; sourceTree = "<group>"; };
@@ -215,7 +212,6 @@
 			children = (
 				FB9508DF2B4F936B0012BFFA /* PValue.hpp */,
 				FB9508DE2B4F936B0012BFFA /* PValue.cpp */,
-				FB9508F52B4FB4C90012BFFA /* PInput */,
 				FB9508E52B4F94800012BFFA /* PIdentifier */,
 				FB9509472B50B9280012BFFA /* PFunctionType */,
 				FB9508E12B4F94140012BFFA /* PInt */,
@@ -274,15 +270,6 @@
 				FB9508F12B4FAD720012BFFA /* CompilerValue.cpp */,
 			);
 			path = CompilerValue;
-			sourceTree = "<group>";
-		};
-		FB9508F52B4FB4C90012BFFA /* PInput */ = {
-			isa = PBXGroup;
-			children = (
-				FB9508F72B4FB4E30012BFFA /* PInput.hpp */,
-				FB9508F62B4FB4E30012BFFA /* PInput.cpp */,
-			);
-			path = PInput;
 			sourceTree = "<group>";
 		};
 		FB9508FB2B4FBB0E0012BFFA /* POutput */ = {
@@ -511,7 +498,6 @@
 				FB9509362B50AD3D0012BFFA /* ConstantTypeType.cpp in Sources */,
 				FB9508FE2B4FBB1F0012BFFA /* POutput.cpp in Sources */,
 				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
-				FB9508F82B4FB4E30012BFFA /* PInput.cpp in Sources */,
 				FB95092E2B508A310012BFFA /* ConstantIntType.cpp in Sources */,
 				FB95093A2B50B0000012BFFA /* ConstantBoolValue.cpp in Sources */,
 			);

@@ -149,18 +149,6 @@ std::queue<PStatement*> Parser::parse(std::queue<Token>& tokens) {
 	return results;
 }
 
-PInput* Parser::parseInput(std::queue<Token>& tokens) {
-	if (tokens.empty()) return nullptr;
-	if (tokens.front().value != "input") return nullptr;
-	std::string errorMessage = "Failed to parse input command.";
-	tokens.pop();
-	if (tokens.front().value != "(") throw errorMessage;
-	tokens.pop();
-	if (tokens.front().value != ")") throw errorMessage;
-	tokens.pop();
-	return new PInput();
-}
-
 POutput* Parser::parseOutput(std::queue<Token>& tokens) {
 	if (tokens.empty()) return nullptr;
 	if (tokens.front().value != "output") return nullptr;
