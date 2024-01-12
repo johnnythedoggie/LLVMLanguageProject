@@ -15,7 +15,7 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		
+		var x = void
 	)");
 	auto statements = Parser().parse(tokens);
 	

@@ -47,14 +47,7 @@ PStatement* Parser::parseStatement(std::queue<Token>& tokens) {
 	if (!result) result = parseOutput(tokens);
 	if (!result) {
 		PValue* left = parseValue(tokens);
-		if (left) {
-			PValue* right = parseAssignmentContinuation(tokens);
-			if (right) {
-				result = new PAssignment(left, right);
-			} else {
-				result = left;
-			}
-		}
+		result = parseOptionalAssignmentContinuation(left, tokens);
 	}
 	if (!result) return nullptr;
 	std::string errorMessage = "Expected end of statement after statement.";
@@ -89,7 +82,7 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 	return new PDeclaration(variance, identifier, value);
 }
 
-PValue* Parser::parseValue(std::queue<Token>& tokens) {
+PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	PValue* result;
 	result = parseInput(tokens);
 	if (result) return result;
@@ -100,6 +93,11 @@ PValue* Parser::parseValue(std::queue<Token>& tokens) {
 	result = parseInt(tokens);
 	if (result) return result;
 	return nullptr;
+}
+
+PValue* Parser::parseValue(std::queue<Token>& tokens) {
+	PValue* value = parseProtectedValue(tokens);
+	return parseOptionalFunctionTypeContinuation(value, tokens);
 }
 
 PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
@@ -169,12 +167,25 @@ POutput* Parser::parseOutput(std::queue<Token>& tokens) {
 	return new POutput(value);
 }
 
-PValue* Parser::parseAssignmentContinuation(std::queue<Token>& tokens) {
-	if (tokens.empty()) return nullptr;
-	if (tokens.front().value != "=") return nullptr;
+PValue* Parser::parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens) {
+	if (!value) return nullptr;
+	if (tokens.empty()) return value;
+	if (tokens.front().value != "->") return value;
 	tokens.pop();
-	PValue* value = parseValue(tokens);
-	std::string errorMessage = "Assignment requires a right hand side.";
-	if (!value) throw errorMessage;
-	return value;
+	PValue* rightValue = parseProtectedValue(tokens);
+	std::string errorMessage = "Function type requires a right hand side.";
+	if (!rightValue) throw errorMessage;
+	return new PFunctionType(value, rightValue);
 }
+
+PStatement* Parser::parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens) {
+	if (!value) return nullptr;
+	if (tokens.empty()) return value;
+	if (tokens.front().value != "=") return value;
+	tokens.pop();
+	PValue* rightValue = parseValue(tokens);
+	std::string errorMessage = "Assignment requires a right hand side.";
+	if (!rightValue) throw errorMessage;
+	return new PAssignment(value, rightValue);
+}
+

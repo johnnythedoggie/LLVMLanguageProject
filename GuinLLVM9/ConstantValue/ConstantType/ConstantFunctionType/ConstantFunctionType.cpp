@@ -6,3 +6,11 @@
 //
 
 #include "ConstantFunctionType.hpp"
+
+std::string ConstantFunctionType::identifierString() {
+	return "(" + inputType->identifierString() + ") -> " + outputType->identifierString();
+}
+
+Type* ConstantFunctionType::getLLVMType(Compiler* compiler) {
+	return FunctionType::get(outputType->getLLVMType(compiler), { inputType->getLLVMType(compiler) }, false);
+}

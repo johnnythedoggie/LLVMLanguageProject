@@ -8,6 +8,23 @@
 #ifndef ConstantFunctionType_hpp
 #define ConstantFunctionType_hpp
 
-#include <stdio.h>
+#include "ConstantType.hpp"
+
+class ConstantFunctionType: public ConstantType {
+	
+public:
+	
+	ConstantType* inputType;
+	ConstantType* outputType;
+	
+	ConstantFunctionType(ConstantType* inputType, ConstantType* outputType)
+	: inputType(inputType), outputType(outputType) { }
+	
+	std::string identifierString() override;
+	
+	Type* getLLVMType(Compiler* compiler) override;
+	
+};
+
 
 #endif /* ConstantFunctionType_hpp */

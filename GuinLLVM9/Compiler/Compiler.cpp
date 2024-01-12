@@ -12,14 +12,18 @@
 #include "ConstantBoolType.hpp"
 #include "ConstantBoolValue.hpp"
 #include "ConstantTypeType.hpp"
+#include "ConstantVoid.hpp"
+#include "ConstantVoidType.hpp"
 
 Compiler::Compiler() {
 	
 	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new ConstantIntType(), "Int");
-	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(true), "Int");
-	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(false), "Int");
-	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new ConstantBoolType(), "Int");
-	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Int");
+	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(true), "true");
+	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(false), "false");
+	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new ConstantBoolType(), "Bool");
+	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Type");
+	valueForIdentifier["void"] = ValueHandler::newConstantValue(this, new ConstantVoid(), "void");
+	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new ConstantVoidType(), "Void");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);
