@@ -22,11 +22,13 @@
 #include "PFunctionCall.hpp"
 #include "PFunctionDefinition.hpp"
 #include "PArgument.hpp"
+#include "PReturn.hpp"
 
 class Parser {
 	
 	void formatTokens(std::queue<Token>& tokens) const;
 	
+	PReturn* parseReturn(std::queue<Token>& tokens);
 	PArgument* parseArgument(std::queue<Token>& tokens);
 	PStatement* parseStatement(std::queue<Token>& tokens);
 	PDeclaration* parseDeclaration(std::queue<Token>& tokens);

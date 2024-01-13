@@ -7,6 +7,7 @@
 
 #include "ConstantUserDefinedFunction.hpp"
 #include "ConstantVoid.hpp"
+#include "PReturn.hpp"
 
 void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	
@@ -24,7 +25,7 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	auto savedIdentifiers = compiler->valueForIdentifier;
 	compiler->valueForIdentifier = {};
 	Scope savedScope = compiler->scope;
-	compiler->scope = { inputType, function->args().begin() };
+	compiler->scope = { inputType, outputType, function->args().begin() };
 	
 	for (auto x : savedIdentifiers) {
 		if (x.second->variance == PVariance::CONST) {
@@ -34,19 +35,32 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	
 	compiler->llvmBuilder->SetInsertPoint(entryBlock);
 	
+	bool foundReturn = false;
+	
 	while(!statements.empty()) {
-		statements.front()->compile(compiler);
+		PStatement* statement = statements.front();
 		statements.pop();
+		
+		
+		statement->compile(compiler);
+		
+		PReturn* value = dynamic_cast<PReturn*>(statement);
+		if (value) {
+			foundReturn = true;
+			break;
+		}
 	}
 	
-	// TODO: Allow non-void returning functions somehow
+	std::string errorMessage = "Function must end with a return.";
 	
-	compiler->llvmBuilder->CreateRet(ConstantVoid().getLLVMValue(compiler));
+	if (!foundReturn) throw errorMessage;
+	if (!statements.empty()) throw errorMessage;
 	
 	// Put back how things were
 	compiler->valueForIdentifier = savedIdentifiers;
 	compiler->llvmBuilder->restoreIP(previousLocation);
 	compiler->scope = savedScope;
+	
 }
 
 Value* ConstantUserDefinedFunction::getLLVMValue(Compiler* compiler) {

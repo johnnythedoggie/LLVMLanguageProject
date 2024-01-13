@@ -44,6 +44,7 @@ void Parser::formatTokens(std::queue<Token>& tokens) const {
 PStatement* Parser::parseStatement(std::queue<Token>& tokens) {
 	PStatement* result;
 	result = parseDeclaration(tokens);
+	if (!result) result = parseReturn(tokens);
 	if (!result) {
 		PValue* left = parseValue(tokens);
 		result = parseOptionalAssignmentContinuation(left, tokens);
@@ -205,4 +206,14 @@ PArgument* Parser::parseArgument(std::queue<Token>& tokens) {
 	if (tokens.front().value != "$") return nullptr;
 	tokens.pop();
 	return new PArgument();
+}
+
+PReturn* Parser::parseReturn(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "return") return nullptr;
+	tokens.pop();
+	std::string errorMessage = "Error parsing return.";
+	PValue* value = parseValue(tokens);
+	if (!value) throw errorMessage;
+	return new PReturn(value);
 }
