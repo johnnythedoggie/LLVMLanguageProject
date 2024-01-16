@@ -9,7 +9,6 @@
 #define ConstantUserDefinedFunction_hpp
 
 #include "ConstantFunctionValue.hpp"
-#include "ConstantVoidType.hpp"
 #include "PValue.hpp"
 #include <queue>
 

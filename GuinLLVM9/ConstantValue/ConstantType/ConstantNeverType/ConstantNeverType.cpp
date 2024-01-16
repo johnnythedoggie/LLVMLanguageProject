@@ -6,13 +6,11 @@
 //
 
 #include "ConstantNeverType.hpp"
-#include "ConstantVoidType.hpp"
 
 std::string ConstantNeverType::identifierString() {
 	return "Never";
 }
 
 Type* ConstantNeverType::getLLVMType(Compiler* compiler) {
-	// Never is the same as Void in LLVM IR
-	return ConstantVoidType().getLLVMType(compiler);
+	return StructType::get(*compiler->llvmContext, { });
 }

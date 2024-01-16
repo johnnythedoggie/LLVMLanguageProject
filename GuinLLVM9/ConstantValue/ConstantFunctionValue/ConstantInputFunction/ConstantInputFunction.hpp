@@ -9,7 +9,7 @@
 #define ConstantInputFunction_hpp
 
 #include "ConstantFunctionValue.hpp"
-#include "ConstantVoidType.hpp"
+#include "ConstantTupleType.hpp"
 #include "ConstantIntType.hpp"
 
 class ConstantInputFunction: public ConstantFunctionValue {
@@ -19,7 +19,7 @@ public:
 	Value* scanfFormat = nullptr;
 	
 	ConstantInputFunction()
-	 : ConstantFunctionValue(new ConstantVoidType(), new ConstantIntType()) { }
+	: ConstantFunctionValue(new ConstantTupleType({}), new ConstantIntType()) { }
 	
 	void makeFunction(Compiler* compiler) override;
 	

@@ -6,7 +6,7 @@
 //
 
 #include "ConstantOutputFunction.hpp"
-#include "ConstantVoid.hpp"
+#include "ConstantTuple.hpp"
 
 void ConstantOutputFunction::makeFunction(Compiler* compiler) {
 	Type* intType = Type::getInt32Ty(*compiler->llvmContext);
@@ -22,6 +22,6 @@ void ConstantOutputFunction::makeBody(Compiler* compiler, Value* argument) {
 	Function* printf = compiler->llvmModule->getFunction("printf");
 	std::vector<Value*> printfArgs = { printfFormat, argument };
 	compiler->llvmBuilder->CreateCall(printf, printfArgs);
-	Value* result = ConstantVoid().getLLVMValue(compiler);
+	Value* result = ConstantTuple({}).getLLVMValue(compiler);
 	compiler->llvmBuilder->CreateRet(result);
 }

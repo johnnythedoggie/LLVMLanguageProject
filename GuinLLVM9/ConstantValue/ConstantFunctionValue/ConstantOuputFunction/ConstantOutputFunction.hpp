@@ -9,7 +9,7 @@
 #define ConstantOutputFunction_hpp
 
 #include "ConstantFunctionValue.hpp"
-#include "ConstantVoidType.hpp"
+#include "ConstantTupleType.hpp"
 #include "ConstantIntType.hpp"
 
 class ConstantOutputFunction: public ConstantFunctionValue {
@@ -19,7 +19,7 @@ public:
 	Value* printfFormat = nullptr;
 	
 	ConstantOutputFunction()
-	: ConstantFunctionValue(new ConstantIntType(), new ConstantVoidType()) { }
+	: ConstantFunctionValue(new ConstantIntType(), new ConstantTupleType({})) { }
 	
 	void makeFunction(Compiler* compiler) override;
 	

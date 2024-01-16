@@ -9,7 +9,6 @@
 #define ConstantNeverType_hpp
 
 #include "ConstantType.hpp"
-#include "ConstantVoid.hpp"
 
 class ConstantNeverType: public ConstantType {
 	
@@ -22,7 +21,8 @@ public:
 	Type* getLLVMType(Compiler* compiler) override;
 	
 	static Value* secretInstance(Compiler* compiler) {
-		return ConstantVoid().getLLVMValue(compiler);
+		StructType* type = StructType::get(*compiler->llvmContext, { });
+		return ConstantStruct::get(type, { });
 	}
 	
 };

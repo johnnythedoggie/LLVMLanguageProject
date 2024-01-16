@@ -7,15 +7,13 @@
 
 #include "Compiler.hpp"
 #include "ValueHandler.hpp"
-
 #include "ConstantIntType.hpp"
 #include "ConstantBoolType.hpp"
 #include "ConstantBoolValue.hpp"
 #include "ConstantTypeType.hpp"
-#include "ConstantVoid.hpp"
-#include "ConstantVoidType.hpp"
 #include "ConstantInputFunction.hpp"
 #include "ConstantOutputFunction.hpp"
+#include "ConstantTupleType.hpp"
 
 Compiler::Compiler() {
 	
@@ -24,10 +22,9 @@ Compiler::Compiler() {
 	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(false), "false");
 	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new ConstantBoolType(), "Bool");
 	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Type");
-	valueForIdentifier["void"] = ValueHandler::newConstantValue(this, new ConstantVoid(), "void");
-	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new ConstantVoidType(), "Void");
 	valueForIdentifier["input"] = ValueHandler::newConstantValue(this, new ConstantInputFunction(), "input");
 	valueForIdentifier["output"] = ValueHandler::newConstantValue(this, new ConstantOutputFunction(), "output");
+	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new ConstantTupleType({}), "Void");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);

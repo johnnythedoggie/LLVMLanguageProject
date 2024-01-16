@@ -117,8 +117,9 @@ PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
 	tokens.pop();
 	if (tokens.front().value == "\n") tokens.pop();
 	PValue* finalValue = nullptr;
-	if (tokens.front().value == ")") return new PTuple({});
-	if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
+	if (tokens.front().value == ")") {
+		finalValue = new PTuple({});
+	} else if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
 		// maybe a tuple
 		std::string label = tokens.front().value;
 		tokens.pop();

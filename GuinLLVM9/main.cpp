@@ -16,7 +16,10 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		
+		let twoArguments = ((first: Int, second: Int) -> Void) {
+			return ()
+		}
+		twoArguments(first = 4, second = 3)
 	)");
 	
 	auto statements = Parser().parse(tokens);

@@ -6,7 +6,6 @@
 //
 
 #include "ConstantUserDefinedFunction.hpp"
-#include "ConstantVoid.hpp"
 #include "PReturn.hpp"
 
 void ConstantUserDefinedFunction::makeBody(Compiler* compiler, Value* argument) {
