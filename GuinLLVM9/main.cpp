@@ -16,10 +16,7 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		 let identity = (Int -> Int) {
-			return $
-		 }
-		 output (identity (identity (identity (input void))))
+		
 	)");
 	
 	auto statements = Parser().parse(tokens);

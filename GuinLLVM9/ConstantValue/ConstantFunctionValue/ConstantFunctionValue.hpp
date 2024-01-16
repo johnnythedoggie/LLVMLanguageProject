@@ -15,6 +15,10 @@ class ConstantFunctionValue: public ConstantValue {
 	
 public:
 	
+	virtual void makeBody(Compiler* compiler, Value* argument) = 0;
+	
+	Function* function = nullptr;
+	
 	static int globalIdentifier;
 	
 	int identifier;
@@ -29,7 +33,12 @@ public:
 	
 	std::string identifierString() override;
 	
-	// Value* getLLVMValue(Compiler* compiler) override;
+	virtual void makeFunction(Compiler* compiler);
+	
+	Value* getLLVMValue(Compiler* compiler) override {
+		if (!function) makeFunction(compiler);
+		return function;
+	}
 	
 };
 

@@ -14,16 +14,16 @@
 
 class ConstantInputFunction: public ConstantFunctionValue {
 	
-	static Function* input;
-	
-	static void setup(Compiler* compiler);
-	
 public:
+	
+	Value* scanfFormat = nullptr;
 	
 	ConstantInputFunction()
 	 : ConstantFunctionValue(new ConstantVoidType(), new ConstantIntType()) { }
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	void makeFunction(Compiler* compiler) override;
+	
+	void makeBody(Compiler* compiler, Value* argument) override;
 	
 };
 

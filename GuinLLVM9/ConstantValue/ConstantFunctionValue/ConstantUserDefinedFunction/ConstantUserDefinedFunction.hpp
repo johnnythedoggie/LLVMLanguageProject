@@ -15,10 +15,6 @@
 
 class ConstantUserDefinedFunction: public ConstantFunctionValue {
 	
-	Function* function = nullptr;
-	
-	void setup(Compiler* compiler);
-	
 public:
 	
 	std::queue<PStatement*> statements;
@@ -29,7 +25,7 @@ public:
 		ConstantType* outputType
 	): statements(statements), ConstantFunctionValue(inputType, outputType) { }
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	void makeBody(Compiler* compiler, Value* argument) override;
 	
 };
 

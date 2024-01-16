@@ -17,3 +17,24 @@ std::string ConstantFunctionValue::identifierString() {
 ConstantType* ConstantFunctionValue::getConstantType() {
 	return new ConstantFunctionType(inputType, outputType);
 }
+
+void ConstantFunctionValue::makeFunction(Compiler* compiler) {
+	
+	std::vector<Type*> argTypes = { inputType->getLLVMType(compiler) };
+	FunctionType* type = FunctionType::get(outputType->getLLVMType(compiler), argTypes, false);
+	
+	Function::Create(type, Function::ExternalLinkage, identifierString(), *compiler->llvmModule);
+	
+	function = compiler->llvmModule->getFunction(identifierString());
+	
+	BasicBlock* entryBlock = BasicBlock::Create(*compiler->llvmContext, "entry", function);
+	
+	IRBuilder<>::InsertPoint previousLocation = compiler->llvmBuilder->saveIP();
+	compiler->llvmBuilder->SetInsertPoint(entryBlock);
+	
+	// virtual
+	this->makeBody(compiler, function->args().begin());
+	
+	compiler->llvmBuilder->restoreIP(previousLocation);
+	
+}

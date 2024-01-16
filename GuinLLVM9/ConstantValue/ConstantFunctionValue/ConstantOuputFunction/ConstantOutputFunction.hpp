@@ -14,16 +14,16 @@
 
 class ConstantOutputFunction: public ConstantFunctionValue {
 	
-	static Function* output;
-	
-	static void setup(Compiler* compiler);
-	
 public:
+	
+	Value* printfFormat = nullptr;
 	
 	ConstantOutputFunction()
 	: ConstantFunctionValue(new ConstantIntType(), new ConstantVoidType()) { }
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	void makeFunction(Compiler* compiler) override;
+	
+	void makeBody(Compiler* compiler, Value* argument) override;
 	
 };
 

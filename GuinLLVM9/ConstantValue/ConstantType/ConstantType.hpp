@@ -17,8 +17,8 @@ public:
 	virtual Type* getLLVMType(Compiler* compiler) = 0;
 	
 	Value* getLLVMValue(Compiler* compiler) override {
-		// Don't output anything to LLVM for types
-		return nullptr;
+		StructType* type = StructType::get(*compiler->llvmContext, { });
+		return ConstantStruct::get(type, { });
 	}
 	
 	ConstantType* getConstantType() override;

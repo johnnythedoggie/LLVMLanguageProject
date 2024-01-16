@@ -23,6 +23,8 @@
 #include "PFunctionDefinition.hpp"
 #include "PArgument.hpp"
 #include "PReturn.hpp"
+#include "PTuple.hpp"
+#include "PTupleType.hpp"
 
 class Parser {
 	
@@ -37,6 +39,8 @@ class Parser {
 	PValue* parseParenedValue(std::queue<Token>& tokens);
 	PInt* parseInt(std::queue<Token>& tokens);
 	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
+	
+	PValue* addValueContinuations(PValue* value, std::queue<Token>& tokens);
 	
 	PFunctionType* parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens);
 	PStatement* parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens);

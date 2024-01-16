@@ -47,6 +47,8 @@ CompilerValue* ValueHandler::newConstantValue(Compiler* compiler, ConstantValue*
 
 CompilerValue* ValueHandler::newConstantValue(Compiler* compiler, PValue* value, std::string name) {
 	ConstantValue* constValue = value->getConstantValue(compiler);
+	std::string errorMessage = "Cannot create const identifier with non-const value.";
+	if (!constValue) throw errorMessage;
 	return newConstantValue(compiler, constValue, name);
 }
 

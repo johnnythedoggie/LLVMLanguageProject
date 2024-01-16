@@ -9,19 +9,9 @@
 #include "ConstantVoid.hpp"
 #include "PReturn.hpp"
 
-void ConstantUserDefinedFunction::setup(Compiler* compiler) {
-	
-	std::vector<Type*> argTypes = { inputType->getLLVMType(compiler) };
-	FunctionType* type = FunctionType::get(outputType->getLLVMType(compiler), argTypes, false);
-	
-	Function::Create(type, Function::ExternalLinkage, identifierString(), *compiler->llvmModule);
-	
-	function = compiler->llvmModule->getFunction(identifierString());
-	
-	BasicBlock* entryBlock = BasicBlock::Create(*compiler->llvmContext, "entry", function);
+void ConstantUserDefinedFunction::makeBody(Compiler* compiler, Value* argument) {
 	
 	// Prepare a new scope
-	IRBuilder<>::InsertPoint previousLocation = compiler->llvmBuilder->saveIP();
 	auto savedIdentifiers = compiler->valueForIdentifier;
 	compiler->valueForIdentifier = {};
 	Scope savedScope = compiler->scope;
@@ -33,15 +23,12 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 		}
 	}
 	
-	compiler->llvmBuilder->SetInsertPoint(entryBlock);
-	
 	bool foundReturn = false;
 	
 	while(!statements.empty()) {
+		
 		PStatement* statement = statements.front();
 		statements.pop();
-		
-		
 		statement->compile(compiler);
 		
 		PReturn* value = dynamic_cast<PReturn*>(statement);
@@ -49,6 +36,7 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 			foundReturn = true;
 			break;
 		}
+		
 	}
 	
 	std::string errorMessage = "Function must end with a return.";
@@ -58,12 +46,6 @@ void ConstantUserDefinedFunction::setup(Compiler* compiler) {
 	
 	// Put back how things were
 	compiler->valueForIdentifier = savedIdentifiers;
-	compiler->llvmBuilder->restoreIP(previousLocation);
 	compiler->scope = savedScope;
 	
-}
-
-Value* ConstantUserDefinedFunction::getLLVMValue(Compiler* compiler) {
-	if (!function) setup(compiler);
-	return function;
 }

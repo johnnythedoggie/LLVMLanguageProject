@@ -13,13 +13,20 @@
 
 /*
  
- how to get return to be a function
+ The vision is for a return to behave like a function call, not a statement
  
+ It's too much work, leave it as a statement
  
- If i change the llvm::Type that a ConstantFunctionType gives, maybe i could store both.
- { is return flag, normal function pointer,  }
- 
- I would have to make a function "call" that takes in that monstrocity
+ Of course this isn't how LLVM IR works, so the value I pass around for a function would have to have a flag indicating if it is a return or not.  If not, it would just have a function pointer as normal.  If so, I'm not sure... how could it remember what function is to return from?  And then how would it return from it?
+  
+ let outer = Void -> Int {
+	var variable = return   # this is outer's return
+	let inner = Void -> Int {
+		variable = return   # now it's inner's return
+		return 5
+	}
+	variable 5   # how does this return from inner?
+ }
  
  */
 

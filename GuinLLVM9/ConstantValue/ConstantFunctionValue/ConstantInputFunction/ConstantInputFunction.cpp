@@ -7,56 +7,22 @@
 
 #include "ConstantInputFunction.hpp"
 
-Function* ConstantInputFunction::input = nullptr;
-
-void ConstantInputFunction::setup(Compiler* compiler) {
-	
-	std::vector<Type*> scanfArgTypes = { Type::getInt8PtrTy(*compiler->llvmContext) };
-	FunctionType* scanfType = FunctionType::get(compiler->llvmBuilder->getInt32Ty(), scanfArgTypes, true);
-	
-	Function::Create(scanfType, Function::ExternalLinkage, "scanf", *compiler->llvmModule);
-	
-	Value* format = compiler->llvmBuilder->CreateGlobalStringPtr("%u", "scanf_format");
-	
-	Function* scanf = compiler->llvmModule->getFunction("scanf");
-	
+void ConstantInputFunction::makeFunction(Compiler* compiler) {
 	Type* intType = Type::getInt32Ty(*compiler->llvmContext);
-	Type* voidType = StructType::get(*compiler->llvmContext, { });
-	
-	FunctionType* inputFunctionType = FunctionType::get(intType, { voidType }, false);
-	
-	Function* inputFunction = Function::Create(
-		inputFunctionType,
-		Function::ExternalLinkage,
-		"input",
-		compiler->llvmModule
-	);
-	
-	BasicBlock* entryBlock = BasicBlock::Create(*compiler->llvmContext, "entry", inputFunction);
-	
-	IRBuilder<>::InsertPoint previousLocation = compiler->llvmBuilder->saveIP();
-	
-	compiler->llvmBuilder->SetInsertPoint(entryBlock);
-	
-	Value* scanfArgument = compiler->llvmBuilder->CreateAlloca(intType, nullptr);
-	
-	std::vector<Value*> scanfArgs = { format, scanfArgument };
-	
-	compiler->llvmBuilder->CreateCall(scanf, scanfArgs);
-	
-	Value* result = compiler->llvmBuilder->CreateLoad(intType, scanfArgument);
-	
-	compiler->llvmBuilder->CreateRet(result);
-	
-	compiler->llvmBuilder->restoreIP(previousLocation);
-	
-	input = inputFunction;
-	
-	input->setName("input");
-	
+	std::vector<Type*> scanfArgTypes = { Type::getInt8PtrTy(*compiler->llvmContext) };
+	FunctionType* scanfType = FunctionType::get(intType, scanfArgTypes, true);
+	Function::Create(scanfType, Function::ExternalLinkage, "scanf", *compiler->llvmModule);
+	this->scanfFormat = compiler->llvmBuilder->CreateGlobalStringPtr("%u", "scanf_format");
+	ConstantFunctionValue::makeFunction(compiler);
+	function->setName("input");
 }
 
-Value* ConstantInputFunction::getLLVMValue(Compiler* compiler) {
-	if (!input) setup(compiler);
-	return input;
+void ConstantInputFunction::makeBody(Compiler* compiler, Value* argument) {
+	Type* intType = Type::getInt32Ty(*compiler->llvmContext);
+	Function* scanf = compiler->llvmModule->getFunction("scanf");
+	Value* scanfArgument = compiler->llvmBuilder->CreateAlloca(intType, nullptr);
+	std::vector<Value*> scanfArgs = { scanfFormat, scanfArgument };
+	compiler->llvmBuilder->CreateCall(scanf, scanfArgs);
+	Value* result = compiler->llvmBuilder->CreateLoad(intType, scanfArgument);
+	compiler->llvmBuilder->CreateRet(result);
 }

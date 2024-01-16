@@ -97,6 +97,10 @@ PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 
 PValue* Parser::parseValue(std::queue<Token>& tokens) {
 	PValue* value = parseProtectedValue(tokens);
+	return addValueContinuations(value, tokens);
+}
+
+PValue* Parser::addValueContinuations(PValue* value, std::queue<Token>& tokens) {
 	PFunctionType* functionType = parseOptionalFunctionTypeContinuation(value, tokens);
 	if (functionType) return functionType;
 	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
@@ -112,12 +116,61 @@ PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
 	std::string errorMessage = "Failed to parse parenthesized value.";
 	tokens.pop();
 	if (tokens.front().value == "\n") tokens.pop();
-	PValue* value = parseValue(tokens);
-	if (!value) throw errorMessage;
+	PValue* finalValue = nullptr;
+	if (tokens.front().value == ")") return new PTuple({});
+	if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
+		// maybe a tuple
+		std::string label = tokens.front().value;
+		tokens.pop();
+		if (tokens.front().value == "=") {
+			tokens.pop();
+			PValue* value = parseValue(tokens);
+			if (!value) throw errorMessage;
+			std::vector<PTupleElement> elements = {};
+			elements.push_back(PTupleElement(label, value));
+			while (tokens.front().value == ",") {
+				tokens.pop();
+				if (tokens.front().value == "\n") tokens.pop();
+				if (tokens.front().type != Token::TokenType::AlphaIdentifier) throw errorMessage;
+				std::string label = tokens.front().value;
+				tokens.pop();
+				if (tokens.front().value != "=") throw errorMessage;
+				tokens.pop();
+				PValue* value = parseValue(tokens);
+				if (!value) throw errorMessage;
+				elements.push_back(PTupleElement(label, value));
+			}
+			finalValue = new PTuple(elements);
+		} else if (tokens.front().value == ":") {
+			tokens.pop();
+			PValue* value = parseValue(tokens);
+			if (!value) throw errorMessage;
+			std::vector<PTupleTypeElement> elements = {};
+			elements.push_back(PTupleTypeElement(label, value));
+			while (tokens.front().value == ",") {
+				tokens.pop();
+				if (tokens.front().value == "\n") tokens.pop();
+				if (tokens.front().type != Token::TokenType::AlphaIdentifier) throw errorMessage;
+				std::string label = tokens.front().value;
+				tokens.pop();
+				if (tokens.front().value != ":") throw errorMessage;
+				tokens.pop();
+				PValue* value = parseValue(tokens);
+				if (!value) throw errorMessage;
+				elements.push_back(PTupleTypeElement(label, value));
+			}
+			finalValue = new PTupleType(elements);
+		} else {
+			finalValue = addValueContinuations(new PIdentifier(label), tokens);
+		}
+	} else {
+		finalValue = parseValue(tokens);
+	}
+	if (!finalValue) throw errorMessage;
 	if (tokens.front().value == "\n") tokens.pop();
 	if (tokens.front().value != ")") throw errorMessage;
 	tokens.pop();
-	return value;
+	return finalValue;
 }
 
 
