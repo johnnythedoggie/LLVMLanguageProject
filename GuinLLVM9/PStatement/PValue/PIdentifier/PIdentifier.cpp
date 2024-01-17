@@ -8,7 +8,7 @@
 #include "PIdentifier.hpp"
 #include "ValueHandler.hpp"
 
-Value* PIdentifier::getLLVMValue(Compiler* compiler) {
+Value* PIdentifier::asLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
 	return ValueHandler::getLLVMValue(compiler->valueForIdentifier[identifier], compiler);
@@ -26,7 +26,7 @@ Value* PIdentifier::getMemoryLocation(Compiler* compiler) {
 	return ValueHandler::getLLVMLocation(compiler->valueForIdentifier[identifier], compiler);
 }
 
-ConstantValue* PIdentifier::getConstantValue(Compiler* compiler) {
+ConstantValue* PIdentifier::asConstantValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
 	if (compiler->valueForIdentifier[identifier]->variance != PVariance::CONST) return nullptr;

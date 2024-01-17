@@ -22,10 +22,10 @@ public:
 	PFunctionDefinition(PValue* fucntionType, std::queue<PStatement*> functionBody)
 	: fucntionType(fucntionType), functionBody(functionBody) { }
 	
-	ConstantValue* getConstantValue(Compiler* compiler) override;
+	ConstantValue* asConstantValue(Compiler* compiler) override;
 	ConstantFunctionType* getConstantType(Compiler* compiler) override;
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;
 	
 };

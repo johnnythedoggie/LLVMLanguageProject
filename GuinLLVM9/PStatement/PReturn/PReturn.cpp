@@ -13,6 +13,6 @@ void PReturn::compile(Compiler* compiler) {
 	ConstantType* returnType = compiler->scope.returnType;
 	if (!returnType) throw errorMessage;
 	if (valueType->identifierString() != returnType->identifierString()) throw errorMessage;
-	Value* llvmValue = value->getLLVMValue(compiler);
+	Value* llvmValue = value->asLLVMValue(compiler);
 	compiler->llvmBuilder->CreateRet(llvmValue);
 }

@@ -25,7 +25,7 @@ public:
 	
 	std::string identifierString() override;
 	
-	Type* getLLVMType(Compiler* compiler) override;
+	Type* asLLVMType(Compiler* compiler) override;
 	
 };
 

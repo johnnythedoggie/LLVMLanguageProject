@@ -9,15 +9,15 @@
 #include "ConstantIntValue.hpp"
 #include "ConstantIntType.hpp"
 
-Value* PInt::getLLVMValue(Compiler* compiler) {
-	return ConstantInt::get(Type::getInt32Ty(*compiler->llvmContext), value);
+Value* PInt::asLLVMValue(Compiler* compiler) {
+	return asConstantValue(compiler)->getLLVMValue(compiler);
 }
 
 PVariance PInt::getVariance(Compiler* compiler) {
 	return PVariance::CONST;
 }
 
-ConstantValue* PInt::getConstantValue(Compiler* compiler) {
+ConstantValue* PInt::asConstantValue(Compiler* compiler) {
 	return new ConstantIntValue(value);
 }
 

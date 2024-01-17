@@ -20,8 +20,8 @@ ConstantType* ConstantFunctionValue::getConstantType() {
 
 void ConstantFunctionValue::makeFunction(Compiler* compiler) {
 	
-	std::vector<Type*> argTypes = { inputType->getLLVMType(compiler) };
-	FunctionType* type = FunctionType::get(outputType->getLLVMType(compiler), argTypes, false);
+	std::vector<Type*> argTypes = { inputType->asLLVMType(compiler) };
+	FunctionType* type = FunctionType::get(outputType->asLLVMType(compiler), argTypes, false);
 	
 	Function::Create(type, Function::ExternalLinkage, identifierString(), *compiler->llvmModule);
 	

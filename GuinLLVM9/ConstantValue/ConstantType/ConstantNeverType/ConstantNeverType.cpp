@@ -11,6 +11,6 @@ std::string ConstantNeverType::identifierString() {
 	return "Never";
 }
 
-Type* ConstantNeverType::getLLVMType(Compiler* compiler) {
+Type* ConstantNeverType::asLLVMType(Compiler* compiler) {
 	return StructType::get(*compiler->llvmContext, { });
 }

@@ -11,6 +11,6 @@ std::string ConstantBoolType::identifierString() {
 	return "Bool";
 }
 
-Type* ConstantBoolType::getLLVMType(Compiler* compiler) {
+Type* ConstantBoolType::asLLVMType(Compiler* compiler) {
 	return Type::getInt1Ty(*compiler->llvmContext);
 }

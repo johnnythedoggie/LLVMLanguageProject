@@ -20,10 +20,10 @@ std::string ConstantTupleType::identifierString() {
 	return str;
 }
 
-Type* ConstantTupleType::getLLVMType(Compiler* compiler) {
+Type* ConstantTupleType::asLLVMType(Compiler* compiler) {
 	std::vector<Type*> llvmTypes = {};
 	for (const ConstantTupleTypeElement& element : elements) {
-		Type* llvmType = element.type->getLLVMType(compiler);
+		Type* llvmType = element.type->asLLVMType(compiler);
 		llvmTypes.push_back(llvmType);
 	}
 	StructType* structType = StructType::get(*compiler->llvmContext, llvmTypes);

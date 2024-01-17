@@ -19,10 +19,10 @@ public:
 	
 	PIdentifier(std::string identifier) : identifier(identifier) { }
 	
-	ConstantValue* getConstantValue(Compiler* compiler) override;
+	ConstantValue* asConstantValue(Compiler* compiler) override;
 	ConstantType* getConstantType(Compiler* compiler) override;
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;
 	Value* getMemoryLocation(Compiler* compiler) override;
 	

@@ -16,7 +16,7 @@ public:
 	
 	int value;
 	
-	ConstantIntValue(int value) : value(value) { }
+	ConstantIntValue(int value): value(value) { }
 	
 	ConstantType* getConstantType() override;
 	

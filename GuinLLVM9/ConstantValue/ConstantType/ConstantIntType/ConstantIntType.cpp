@@ -11,7 +11,7 @@ std::string ConstantIntType::identifierString() {
 	return "Int";
 }
 
-Type* ConstantIntType::getLLVMType(Compiler* compiler) {
+Type* ConstantIntType::asLLVMType(Compiler* compiler) {
 	return Type::getInt32Ty(*compiler->llvmContext);
 }
 

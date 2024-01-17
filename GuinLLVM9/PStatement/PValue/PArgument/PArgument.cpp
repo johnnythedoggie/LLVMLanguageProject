@@ -8,11 +8,11 @@
 #include "PArgument.hpp"
 
 
-Value* PArgument::getLLVMValue(Compiler* compiler) {
+Value* PArgument::asLLVMValue(Compiler* compiler) {
 	return compiler->scope.argument;
 }
 
-ConstantValue* PArgument::getConstantValue(Compiler* compiler) {
+ConstantValue* PArgument::asConstantValue(Compiler* compiler) {
 	return nullptr;
 }
 

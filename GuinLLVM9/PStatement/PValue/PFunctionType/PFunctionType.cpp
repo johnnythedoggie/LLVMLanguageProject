@@ -9,9 +9,9 @@
 #include "ConstantFunctionType.hpp"
 #include "ConstantTypeType.hpp"
 
-ConstantValue* PFunctionType::getConstantValue(Compiler* compiler) {
-	ConstantType* left = dynamic_cast<ConstantType*>(inputType->getConstantValue(compiler));
-	ConstantType* right = dynamic_cast<ConstantType*>(outputType->getConstantValue(compiler));
+ConstantValue* PFunctionType::asConstantValue(Compiler* compiler) {
+	ConstantType* left = dynamic_cast<ConstantType*>(inputType->asConstantValue(compiler));
+	ConstantType* right = dynamic_cast<ConstantType*>(outputType->asConstantValue(compiler));
 	std::string errorMessage = "Function type composed from functions.";
 	if (!left || !right) throw errorMessage;
 	return new ConstantFunctionType(left, right);
@@ -21,8 +21,9 @@ ConstantType* PFunctionType::getConstantType(Compiler* compiler) {
 	return new ConstantTypeType();
 }
 
-Value* PFunctionType::getLLVMValue(Compiler* compiler) {
-	return nullptr;
+Value* PFunctionType::asLLVMValue(Compiler* compiler) {
+	StructType* type = StructType::get(*compiler->llvmContext, { });
+	return ConstantStruct::get(type, { });
 }
 
 PVariance PFunctionType::getVariance(Compiler* compiler) {

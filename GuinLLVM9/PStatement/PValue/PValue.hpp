@@ -17,17 +17,17 @@ class PValue: public PStatement {
 	
 public:
 	
-	virtual ConstantValue* getConstantValue(Compiler* compiler) = 0;
+	virtual ConstantValue* asConstantValue(Compiler* compiler) = 0;
 	virtual ConstantType* getConstantType(Compiler* compiler) = 0;
 	
-	virtual Value* getLLVMValue(Compiler* compiler) = 0;
+	virtual Value* asLLVMValue(Compiler* compiler) = 0;
+	Type* getLLVMType(Compiler* compiler);
+	
 	virtual PVariance getVariance(Compiler* compiler) = 0;
 	
-	virtual Value* getMemoryLocation(Compiler* compiler) { return nullptr; }
+	virtual Value* getMemoryLocation(Compiler* compiler);
 	
-	void compile(Compiler* compiler) override {
-		getLLVMValue(compiler);
-	}
+	void compile(Compiler* compiler) override;
 	
 };
 

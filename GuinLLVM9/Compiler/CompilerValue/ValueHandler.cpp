@@ -9,9 +9,9 @@
 
 
 CompilerValue* ValueHandler::newDynamicValue(Compiler* compiler, PValue* initalValue, std::string name) {
+	Value* location = compiler->llvmBuilder->CreateAlloca(initalValue->getLLVMType(compiler), nullptr, name);
+	compiler->llvmBuilder->CreateStore(initalValue->asLLVMValue(compiler), location);
 	ConstantType* type = initalValue->getConstantType(compiler);
-	Value* location = compiler->llvmBuilder->CreateAlloca(type->getLLVMType(compiler), nullptr, name);
-	compiler->llvmBuilder->CreateStore(initalValue->getLLVMValue(compiler), location);
 	return new CompilerValue {
 		PVariance::VAR,
 		type,
@@ -23,7 +23,7 @@ CompilerValue* ValueHandler::newDynamicValue(Compiler* compiler, PValue* initalV
 
 CompilerValue* ValueHandler::newStaticValue(Compiler* compiler, PValue* value, std::string name) {
 	ConstantType* type = value->getConstantType(compiler);
-	Value* staticValue = value->getLLVMValue(compiler);
+	Value* staticValue = value->asLLVMValue(compiler);
 	staticValue->setName(name);
 	return new CompilerValue {
 		PVariance::LET,
@@ -46,7 +46,7 @@ CompilerValue* ValueHandler::newConstantValue(Compiler* compiler, ConstantValue*
 }
 
 CompilerValue* ValueHandler::newConstantValue(Compiler* compiler, PValue* value, std::string name) {
-	ConstantValue* constValue = value->getConstantValue(compiler);
+	ConstantValue* constValue = value->asConstantValue(compiler);
 	std::string errorMessage = "Cannot create const identifier with non-const value.";
 	if (!constValue) throw errorMessage;
 	return newConstantValue(compiler, constValue, name);

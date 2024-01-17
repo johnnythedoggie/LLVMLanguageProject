@@ -16,9 +16,9 @@ public:
 	
 	PArgument() { }
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	Value* asLLVMValue(Compiler* compiler) override;
 	
-	ConstantValue* getConstantValue(Compiler* compiler) override;
+	ConstantValue* asConstantValue(Compiler* compiler) override;
 	ConstantType* getConstantType(Compiler* compiler) override;
 	
 	PVariance getVariance(Compiler* compiler) override;

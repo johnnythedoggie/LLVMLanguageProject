@@ -20,10 +20,10 @@ public:
 	PFunctionType(PValue* inputType, PValue* outputType)
 		: inputType(inputType), outputType(outputType) { }
 	
-	ConstantValue* getConstantValue(Compiler* compiler) override;
+	ConstantValue* asConstantValue(Compiler* compiler) override;
 	ConstantType* getConstantType(Compiler* compiler) override;
 	
-	Value* getLLVMValue(Compiler* compiler) override;
+	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;
 	
 };

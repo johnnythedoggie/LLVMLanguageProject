@@ -8,25 +8,25 @@
 #include "PTuple.hpp"
 #include "ConstantTuple.hpp"
 
-Value* PTuple::getLLVMValue(Compiler* compiler) {
+Value* PTuple::asLLVMValue(Compiler* compiler) {
 	std::vector<Type*> llvmTypes = {};
 	for (const PTupleElement& element : elements) {
-		Type* llvmType = element.value->getConstantType(compiler)->getLLVMType(compiler);
+		Type* llvmType = element.value->getLLVMType(compiler);
 		llvmTypes.push_back(llvmType);
 	}
 	StructType* structType = StructType::get(*compiler->llvmContext, llvmTypes);
 	Value* struture = ConstantStruct::get(structType, {});
 	for (int i = 0; i < elements.size(); i += 1) {
-		Value* llvmValue = elements[i].value->getLLVMValue(compiler);
+		Value* llvmValue = elements[i].value->asLLVMValue(compiler);
 		struture = compiler->llvmBuilder->CreateInsertValue(struture, llvmValue, i);
 	}
 	return struture;
 }
 
-ConstantValue* PTuple::getConstantValue(Compiler* compiler) {
+ConstantValue* PTuple::asConstantValue(Compiler* compiler) {
 	std::vector<ConstantTupleElement> constantElements = {};
 	for (const PTupleElement& element : elements) {
-		ConstantValue* value = element.value->getConstantValue(compiler);
+		ConstantValue* value = element.value->asConstantValue(compiler);
 		if (!value) return nullptr;
 		constantElements.push_back({element.label, value});
 	}

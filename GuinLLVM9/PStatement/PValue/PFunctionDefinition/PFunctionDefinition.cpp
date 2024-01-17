@@ -8,7 +8,7 @@
 #include "PFunctionDefinition.hpp"
 #include "ConstantUserDefinedFunction.hpp"
 
-ConstantValue* PFunctionDefinition::getConstantValue(Compiler* compiler) {
+ConstantValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
 	ConstantFunctionType* ft = getConstantType(compiler);
 	ConstantType* inputType = ft->inputType;
 	ConstantType* outputType = ft->outputType;
@@ -16,14 +16,14 @@ ConstantValue* PFunctionDefinition::getConstantValue(Compiler* compiler) {
 }
 
 ConstantFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
-	auto ft = dynamic_cast<ConstantFunctionType*>(fucntionType->getConstantValue(compiler));
+	auto ft = dynamic_cast<ConstantFunctionType*>(fucntionType->asConstantValue(compiler));
 	std::string errorMessage = "Cannot define function of non constant function type.";
 	if (!ft) throw errorMessage;
 	return ft;
 }
 
-Value* PFunctionDefinition::getLLVMValue(Compiler* compiler) {
-	return getConstantValue(compiler)->getLLVMValue(compiler);
+Value* PFunctionDefinition::asLLVMValue(Compiler* compiler) {
+	return asConstantValue(compiler)->getLLVMValue(compiler);
 }
 
 PVariance PFunctionDefinition::getVariance(Compiler* compiler) {

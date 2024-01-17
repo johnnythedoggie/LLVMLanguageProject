@@ -18,7 +18,7 @@ public:
 	
 	std::string identifierString() override;
 	
-	Type* getLLVMType(Compiler* compiler) override;
+	Type* asLLVMType(Compiler* compiler) override;
 	
 	static Value* secretInstance(Compiler* compiler) {
 		StructType* type = StructType::get(*compiler->llvmContext, { });

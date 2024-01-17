@@ -9,15 +9,15 @@
 #include "ConstantTupleType.hpp"
 #include "ConstantTypeType.hpp"
 
-Value* PTupleType::getLLVMValue(Compiler* compiler) {
+Value* PTupleType::asLLVMValue(Compiler* compiler) {
 	StructType* type = StructType::get(*compiler->llvmContext, { });
 	return ConstantStruct::get(type, { });
 }
 
-ConstantValue* PTupleType::getConstantValue(Compiler* compiler) {
+ConstantValue* PTupleType::asConstantValue(Compiler* compiler) {
 	std::vector<ConstantTupleTypeElement> constantElements = {};
 	for (const PTupleTypeElement& element : elements) {
-		ConstantValue* typeValue = element.type->getConstantValue(compiler);
+		ConstantValue* typeValue = element.type->asConstantValue(compiler);
 		if (!typeValue) return nullptr;
 		ConstantType* type = dynamic_cast<ConstantType*>(typeValue);
 		if (!type) return nullptr;

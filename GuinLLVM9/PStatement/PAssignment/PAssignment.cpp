@@ -14,5 +14,5 @@ void PAssignment::compile(Compiler* compiler) {
 	std::string leftType = left->getConstantType(compiler)->identifierString();
 	std::string rightType = right->getConstantType(compiler)->identifierString();
 	if (leftType != rightType) throw errorMessage;
-	compiler->llvmBuilder->CreateStore(right->getLLVMValue(compiler), memLocation);
+	compiler->llvmBuilder->CreateStore(right->asLLVMValue(compiler), memLocation);
 }

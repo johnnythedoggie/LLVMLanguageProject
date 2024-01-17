@@ -11,7 +11,7 @@ std::string ConstantTypeType::identifierString() {
 	return "Type";
 }
 
-Type* ConstantTypeType::getLLVMType(Compiler* compiler) {
+Type* ConstantTypeType::asLLVMType(Compiler* compiler) {
 	StructType* type = StructType::get(*compiler->llvmContext, { });
 	return type;
 }

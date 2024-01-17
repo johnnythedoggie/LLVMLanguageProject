@@ -14,7 +14,7 @@ class ConstantType: public ConstantValue {
 	
 public:
 	
-	virtual Type* getLLVMType(Compiler* compiler) = 0;
+	virtual Type* asLLVMType(Compiler* compiler) = 0;
 	
 	Value* getLLVMValue(Compiler* compiler) override {
 		StructType* type = StructType::get(*compiler->llvmContext, { });

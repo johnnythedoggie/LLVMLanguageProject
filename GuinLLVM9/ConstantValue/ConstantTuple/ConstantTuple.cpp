@@ -22,7 +22,7 @@ std::string ConstantTuple::identifierString() {
 Value* ConstantTuple::getLLVMValue(Compiler* compiler) {
 	std::vector<Type*> llvmTypes = {};
 	for (ConstantTupleElement element : elements) {
-		Type* llvmType = element.value->getConstantType()->getLLVMType(compiler);
+		Type* llvmType = element.value->getConstantType()->asLLVMType(compiler);
 		llvmTypes.push_back(llvmType);
 	}
 	StructType* structType = StructType::get(*compiler->llvmContext, llvmTypes);
