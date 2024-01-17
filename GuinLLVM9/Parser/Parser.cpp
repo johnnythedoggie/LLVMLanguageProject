@@ -102,11 +102,11 @@ PValue* Parser::parseValue(std::queue<Token>& tokens) {
 
 PValue* Parser::addValueContinuations(PValue* value, std::queue<Token>& tokens) {
 	PFunctionType* functionType = parseOptionalFunctionTypeContinuation(value, tokens);
-	if (functionType) return functionType;
-	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
-	if (functionCall) return functionCall;
+	if (functionType) value = functionType;
 	PFunctionDefinition* functionDefinition = parseOptionalFunctionDefinitionContinuation(value, tokens);
-	if (functionDefinition) return functionDefinition;
+	if (functionDefinition) value = functionDefinition;
+	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
+	if (functionCall) value = functionCall;
 	return value;
 }
 

@@ -16,13 +16,7 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		var x = ((arg: Int, anotherArg: Void) -> Bool) {
-			let y = input()
-			output(y)
-			output(y)
-			return true
-		}
-		x(arg = 5, anotherArg = ())
+		
 	)");
 	
 	auto statements = Parser().parse(tokens);
