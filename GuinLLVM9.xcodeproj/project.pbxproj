@@ -9,9 +9,10 @@
 /* Begin PBXBuildFile section */
 		FB055DA02B55ED3A00F3A234 /* PTuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055D9E2B55ED3A00F3A234 /* PTuple.cpp */; };
 		FB055DA42B55EDD400F3A234 /* PTupleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DA22B55EDD400F3A234 /* PTupleType.cpp */; };
-		FB055DA82B55F81C00F3A234 /* ConstantTupleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DA62B55F81C00F3A234 /* ConstantTupleType.cpp */; };
-		FB055DAC2B573CBF00F3A234 /* ConstantTuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DAA2B573CBF00F3A234 /* ConstantTuple.cpp */; };
+		FB055DA82B55F81C00F3A234 /* CTupleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DA62B55F81C00F3A234 /* CTupleType.cpp */; };
+		FB055DAC2B573CBF00F3A234 /* CTuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DAA2B573CBF00F3A234 /* CTuple.cpp */; };
 		FB055DB02B577AC900F3A234 /* PTupleElementAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DAE2B577AC900F3A234 /* PTupleElementAccess.cpp */; };
+		FB055DB42B57AC0D00F3A234 /* CInputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DB22B57AC0D00F3A234 /* CInputFunction.cpp */; };
 		FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */; };
 		FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81D2B24360900581DE6 /* Parser.cpp */; };
 		FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC82B2B2517B900581DE6 /* llvm.h */; };
@@ -21,30 +22,29 @@
 		FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508DE2B4F936B0012BFFA /* PValue.cpp */; };
 		FB9508E42B4F94240012BFFA /* PInt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508E22B4F94240012BFFA /* PInt.cpp */; };
 		FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508E62B4F94AD0012BFFA /* PIdentifier.cpp */; };
-		FB9508EC2B4FA6F90012BFFA /* ConstantValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508EA2B4FA6F90012BFFA /* ConstantValue.cpp */; };
+		FB9508EC2B4FA6F90012BFFA /* CValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508EA2B4FA6F90012BFFA /* CValue.cpp */; };
 		FB9508F02B4FAC270012BFFA /* PVariance.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508EE2B4FAC270012BFFA /* PVariance.cpp */; };
 		FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9508F12B4FAD720012BFFA /* CompilerValue.cpp */; };
 		FB9508FA2B4FB8E50012BFFA /* test.ll in Sources */ = {isa = PBXBuildFile; fileRef = FB9508F92B4FB8E50012BFFA /* test.ll */; };
 		FB9509052B5063630012BFFA /* Compiler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509042B5063630012BFFA /* Compiler.cpp */; };
-		FB9509092B5067A10012BFFA /* ConstantType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509072B5067A10012BFFA /* ConstantType.cpp */; };
+		FB9509092B5067A10012BFFA /* CType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509072B5067A10012BFFA /* CType.cpp */; };
 		FB9509272B5083C90012BFFA /* ValueHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509252B5083C90012BFFA /* ValueHandler.cpp */; };
-		FB95092A2B5088DF0012BFFA /* ConstantIntValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509282B5088DF0012BFFA /* ConstantIntValue.cpp */; };
-		FB95092E2B508A310012BFFA /* ConstantIntType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95092C2B508A310012BFFA /* ConstantIntType.cpp */; };
+		FB95092A2B5088DF0012BFFA /* CIntValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509282B5088DF0012BFFA /* CIntValue.cpp */; };
+		FB95092E2B508A310012BFFA /* CIntType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95092C2B508A310012BFFA /* CIntType.cpp */; };
 		FB9509322B50904E0012BFFA /* PAssignment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509302B50904E0012BFFA /* PAssignment.cpp */; };
-		FB9509362B50AD3D0012BFFA /* ConstantTypeType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */; };
-		FB95093A2B50B0000012BFFA /* ConstantBoolValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */; };
-		FB95093E2B50B0790012BFFA /* ConstantBoolType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */; };
-		FB9509422B50B7930012BFFA /* ConstantFunctionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509402B50B7930012BFFA /* ConstantFunctionType.cpp */; };
+		FB9509362B50AD3D0012BFFA /* CTypeType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509342B50AD3D0012BFFA /* CTypeType.cpp */; };
+		FB95093A2B50B0000012BFFA /* CBoolValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509382B50B0000012BFFA /* CBoolValue.cpp */; };
+		FB95093E2B50B0790012BFFA /* CBoolType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95093C2B50B0790012BFFA /* CBoolType.cpp */; };
+		FB9509422B50B7930012BFFA /* CPureFunctionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509402B50B7930012BFFA /* CPureFunctionType.cpp */; };
 		FB9509462B50B9230012BFFA /* PFunctionType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509442B50B9230012BFFA /* PFunctionType.cpp */; };
-		FB9509562B50CE810012BFFA /* ConstantFunctionValue.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509542B50CE810012BFFA /* ConstantFunctionValue.cpp */; };
-		FB95095A2B50D7830012BFFA /* ConstantInputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509582B50D7830012BFFA /* ConstantInputFunction.cpp */; };
+		FB9509562B50CE810012BFFA /* CPureFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509542B50CE810012BFFA /* CPureFunction.cpp */; };
 		FB95095E2B50DA010012BFFA /* PFunctionCall.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95095C2B50DA010012BFFA /* PFunctionCall.cpp */; };
-		FB9509622B51154C0012BFFA /* ConstantOutputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509602B51154C0012BFFA /* ConstantOutputFunction.cpp */; };
-		FB9509662B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509642B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp */; };
+		FB9509622B51154C0012BFFA /* COutputFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509602B51154C0012BFFA /* COutputFunction.cpp */; };
+		FB9509662B51C46E0012BFFA /* CCustomPureFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509642B51C46E0012BFFA /* CCustomPureFunction.cpp */; };
 		FB95096A2B51C8770012BFFA /* PFunctionDefinition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509682B51C8770012BFFA /* PFunctionDefinition.cpp */; };
 		FB95096E2B51F6390012BFFA /* Scope.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB95096C2B51F6390012BFFA /* Scope.cpp */; };
 		FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509702B51F92B0012BFFA /* PArgument.cpp */; };
-		FB9509762B51FFF40012BFFA /* ConstantNeverType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509742B51FFF40012BFFA /* ConstantNeverType.cpp */; };
+		FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509742B51FFF40012BFFA /* CNeverType.cpp */; };
 		FB95097A2B5201770012BFFA /* PReturn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509782B5201770012BFFA /* PReturn.cpp */; };
 /* End PBXBuildFile section */
 
@@ -65,12 +65,14 @@
 		FB055D9F2B55ED3A00F3A234 /* PTuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PTuple.hpp; sourceTree = "<group>"; };
 		FB055DA22B55EDD400F3A234 /* PTupleType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PTupleType.cpp; sourceTree = "<group>"; };
 		FB055DA32B55EDD400F3A234 /* PTupleType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PTupleType.hpp; sourceTree = "<group>"; };
-		FB055DA62B55F81C00F3A234 /* ConstantTupleType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTupleType.cpp; sourceTree = "<group>"; };
-		FB055DA72B55F81C00F3A234 /* ConstantTupleType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTupleType.hpp; sourceTree = "<group>"; };
-		FB055DAA2B573CBF00F3A234 /* ConstantTuple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTuple.cpp; sourceTree = "<group>"; };
-		FB055DAB2B573CBF00F3A234 /* ConstantTuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTuple.hpp; sourceTree = "<group>"; };
+		FB055DA62B55F81C00F3A234 /* CTupleType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CTupleType.cpp; sourceTree = "<group>"; };
+		FB055DA72B55F81C00F3A234 /* CTupleType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CTupleType.hpp; sourceTree = "<group>"; };
+		FB055DAA2B573CBF00F3A234 /* CTuple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CTuple.cpp; sourceTree = "<group>"; };
+		FB055DAB2B573CBF00F3A234 /* CTuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CTuple.hpp; sourceTree = "<group>"; };
 		FB055DAE2B577AC900F3A234 /* PTupleElementAccess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PTupleElementAccess.cpp; sourceTree = "<group>"; };
 		FB055DAF2B577AC900F3A234 /* PTupleElementAccess.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PTupleElementAccess.hpp; sourceTree = "<group>"; };
+		FB055DB22B57AC0D00F3A234 /* CInputFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CInputFunction.cpp; sourceTree = "<group>"; };
+		FB055DB32B57AC0D00F3A234 /* CInputFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CInputFunction.hpp; sourceTree = "<group>"; };
 		FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tokenizer.cpp; sourceTree = "<group>"; };
 		FB3EC81D2B24360900581DE6 /* Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		FB3EC81F2B25037400581DE6 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
@@ -90,52 +92,50 @@
 		FB9508E32B4F94240012BFFA /* PInt.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PInt.hpp; sourceTree = "<group>"; };
 		FB9508E62B4F94AD0012BFFA /* PIdentifier.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PIdentifier.cpp; sourceTree = "<group>"; };
 		FB9508E72B4F94AD0012BFFA /* PIdentifier.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PIdentifier.hpp; sourceTree = "<group>"; };
-		FB9508EA2B4FA6F90012BFFA /* ConstantValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantValue.cpp; sourceTree = "<group>"; };
-		FB9508EB2B4FA6F90012BFFA /* ConstantValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantValue.hpp; sourceTree = "<group>"; };
+		FB9508EA2B4FA6F90012BFFA /* CValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CValue.cpp; sourceTree = "<group>"; };
+		FB9508EB2B4FA6F90012BFFA /* CValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CValue.hpp; sourceTree = "<group>"; };
 		FB9508EE2B4FAC270012BFFA /* PVariance.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PVariance.cpp; sourceTree = "<group>"; };
 		FB9508EF2B4FAC270012BFFA /* PVariance.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PVariance.hpp; sourceTree = "<group>"; };
 		FB9508F12B4FAD720012BFFA /* CompilerValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CompilerValue.cpp; sourceTree = "<group>"; };
 		FB9508F22B4FAD720012BFFA /* CompilerValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CompilerValue.hpp; sourceTree = "<group>"; };
 		FB9508F92B4FB8E50012BFFA /* test.ll */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.asm.llvm; path = test.ll; sourceTree = "<group>"; };
 		FB9509042B5063630012BFFA /* Compiler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Compiler.cpp; sourceTree = "<group>"; };
-		FB9509072B5067A10012BFFA /* ConstantType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantType.cpp; sourceTree = "<group>"; };
-		FB9509082B5067A10012BFFA /* ConstantType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantType.hpp; sourceTree = "<group>"; };
+		FB9509072B5067A10012BFFA /* CType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CType.cpp; sourceTree = "<group>"; };
+		FB9509082B5067A10012BFFA /* CType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CType.hpp; sourceTree = "<group>"; };
 		FB9509252B5083C90012BFFA /* ValueHandler.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ValueHandler.cpp; sourceTree = "<group>"; };
 		FB9509262B5083C90012BFFA /* ValueHandler.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ValueHandler.hpp; sourceTree = "<group>"; };
-		FB9509282B5088DF0012BFFA /* ConstantIntValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantIntValue.cpp; sourceTree = "<group>"; };
-		FB9509292B5088DF0012BFFA /* ConstantIntValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantIntValue.hpp; sourceTree = "<group>"; };
-		FB95092C2B508A310012BFFA /* ConstantIntType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantIntType.cpp; sourceTree = "<group>"; };
-		FB95092D2B508A310012BFFA /* ConstantIntType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantIntType.hpp; sourceTree = "<group>"; };
+		FB9509282B5088DF0012BFFA /* CIntValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIntValue.cpp; sourceTree = "<group>"; };
+		FB9509292B5088DF0012BFFA /* CIntValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CIntValue.hpp; sourceTree = "<group>"; };
+		FB95092C2B508A310012BFFA /* CIntType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIntType.cpp; sourceTree = "<group>"; };
+		FB95092D2B508A310012BFFA /* CIntType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CIntType.hpp; sourceTree = "<group>"; };
 		FB9509302B50904E0012BFFA /* PAssignment.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PAssignment.cpp; sourceTree = "<group>"; };
 		FB9509312B50904E0012BFFA /* PAssignment.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PAssignment.hpp; sourceTree = "<group>"; };
-		FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTypeType.cpp; sourceTree = "<group>"; };
-		FB9509352B50AD3D0012BFFA /* ConstantTypeType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTypeType.hpp; sourceTree = "<group>"; };
-		FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBoolValue.cpp; sourceTree = "<group>"; };
-		FB9509392B50B0000012BFFA /* ConstantBoolValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantBoolValue.hpp; sourceTree = "<group>"; };
-		FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantBoolType.cpp; sourceTree = "<group>"; };
-		FB95093D2B50B0790012BFFA /* ConstantBoolType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantBoolType.hpp; sourceTree = "<group>"; };
-		FB9509402B50B7930012BFFA /* ConstantFunctionType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantFunctionType.cpp; sourceTree = "<group>"; };
-		FB9509412B50B7930012BFFA /* ConstantFunctionType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantFunctionType.hpp; sourceTree = "<group>"; };
+		FB9509342B50AD3D0012BFFA /* CTypeType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CTypeType.cpp; sourceTree = "<group>"; };
+		FB9509352B50AD3D0012BFFA /* CTypeType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CTypeType.hpp; sourceTree = "<group>"; };
+		FB9509382B50B0000012BFFA /* CBoolValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CBoolValue.cpp; sourceTree = "<group>"; };
+		FB9509392B50B0000012BFFA /* CBoolValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CBoolValue.hpp; sourceTree = "<group>"; };
+		FB95093C2B50B0790012BFFA /* CBoolType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CBoolType.cpp; sourceTree = "<group>"; };
+		FB95093D2B50B0790012BFFA /* CBoolType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CBoolType.hpp; sourceTree = "<group>"; };
+		FB9509402B50B7930012BFFA /* CPureFunctionType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CPureFunctionType.cpp; sourceTree = "<group>"; };
+		FB9509412B50B7930012BFFA /* CPureFunctionType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPureFunctionType.hpp; sourceTree = "<group>"; };
 		FB9509442B50B9230012BFFA /* PFunctionType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PFunctionType.cpp; sourceTree = "<group>"; };
 		FB9509452B50B9230012BFFA /* PFunctionType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PFunctionType.hpp; sourceTree = "<group>"; };
-		FB9509542B50CE810012BFFA /* ConstantFunctionValue.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantFunctionValue.cpp; sourceTree = "<group>"; };
-		FB9509552B50CE810012BFFA /* ConstantFunctionValue.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantFunctionValue.hpp; sourceTree = "<group>"; };
-		FB9509582B50D7830012BFFA /* ConstantInputFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantInputFunction.cpp; sourceTree = "<group>"; };
-		FB9509592B50D7830012BFFA /* ConstantInputFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantInputFunction.hpp; sourceTree = "<group>"; };
+		FB9509542B50CE810012BFFA /* CPureFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CPureFunction.cpp; sourceTree = "<group>"; };
+		FB9509552B50CE810012BFFA /* CPureFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPureFunction.hpp; sourceTree = "<group>"; };
 		FB95095C2B50DA010012BFFA /* PFunctionCall.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PFunctionCall.cpp; sourceTree = "<group>"; };
 		FB95095D2B50DA010012BFFA /* PFunctionCall.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PFunctionCall.hpp; sourceTree = "<group>"; };
-		FB9509602B51154C0012BFFA /* ConstantOutputFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantOutputFunction.cpp; sourceTree = "<group>"; };
-		FB9509612B51154C0012BFFA /* ConstantOutputFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantOutputFunction.hpp; sourceTree = "<group>"; };
-		FB9509642B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantUserDefinedFunction.cpp; sourceTree = "<group>"; };
-		FB9509652B51C46E0012BFFA /* ConstantUserDefinedFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantUserDefinedFunction.hpp; sourceTree = "<group>"; };
+		FB9509602B51154C0012BFFA /* COutputFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = COutputFunction.cpp; sourceTree = "<group>"; };
+		FB9509612B51154C0012BFFA /* COutputFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = COutputFunction.hpp; sourceTree = "<group>"; };
+		FB9509642B51C46E0012BFFA /* CCustomPureFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CCustomPureFunction.cpp; sourceTree = "<group>"; };
+		FB9509652B51C46E0012BFFA /* CCustomPureFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CCustomPureFunction.hpp; sourceTree = "<group>"; };
 		FB9509682B51C8770012BFFA /* PFunctionDefinition.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PFunctionDefinition.cpp; sourceTree = "<group>"; };
 		FB9509692B51C8770012BFFA /* PFunctionDefinition.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PFunctionDefinition.hpp; sourceTree = "<group>"; };
 		FB95096C2B51F6390012BFFA /* Scope.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Scope.cpp; sourceTree = "<group>"; };
 		FB95096D2B51F6390012BFFA /* Scope.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scope.hpp; sourceTree = "<group>"; };
 		FB9509702B51F92B0012BFFA /* PArgument.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PArgument.cpp; sourceTree = "<group>"; };
 		FB9509712B51F92B0012BFFA /* PArgument.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PArgument.hpp; sourceTree = "<group>"; };
-		FB9509742B51FFF40012BFFA /* ConstantNeverType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantNeverType.cpp; sourceTree = "<group>"; };
-		FB9509752B51FFF40012BFFA /* ConstantNeverType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantNeverType.hpp; sourceTree = "<group>"; };
+		FB9509742B51FFF40012BFFA /* CNeverType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CNeverType.cpp; sourceTree = "<group>"; };
+		FB9509752B51FFF40012BFFA /* CNeverType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CNeverType.hpp; sourceTree = "<group>"; };
 		FB9509782B5201770012BFFA /* PReturn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PReturn.cpp; sourceTree = "<group>"; };
 		FB9509792B5201770012BFFA /* PReturn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PReturn.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,22 +169,22 @@
 			path = PTupleType;
 			sourceTree = "<group>";
 		};
-		FB055DA92B573CA800F3A234 /* ConstantTupleType */ = {
+		FB055DA92B573CA800F3A234 /* CTupleType */ = {
 			isa = PBXGroup;
 			children = (
-				FB055DA72B55F81C00F3A234 /* ConstantTupleType.hpp */,
-				FB055DA62B55F81C00F3A234 /* ConstantTupleType.cpp */,
+				FB055DA72B55F81C00F3A234 /* CTupleType.hpp */,
+				FB055DA62B55F81C00F3A234 /* CTupleType.cpp */,
 			);
-			path = ConstantTupleType;
+			path = CTupleType;
 			sourceTree = "<group>";
 		};
-		FB055DAD2B5741D000F3A234 /* ConstantTuple */ = {
+		FB055DAD2B5741D000F3A234 /* CTuple */ = {
 			isa = PBXGroup;
 			children = (
-				FB055DAB2B573CBF00F3A234 /* ConstantTuple.hpp */,
-				FB055DAA2B573CBF00F3A234 /* ConstantTuple.cpp */,
+				FB055DAB2B573CBF00F3A234 /* CTuple.hpp */,
+				FB055DAA2B573CBF00F3A234 /* CTuple.cpp */,
 			);
-			path = ConstantTuple;
+			path = CTuple;
 			sourceTree = "<group>";
 		};
 		FB055DB12B577B1E00F3A234 /* PTupleElementAccess */ = {
@@ -249,7 +249,7 @@
 				FB606E3D2B08799E00AFF855 /* main.cpp */,
 				FB3EC82B2B2517B900581DE6 /* llvm.h */,
 				FB3EC8212B250E5900581DE6 /* Tokenizer */,
-				FB9508E92B4FA6DA0012BFFA /* ConstantValue */,
+				FB9508E92B4FA6DA0012BFFA /* CValue */,
 				FB3EC8262B250E9E00581DE6 /* Compiler */,
 				FB9508D82B4F92710012BFFA /* PStatement */,
 				FB3EC8222B250E6400581DE6 /* Parser */,
@@ -316,18 +316,18 @@
 			path = PIdentifier;
 			sourceTree = "<group>";
 		};
-		FB9508E92B4FA6DA0012BFFA /* ConstantValue */ = {
+		FB9508E92B4FA6DA0012BFFA /* CValue */ = {
 			isa = PBXGroup;
 			children = (
-				FB9508EB2B4FA6F90012BFFA /* ConstantValue.hpp */,
-				FB9508EA2B4FA6F90012BFFA /* ConstantValue.cpp */,
-				FB95093B2B50B0060012BFFA /* ConstantBoolValue */,
-				FB95092B2B5088E60012BFFA /* ConstantIntValue */,
-				FB9509572B50CE880012BFFA /* ConstantFunctionValue */,
-				FB9509062B5067700012BFFA /* ConstantType */,
-				FB055DAD2B5741D000F3A234 /* ConstantTuple */,
+				FB9508EB2B4FA6F90012BFFA /* CValue.hpp */,
+				FB9508EA2B4FA6F90012BFFA /* CValue.cpp */,
+				FB95093B2B50B0060012BFFA /* CBoolValue */,
+				FB95092B2B5088E60012BFFA /* CIntValue */,
+				FB9509572B50CE880012BFFA /* CPureFunction */,
+				FB055DAD2B5741D000F3A234 /* CTuple */,
+				FB9509062B5067700012BFFA /* CType */,
 			);
-			path = ConstantValue;
+			path = CValue;
 			sourceTree = "<group>";
 		};
 		FB9508ED2B4FAC1A0012BFFA /* PVariance */ = {
@@ -350,37 +350,37 @@
 			path = CompilerValue;
 			sourceTree = "<group>";
 		};
-		FB9509062B5067700012BFFA /* ConstantType */ = {
+		FB9509062B5067700012BFFA /* CType */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509082B5067A10012BFFA /* ConstantType.hpp */,
-				FB9509072B5067A10012BFFA /* ConstantType.cpp */,
-				FB9509372B50AD430012BFFA /* ConstantTypeType */,
-				FB95093F2B50B0830012BFFA /* ConstantBoolType */,
-				FB95092F2B508A370012BFFA /* ConstantIntType */,
-				FB9509432B50B79B0012BFFA /* ConstantFunctionType */,
-				FB9509772B52000A0012BFFA /* ConstantNeverType */,
-				FB055DA92B573CA800F3A234 /* ConstantTupleType */,
+				FB9509082B5067A10012BFFA /* CType.hpp */,
+				FB9509072B5067A10012BFFA /* CType.cpp */,
+				FB9509372B50AD430012BFFA /* CTypeType */,
+				FB95093F2B50B0830012BFFA /* CBoolType */,
+				FB95092F2B508A370012BFFA /* CIntType */,
+				FB9509432B50B79B0012BFFA /* CPureFunctionType */,
+				FB9509772B52000A0012BFFA /* CNeverType */,
+				FB055DA92B573CA800F3A234 /* CTupleType */,
 			);
-			path = ConstantType;
+			path = CType;
 			sourceTree = "<group>";
 		};
-		FB95092B2B5088E60012BFFA /* ConstantIntValue */ = {
+		FB95092B2B5088E60012BFFA /* CIntValue */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509292B5088DF0012BFFA /* ConstantIntValue.hpp */,
-				FB9509282B5088DF0012BFFA /* ConstantIntValue.cpp */,
+				FB9509292B5088DF0012BFFA /* CIntValue.hpp */,
+				FB9509282B5088DF0012BFFA /* CIntValue.cpp */,
 			);
-			path = ConstantIntValue;
+			path = CIntValue;
 			sourceTree = "<group>";
 		};
-		FB95092F2B508A370012BFFA /* ConstantIntType */ = {
+		FB95092F2B508A370012BFFA /* CIntType */ = {
 			isa = PBXGroup;
 			children = (
-				FB95092D2B508A310012BFFA /* ConstantIntType.hpp */,
-				FB95092C2B508A310012BFFA /* ConstantIntType.cpp */,
+				FB95092D2B508A310012BFFA /* CIntType.hpp */,
+				FB95092C2B508A310012BFFA /* CIntType.cpp */,
 			);
-			path = ConstantIntType;
+			path = CIntType;
 			sourceTree = "<group>";
 		};
 		FB9509332B5090560012BFFA /* PAssignment */ = {
@@ -392,40 +392,40 @@
 			path = PAssignment;
 			sourceTree = "<group>";
 		};
-		FB9509372B50AD430012BFFA /* ConstantTypeType */ = {
+		FB9509372B50AD430012BFFA /* CTypeType */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509352B50AD3D0012BFFA /* ConstantTypeType.hpp */,
-				FB9509342B50AD3D0012BFFA /* ConstantTypeType.cpp */,
+				FB9509352B50AD3D0012BFFA /* CTypeType.hpp */,
+				FB9509342B50AD3D0012BFFA /* CTypeType.cpp */,
 			);
-			path = ConstantTypeType;
+			path = CTypeType;
 			sourceTree = "<group>";
 		};
-		FB95093B2B50B0060012BFFA /* ConstantBoolValue */ = {
+		FB95093B2B50B0060012BFFA /* CBoolValue */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509392B50B0000012BFFA /* ConstantBoolValue.hpp */,
-				FB9509382B50B0000012BFFA /* ConstantBoolValue.cpp */,
+				FB9509392B50B0000012BFFA /* CBoolValue.hpp */,
+				FB9509382B50B0000012BFFA /* CBoolValue.cpp */,
 			);
-			path = ConstantBoolValue;
+			path = CBoolValue;
 			sourceTree = "<group>";
 		};
-		FB95093F2B50B0830012BFFA /* ConstantBoolType */ = {
+		FB95093F2B50B0830012BFFA /* CBoolType */ = {
 			isa = PBXGroup;
 			children = (
-				FB95093D2B50B0790012BFFA /* ConstantBoolType.hpp */,
-				FB95093C2B50B0790012BFFA /* ConstantBoolType.cpp */,
+				FB95093D2B50B0790012BFFA /* CBoolType.hpp */,
+				FB95093C2B50B0790012BFFA /* CBoolType.cpp */,
 			);
-			path = ConstantBoolType;
+			path = CBoolType;
 			sourceTree = "<group>";
 		};
-		FB9509432B50B79B0012BFFA /* ConstantFunctionType */ = {
+		FB9509432B50B79B0012BFFA /* CPureFunctionType */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509412B50B7930012BFFA /* ConstantFunctionType.hpp */,
-				FB9509402B50B7930012BFFA /* ConstantFunctionType.cpp */,
+				FB9509412B50B7930012BFFA /* CPureFunctionType.hpp */,
+				FB9509402B50B7930012BFFA /* CPureFunctionType.cpp */,
 			);
-			path = ConstantFunctionType;
+			path = CPureFunctionType;
 			sourceTree = "<group>";
 		};
 		FB9509472B50B9280012BFFA /* PFunctionType */ = {
@@ -437,25 +437,25 @@
 			path = PFunctionType;
 			sourceTree = "<group>";
 		};
-		FB9509572B50CE880012BFFA /* ConstantFunctionValue */ = {
+		FB9509572B50CE880012BFFA /* CPureFunction */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509552B50CE810012BFFA /* ConstantFunctionValue.hpp */,
-				FB9509542B50CE810012BFFA /* ConstantFunctionValue.cpp */,
-				FB95095B2B50D7880012BFFA /* ConstantInputFunction */,
-				FB9509632B51C4400012BFFA /* ConstantOuputFunction */,
-				FB9509672B51C4720012BFFA /* ConstantUserDefinedFunction */,
+				FB9509552B50CE810012BFFA /* CPureFunction.hpp */,
+				FB9509542B50CE810012BFFA /* CPureFunction.cpp */,
+				FB95095B2B50D7880012BFFA /* CInputFunction */,
+				FB9509632B51C4400012BFFA /* COutputFunction */,
+				FB9509672B51C4720012BFFA /* CCustomPureFunction */,
 			);
-			path = ConstantFunctionValue;
+			path = CPureFunction;
 			sourceTree = "<group>";
 		};
-		FB95095B2B50D7880012BFFA /* ConstantInputFunction */ = {
+		FB95095B2B50D7880012BFFA /* CInputFunction */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509592B50D7830012BFFA /* ConstantInputFunction.hpp */,
-				FB9509582B50D7830012BFFA /* ConstantInputFunction.cpp */,
+				FB055DB32B57AC0D00F3A234 /* CInputFunction.hpp */,
+				FB055DB22B57AC0D00F3A234 /* CInputFunction.cpp */,
 			);
-			path = ConstantInputFunction;
+			path = CInputFunction;
 			sourceTree = "<group>";
 		};
 		FB95095F2B50DA0F0012BFFA /* PFunctionCall */ = {
@@ -467,22 +467,22 @@
 			path = PFunctionCall;
 			sourceTree = "<group>";
 		};
-		FB9509632B51C4400012BFFA /* ConstantOuputFunction */ = {
+		FB9509632B51C4400012BFFA /* COutputFunction */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509612B51154C0012BFFA /* ConstantOutputFunction.hpp */,
-				FB9509602B51154C0012BFFA /* ConstantOutputFunction.cpp */,
+				FB9509612B51154C0012BFFA /* COutputFunction.hpp */,
+				FB9509602B51154C0012BFFA /* COutputFunction.cpp */,
 			);
-			path = ConstantOuputFunction;
+			path = COutputFunction;
 			sourceTree = "<group>";
 		};
-		FB9509672B51C4720012BFFA /* ConstantUserDefinedFunction */ = {
+		FB9509672B51C4720012BFFA /* CCustomPureFunction */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509652B51C46E0012BFFA /* ConstantUserDefinedFunction.hpp */,
-				FB9509642B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp */,
+				FB9509652B51C46E0012BFFA /* CCustomPureFunction.hpp */,
+				FB9509642B51C46E0012BFFA /* CCustomPureFunction.cpp */,
 			);
-			path = ConstantUserDefinedFunction;
+			path = CCustomPureFunction;
 			sourceTree = "<group>";
 		};
 		FB95096B2B51C8890012BFFA /* PFunctionDefinition */ = {
@@ -512,13 +512,13 @@
 			path = PArgument;
 			sourceTree = "<group>";
 		};
-		FB9509772B52000A0012BFFA /* ConstantNeverType */ = {
+		FB9509772B52000A0012BFFA /* CNeverType */ = {
 			isa = PBXGroup;
 			children = (
-				FB9509752B51FFF40012BFFA /* ConstantNeverType.hpp */,
-				FB9509742B51FFF40012BFFA /* ConstantNeverType.cpp */,
+				FB9509752B51FFF40012BFFA /* CNeverType.hpp */,
+				FB9509742B51FFF40012BFFA /* CNeverType.cpp */,
 			);
-			path = ConstantNeverType;
+			path = CNeverType;
 			sourceTree = "<group>";
 		};
 		FB95097B2B52017E0012BFFA /* PReturn */ = {
@@ -588,43 +588,43 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB9509462B50B9230012BFFA /* PFunctionType.cpp in Sources */,
-				FB95092A2B5088DF0012BFFA /* ConstantIntValue.cpp in Sources */,
+				FB95092A2B5088DF0012BFFA /* CIntValue.cpp in Sources */,
 				FB9509272B5083C90012BFFA /* ValueHandler.cpp in Sources */,
 				FB95097A2B5201770012BFFA /* PReturn.cpp in Sources */,
-				FB9509622B51154C0012BFFA /* ConstantOutputFunction.cpp in Sources */,
-				FB9509562B50CE810012BFFA /* ConstantFunctionValue.cpp in Sources */,
+				FB9509622B51154C0012BFFA /* COutputFunction.cpp in Sources */,
+				FB9509562B50CE810012BFFA /* CPureFunction.cpp in Sources */,
 				FB606E3E2B08799E00AFF855 /* main.cpp in Sources */,
 				FB95096A2B51C8770012BFFA /* PFunctionDefinition.cpp in Sources */,
 				FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */,
-				FB9509422B50B7930012BFFA /* ConstantFunctionType.cpp in Sources */,
+				FB9509422B50B7930012BFFA /* CPureFunctionType.cpp in Sources */,
 				FB055DB02B577AC900F3A234 /* PTupleElementAccess.cpp in Sources */,
 				FB055DA02B55ED3A00F3A234 /* PTuple.cpp in Sources */,
-				FB95095A2B50D7830012BFFA /* ConstantInputFunction.cpp in Sources */,
 				FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */,
-				FB95093E2B50B0790012BFFA /* ConstantBoolType.cpp in Sources */,
+				FB95093E2B50B0790012BFFA /* CBoolType.cpp in Sources */,
 				FB9508FA2B4FB8E50012BFFA /* test.ll in Sources */,
 				FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */,
 				FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */,
 				FB9508D72B4F926A0012BFFA /* PStatement.cpp in Sources */,
-				FB9509662B51C46E0012BFFA /* ConstantUserDefinedFunction.cpp in Sources */,
+				FB9509662B51C46E0012BFFA /* CCustomPureFunction.cpp in Sources */,
 				FB95096E2B51F6390012BFFA /* Scope.cpp in Sources */,
 				FB9508E42B4F94240012BFFA /* PInt.cpp in Sources */,
 				FB9509052B5063630012BFFA /* Compiler.cpp in Sources */,
+				FB055DB42B57AC0D00F3A234 /* CInputFunction.cpp in Sources */,
 				FB9509322B50904E0012BFFA /* PAssignment.cpp in Sources */,
 				FB9508F02B4FAC270012BFFA /* PVariance.cpp in Sources */,
 				FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */,
-				FB9508EC2B4FA6F90012BFFA /* ConstantValue.cpp in Sources */,
+				FB9508EC2B4FA6F90012BFFA /* CValue.cpp in Sources */,
 				FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */,
 				FB95095E2B50DA010012BFFA /* PFunctionCall.cpp in Sources */,
-				FB055DAC2B573CBF00F3A234 /* ConstantTuple.cpp in Sources */,
+				FB055DAC2B573CBF00F3A234 /* CTuple.cpp in Sources */,
 				FB9508DC2B4F92A20012BFFA /* PDeclaration.cpp in Sources */,
-				FB9509092B5067A10012BFFA /* ConstantType.cpp in Sources */,
-				FB9509362B50AD3D0012BFFA /* ConstantTypeType.cpp in Sources */,
-				FB9509762B51FFF40012BFFA /* ConstantNeverType.cpp in Sources */,
+				FB9509092B5067A10012BFFA /* CType.cpp in Sources */,
+				FB9509362B50AD3D0012BFFA /* CTypeType.cpp in Sources */,
+				FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */,
 				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
-				FB055DA82B55F81C00F3A234 /* ConstantTupleType.cpp in Sources */,
-				FB95092E2B508A310012BFFA /* ConstantIntType.cpp in Sources */,
-				FB95093A2B50B0000012BFFA /* ConstantBoolValue.cpp in Sources */,
+				FB055DA82B55F81C00F3A234 /* CTupleType.cpp in Sources */,
+				FB95092E2B508A310012BFFA /* CIntType.cpp in Sources */,
+				FB95093A2B50B0000012BFFA /* CBoolValue.cpp in Sources */,
 				FB055DA42B55EDD400F3A234 /* PTupleType.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

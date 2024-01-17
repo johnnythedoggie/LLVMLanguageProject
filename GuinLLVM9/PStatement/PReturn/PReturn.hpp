@@ -9,7 +9,7 @@
 #define PReturn_hpp
 
 #include "PValue.hpp"
-#include "ConstantNeverType.hpp"
+#include "CNeverType.hpp"
 
 /*
  
@@ -42,4 +42,4 @@ public:
 	
 };
 
-#endif /* ConstantReturnFunction_hpp */
+#endif /* CReturnFunction_hpp */

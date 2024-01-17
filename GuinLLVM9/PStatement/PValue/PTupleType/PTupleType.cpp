@@ -6,28 +6,28 @@
 //
 
 #include "PTupleType.hpp"
-#include "ConstantTupleType.hpp"
-#include "ConstantTypeType.hpp"
+#include "CTupleType.hpp"
+#include "CTypeType.hpp"
 
 Value* PTupleType::asLLVMValue(Compiler* compiler) {
 	StructType* type = StructType::get(*compiler->llvmContext, { });
 	return ConstantStruct::get(type, { });
 }
 
-ConstantValue* PTupleType::asConstantValue(Compiler* compiler) {
-	std::vector<ConstantTupleTypeElement> constantElements = {};
+CValue* PTupleType::asConstantValue(Compiler* compiler) {
+	std::vector<CTupleTypeElement> constantElements = {};
 	for (const PTupleTypeElement& element : elements) {
-		ConstantValue* typeValue = element.type->asConstantValue(compiler);
+		CValue* typeValue = element.type->asConstantValue(compiler);
 		if (!typeValue) return nullptr;
-		ConstantType* type = dynamic_cast<ConstantType*>(typeValue);
+		CType* type = dynamic_cast<CType*>(typeValue);
 		if (!type) return nullptr;
 		constantElements.push_back({ element.label, type });
 	}
-	return new ConstantTupleType(constantElements);
+	return new CTupleType(constantElements);
 }
 
-ConstantType* PTupleType::getConstantType(Compiler* compiler) {
-	return new ConstantTypeType();
+CType* PTupleType::getConstantType(Compiler* compiler) {
+	return new CTypeType();
 }
 
 PVariance PTupleType::getVariance(Compiler* compiler) {

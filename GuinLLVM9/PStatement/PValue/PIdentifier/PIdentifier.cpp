@@ -26,14 +26,14 @@ Value* PIdentifier::getMemoryLocation(Compiler* compiler) {
 	return ValueHandler::getLLVMLocation(compiler->valueForIdentifier[identifier], compiler);
 }
 
-ConstantValue* PIdentifier::asConstantValue(Compiler* compiler) {
+CValue* PIdentifier::asConstantValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
 	if (compiler->valueForIdentifier[identifier]->variance != PVariance::CONST) return nullptr;
 	return compiler->valueForIdentifier[identifier]->constantValue;
 }
 
-ConstantType* PIdentifier::getConstantType(Compiler* compiler) {
+CType* PIdentifier::getConstantType(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
 	return compiler->valueForIdentifier[identifier]->constantType;

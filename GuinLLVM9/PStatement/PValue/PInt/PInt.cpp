@@ -6,8 +6,8 @@
 //
 
 #include "PInt.hpp"
-#include "ConstantIntValue.hpp"
-#include "ConstantIntType.hpp"
+#include "CIntValue.hpp"
+#include "CIntType.hpp"
 
 Value* PInt::asLLVMValue(Compiler* compiler) {
 	return asConstantValue(compiler)->getLLVMValue(compiler);
@@ -17,10 +17,10 @@ PVariance PInt::getVariance(Compiler* compiler) {
 	return PVariance::CONST;
 }
 
-ConstantValue* PInt::asConstantValue(Compiler* compiler) {
-	return new ConstantIntValue(value);
+CValue* PInt::asConstantValue(Compiler* compiler) {
+	return new CIntValue(value);
 }
 
-ConstantType* PInt::getConstantType(Compiler* compiler) {
-	return new ConstantIntType();
+CType* PInt::getConstantType(Compiler* compiler) {
+	return new CIntType();
 }

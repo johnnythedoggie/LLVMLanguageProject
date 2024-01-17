@@ -13,17 +13,17 @@
 #include "PVariance.hpp"
 
 // I really don't understand what's going on, this fixes it though.
-class ConstantValue; // #include "ConstantValue.hpp"
-class ConstantType; // #include "ConstantType.hpp"
+class CValue; // #include "CValue.hpp"
+class CType; // #include "CType.hpp"
 
 struct CompilerValue {
 	
 	PVariance variance;
-	ConstantType* constantType = nullptr;
+	CType* constantType = nullptr;
 	
 	Value* dynamicValueLocation = nullptr; // VAR
 	Value* staticValue = nullptr; // LET
-	ConstantValue* constantValue = nullptr; // CONST
+	CValue* constantValue = nullptr; // CONST
 	
 };
 

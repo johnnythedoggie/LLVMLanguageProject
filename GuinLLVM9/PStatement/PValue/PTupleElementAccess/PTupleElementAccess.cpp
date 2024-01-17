@@ -6,12 +6,12 @@
 //
 
 #include "PTupleElementAccess.hpp"
-#include "ConstantTupleType.hpp"
-#include "ConstantTuple.hpp"
+#include "CTupleType.hpp"
+#include "CTuple.hpp"
 
 int PTupleElementAccess::indexOfLabel(Compiler* compiler) const {
-	ConstantType* type = tuple->getConstantType(compiler);
-	ConstantTupleType* tupleType = dynamic_cast<ConstantTupleType*>(type);
+	CType* type = tuple->getConstantType(compiler);
+	CTupleType* tupleType = dynamic_cast<CTupleType*>(type);
 	std::string errorMessage = "Invalid use of tuple element access.";
 	if (!tupleType) throw errorMessage;
 	int index = -1;
@@ -31,19 +31,19 @@ Value* PTupleElementAccess::asLLVMValue(Compiler* compiler) {
 	return compiler->llvmBuilder->CreateExtractValue(tupleValue, index);
 }
 
-ConstantValue* PTupleElementAccess::asConstantValue(Compiler* compiler) {
-	ConstantValue* constantValue = tuple->asConstantValue(compiler);
+CValue* PTupleElementAccess::asConstantValue(Compiler* compiler) {
+	CValue* constantValue = tuple->asConstantValue(compiler);
 	if (!constantValue) return nullptr;
-	ConstantTuple* constantTuple = dynamic_cast<ConstantTuple*>(constantValue);
+	CTuple* constantTuple = dynamic_cast<CTuple*>(constantValue);
 	std::string errorMessage = "Invalid use of tuple element access.";
 	if (!constantTuple) throw errorMessage;
 	int index = indexOfLabel(compiler);
 	return constantTuple->elements[index].value;
 }
 
-ConstantType* PTupleElementAccess::getConstantType(Compiler* compiler) {
-	ConstantType* type = tuple->getConstantType(compiler);
-	ConstantTupleType* tupleType = dynamic_cast<ConstantTupleType*>(type);
+CType* PTupleElementAccess::getConstantType(Compiler* compiler) {
+	CType* type = tuple->getConstantType(compiler);
+	CTupleType* tupleType = dynamic_cast<CTupleType*>(type);
 	std::string errorMessage = "Invalid use of tuple element access.";
 	if (!tupleType) throw errorMessage;
 	int index = indexOfLabel(compiler);

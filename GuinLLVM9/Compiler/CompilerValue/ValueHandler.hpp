@@ -21,7 +21,7 @@ namespace ValueHandler {
 	
 	CompilerValue* newConstantValue(Compiler* compiler, PValue* value, std::string name);
 
-	CompilerValue* newConstantValue(Compiler* compiler, ConstantValue* value, std::string name);
+	CompilerValue* newConstantValue(Compiler* compiler, CValue* value, std::string name);
 	
 	Value* getLLVMValue(CompilerValue* value, Compiler* compiler);
 	

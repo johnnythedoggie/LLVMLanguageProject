@@ -12,11 +12,11 @@ Value* PArgument::asLLVMValue(Compiler* compiler) {
 	return compiler->scope.argument;
 }
 
-ConstantValue* PArgument::asConstantValue(Compiler* compiler) {
+CValue* PArgument::asConstantValue(Compiler* compiler) {
 	return nullptr;
 }
 
-ConstantType* PArgument::getConstantType(Compiler* compiler) {
+CType* PArgument::getConstantType(Compiler* compiler) {
 	return compiler->scope.argumentType;
 }
 

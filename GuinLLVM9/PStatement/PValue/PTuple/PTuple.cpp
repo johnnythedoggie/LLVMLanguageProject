@@ -6,7 +6,7 @@
 //
 
 #include "PTuple.hpp"
-#include "ConstantTuple.hpp"
+#include "CTuple.hpp"
 
 Value* PTuple::asLLVMValue(Compiler* compiler) {
 	std::vector<Type*> llvmTypes = {};
@@ -23,23 +23,23 @@ Value* PTuple::asLLVMValue(Compiler* compiler) {
 	return struture;
 }
 
-ConstantValue* PTuple::asConstantValue(Compiler* compiler) {
-	std::vector<ConstantTupleElement> constantElements = {};
+CValue* PTuple::asConstantValue(Compiler* compiler) {
+	std::vector<CTupleElement> constantElements = {};
 	for (const PTupleElement& element : elements) {
-		ConstantValue* value = element.value->asConstantValue(compiler);
+		CValue* value = element.value->asConstantValue(compiler);
 		if (!value) return nullptr;
 		constantElements.push_back({element.label, value});
 	}
-	return new ConstantTuple(constantElements);
+	return new CTuple(constantElements);
 }
 
-ConstantType* PTuple::getConstantType(Compiler* compiler) {
-	std::vector<ConstantTupleTypeElement> constantElements = {};
+CType* PTuple::getConstantType(Compiler* compiler) {
+	std::vector<CTupleTypeElement> constantElements = {};
 	for (const PTupleElement& element : elements) {
-		ConstantType* type = element.value->getConstantType(compiler);
+		CType* type = element.value->getConstantType(compiler);
 		constantElements.push_back({element.label, type});
 	}
-	return new ConstantTupleType(constantElements);
+	return new CTupleType(constantElements);
 }
 
 PVariance PTuple::getVariance(Compiler* compiler) {

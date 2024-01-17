@@ -15,8 +15,8 @@ class Scope {
 	
 public:
 	
-	ConstantType* argumentType = nullptr;
-	ConstantType* returnType = nullptr;
+	CType* argumentType = nullptr;
+	CType* returnType = nullptr;
 	Value* argument = nullptr;
 	// maybe more stuff to access out of scope identifiers
 	

@@ -6,19 +6,19 @@
 //
 
 #include "PFunctionType.hpp"
-#include "ConstantFunctionType.hpp"
-#include "ConstantTypeType.hpp"
+#include "CPureFunctionType.hpp"
+#include "CTypeType.hpp"
 
-ConstantValue* PFunctionType::asConstantValue(Compiler* compiler) {
-	ConstantType* left = dynamic_cast<ConstantType*>(inputType->asConstantValue(compiler));
-	ConstantType* right = dynamic_cast<ConstantType*>(outputType->asConstantValue(compiler));
+CValue* PFunctionType::asConstantValue(Compiler* compiler) {
+	CType* left = dynamic_cast<CType*>(inputType->asConstantValue(compiler));
+	CType* right = dynamic_cast<CType*>(outputType->asConstantValue(compiler));
 	std::string errorMessage = "Function type composed from functions.";
 	if (!left || !right) throw errorMessage;
-	return new ConstantFunctionType(left, right);
+	return new CPureFunctionType(left, right);
 }
 
-ConstantType* PFunctionType::getConstantType(Compiler* compiler) {
-	return new ConstantTypeType();
+CType* PFunctionType::getConstantType(Compiler* compiler) {
+	return new CTypeType();
 }
 
 Value* PFunctionType::asLLVMValue(Compiler* compiler) {

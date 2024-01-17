@@ -20,8 +20,8 @@ public:
 	PFunctionCall(PValue* functionValue, PValue* argumentValue)
 	: functionValue(functionValue), argumentValue(argumentValue) { }
 	
-	ConstantValue* asConstantValue(Compiler* compiler) override;
-	ConstantType* getConstantType(Compiler* compiler) override;
+	CValue* asConstantValue(Compiler* compiler) override;
+	CType* getConstantType(Compiler* compiler) override;
 	
 	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;

@@ -10,15 +10,15 @@
 
 #include "PVariance.hpp"
 #include "PStatement.hpp"
-#include "ConstantValue.hpp"
-#include "ConstantType.hpp"
+#include "CValue.hpp"
+#include "CType.hpp"
 
 class PValue: public PStatement {
 	
 public:
 	
-	virtual ConstantValue* asConstantValue(Compiler* compiler) = 0;
-	virtual ConstantType* getConstantType(Compiler* compiler) = 0;
+	virtual CValue* asConstantValue(Compiler* compiler) = 0;
+	virtual CType* getConstantType(Compiler* compiler) = 0;
 	
 	virtual Value* asLLVMValue(Compiler* compiler) = 0;
 	Type* getLLVMType(Compiler* compiler);

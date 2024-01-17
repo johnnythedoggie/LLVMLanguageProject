@@ -6,17 +6,17 @@
 //
 
 #include "PFunctionDefinition.hpp"
-#include "ConstantUserDefinedFunction.hpp"
+#include "CCustomPureFunction.hpp"
 
-ConstantValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
-	ConstantFunctionType* ft = getConstantType(compiler);
-	ConstantType* inputType = ft->inputType;
-	ConstantType* outputType = ft->outputType;
-	return new ConstantUserDefinedFunction(functionBody, inputType, outputType);
+CValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
+	CPureFunctionType* ft = getConstantType(compiler);
+	CType* inputType = ft->inputType;
+	CType* outputType = ft->outputType;
+	return new CCustomPureFunction(functionBody, inputType, outputType);
 }
 
-ConstantFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
-	auto ft = dynamic_cast<ConstantFunctionType*>(fucntionType->asConstantValue(compiler));
+CPureFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
+	auto ft = dynamic_cast<CPureFunctionType*>(fucntionType->asConstantValue(compiler));
 	std::string errorMessage = "Cannot define function of non constant function type.";
 	if (!ft) throw errorMessage;
 	return ft;

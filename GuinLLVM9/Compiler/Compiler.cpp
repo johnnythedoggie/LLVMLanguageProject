@@ -7,24 +7,24 @@
 
 #include "Compiler.hpp"
 #include "ValueHandler.hpp"
-#include "ConstantIntType.hpp"
-#include "ConstantBoolType.hpp"
-#include "ConstantBoolValue.hpp"
-#include "ConstantTypeType.hpp"
-#include "ConstantInputFunction.hpp"
-#include "ConstantOutputFunction.hpp"
-#include "ConstantTupleType.hpp"
+#include "CIntType.hpp"
+#include "CBoolType.hpp"
+#include "CBoolValue.hpp"
+#include "CTypeType.hpp"
+#include "CInputFunction.hpp"
+#include "COutputFunction.hpp"
+#include "CTupleType.hpp"
 
 Compiler::Compiler() {
 	
-	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new ConstantIntType(), "Int");
-	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(true), "true");
-	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new ConstantBoolValue(false), "false");
-	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new ConstantBoolType(), "Bool");
-	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new ConstantTypeType(), "Type");
-	valueForIdentifier["input"] = ValueHandler::newConstantValue(this, new ConstantInputFunction(), "input");
-	valueForIdentifier["output"] = ValueHandler::newConstantValue(this, new ConstantOutputFunction(), "output");
-	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new ConstantTupleType({}), "Void");
+	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new CIntType(), "Int");
+	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new CBoolValue(true), "true");
+	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new CBoolValue(false), "false");
+	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new CBoolType(), "Bool");
+	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new CTypeType(), "Type");
+	valueForIdentifier["input"] = ValueHandler::newConstantValue(this, new CInputFunction(), "input");
+	valueForIdentifier["output"] = ValueHandler::newConstantValue(this, new COutputFunction(), "output");
+	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new CTupleType({}), "Void");
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);

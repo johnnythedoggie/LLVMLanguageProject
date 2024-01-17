@@ -6,22 +6,22 @@
 //
 
 #include "PFunctionCall.hpp"
-#include "ConstantFunctionType.hpp"
+#include "CPureFunctionType.hpp"
 
-ConstantValue* PFunctionCall::asConstantValue(Compiler* compiler) {
+CValue* PFunctionCall::asConstantValue(Compiler* compiler) {
 	return nullptr;
 }
 
-ConstantType* PFunctionCall::getConstantType(Compiler* compiler) {
-	ConstantType* type = functionValue->getConstantType(compiler);
-	ConstantFunctionType* functionType = dynamic_cast<ConstantFunctionType*>(type);
+CType* PFunctionCall::getConstantType(Compiler* compiler) {
+	CType* type = functionValue->getConstantType(compiler);
+	CPureFunctionType* functionType = dynamic_cast<CPureFunctionType*>(type);
 	return functionType->outputType;
 }
 
 Value* PFunctionCall::asLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Incorrect types for function call.";
-	ConstantType* constantType = functionValue->getConstantType(compiler);
-	ConstantFunctionType* constantFunctionType = dynamic_cast<ConstantFunctionType*>(constantType);
+	CType* constantType = functionValue->getConstantType(compiler);
+	CPureFunctionType* constantFunctionType = dynamic_cast<CPureFunctionType*>(constantType);
 	if (!constantFunctionType) throw errorMessage;
 	std::string functionInputType = constantFunctionType->inputType->identifierString();
 	std::string argumentType = argumentValue->getConstantType(compiler)->identifierString();
