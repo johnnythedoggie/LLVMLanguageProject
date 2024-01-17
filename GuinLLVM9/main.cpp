@@ -16,7 +16,9 @@
 int main() {
 	
 	auto tokens = Tokenizer::getTokensFrom(R"(
-		
+		var x = (a = (a = 1, b = 2), b = 2)
+		x.a.b = 2
+		output x.a.b
 	)");
 	
 	auto statements = Parser().parse(tokens);

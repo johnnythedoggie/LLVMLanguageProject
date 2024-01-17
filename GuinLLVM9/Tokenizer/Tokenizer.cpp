@@ -44,6 +44,7 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '>':
 		case ',':
 		case '?':
+		case '.':
 			return CharacterType::Symbol;
 		case '#':
 			return CharacterType::CommentSymbol;

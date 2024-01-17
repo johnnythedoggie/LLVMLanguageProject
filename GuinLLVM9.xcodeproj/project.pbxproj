@@ -11,6 +11,7 @@
 		FB055DA42B55EDD400F3A234 /* PTupleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DA22B55EDD400F3A234 /* PTupleType.cpp */; };
 		FB055DA82B55F81C00F3A234 /* ConstantTupleType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DA62B55F81C00F3A234 /* ConstantTupleType.cpp */; };
 		FB055DAC2B573CBF00F3A234 /* ConstantTuple.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DAA2B573CBF00F3A234 /* ConstantTuple.cpp */; };
+		FB055DB02B577AC900F3A234 /* PTupleElementAccess.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB055DAE2B577AC900F3A234 /* PTupleElementAccess.cpp */; };
 		FB3EC81C2B2425E100581DE6 /* Tokenizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */; };
 		FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC81D2B24360900581DE6 /* Parser.cpp */; };
 		FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */ = {isa = PBXBuildFile; fileRef = FB3EC82B2B2517B900581DE6 /* llvm.h */; };
@@ -68,6 +69,8 @@
 		FB055DA72B55F81C00F3A234 /* ConstantTupleType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTupleType.hpp; sourceTree = "<group>"; };
 		FB055DAA2B573CBF00F3A234 /* ConstantTuple.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConstantTuple.cpp; sourceTree = "<group>"; };
 		FB055DAB2B573CBF00F3A234 /* ConstantTuple.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = ConstantTuple.hpp; sourceTree = "<group>"; };
+		FB055DAE2B577AC900F3A234 /* PTupleElementAccess.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PTupleElementAccess.cpp; sourceTree = "<group>"; };
+		FB055DAF2B577AC900F3A234 /* PTupleElementAccess.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PTupleElementAccess.hpp; sourceTree = "<group>"; };
 		FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Tokenizer.cpp; sourceTree = "<group>"; };
 		FB3EC81D2B24360900581DE6 /* Parser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
 		FB3EC81F2B25037400581DE6 /* Parser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
@@ -184,6 +187,15 @@
 			path = ConstantTuple;
 			sourceTree = "<group>";
 		};
+		FB055DB12B577B1E00F3A234 /* PTupleElementAccess */ = {
+			isa = PBXGroup;
+			children = (
+				FB055DAF2B577AC900F3A234 /* PTupleElementAccess.hpp */,
+				FB055DAE2B577AC900F3A234 /* PTupleElementAccess.cpp */,
+			);
+			path = PTupleElementAccess;
+			sourceTree = "<group>";
+		};
 		FB3EC8212B250E5900581DE6 /* Tokenizer */ = {
 			isa = PBXGroup;
 			children = (
@@ -280,6 +292,7 @@
 				FB95096B2B51C8890012BFFA /* PFunctionDefinition */,
 				FB95095F2B50DA0F0012BFFA /* PFunctionCall */,
 				FB055DA52B55EDE100F3A234 /* PTupleType */,
+				FB055DB12B577B1E00F3A234 /* PTupleElementAccess */,
 				FB055DA12B55ED4800F3A234 /* PTuple */,
 			);
 			path = PValue;
@@ -584,6 +597,7 @@
 				FB95096A2B51C8770012BFFA /* PFunctionDefinition.cpp in Sources */,
 				FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */,
 				FB9509422B50B7930012BFFA /* ConstantFunctionType.cpp in Sources */,
+				FB055DB02B577AC900F3A234 /* PTupleElementAccess.cpp in Sources */,
 				FB055DA02B55ED3A00F3A234 /* PTuple.cpp in Sources */,
 				FB95095A2B50D7830012BFFA /* ConstantInputFunction.cpp in Sources */,
 				FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */,

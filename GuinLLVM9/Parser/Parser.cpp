@@ -83,16 +83,23 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 }
 
 PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
-	PValue* result;
-	result = parseIdentifier(tokens);
-	if (result) return result;
-	result = parseParenedValue(tokens);
-	if (result) return result;
-	result = parseInt(tokens);
-	if (result) return result;
-	result = parseArgument(tokens);
-	if (result) return result;
-	return nullptr;
+	PValue* result = nullptr;
+	if (!result) result = parseIdentifier(tokens);
+	if (!result) result = parseParenedValue(tokens);
+	if (!result) result = parseInt(tokens);
+	if (!result) result = parseArgument(tokens);
+	
+	if (!result) return nullptr;
+	
+	std::string errorMessage = "Could not parse dot usage.";
+	while (!tokens.empty() && tokens.front().value == ".") {
+		tokens.pop();
+		if (tokens.front().type != Token::TokenType::AlphaIdentifier) throw errorMessage;
+		result = new PTupleElementAccess(result, tokens.front().value);
+		tokens.pop();
+	}
+	
+	return result;
 }
 
 PValue* Parser::parseValue(std::queue<Token>& tokens) {

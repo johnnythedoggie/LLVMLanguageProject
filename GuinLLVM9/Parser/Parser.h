@@ -25,6 +25,7 @@
 #include "PReturn.hpp"
 #include "PTuple.hpp"
 #include "PTupleType.hpp"
+#include "PTupleElementAccess.hpp"
 
 class Parser {
 	
