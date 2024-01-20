@@ -8,23 +8,19 @@
 #ifndef CPureFunctionType_hpp
 #define CPureFunctionType_hpp
 
-#include "CType.hpp"
+#include "CFunctionType.hpp"
 
-class CPureFunctionType: public CType {
+class CPureFunctionType: public CFunctionType {
 	
 public:
 	
-	CType* inputType;
-	CType* outputType;
-	
 	CPureFunctionType(CType* inputType, CType* outputType)
-	: inputType(inputType), outputType(outputType) { }
+	: CFunctionType(true, inputType, outputType) { }
 	
 	std::string identifierString() override;
 	
 	FunctionType* getLLVMFunctionType(Compiler* compiler);
 	
-	// this will give a pointer to the LLVMFunctionType.
 	Type* asLLVMType(Compiler* compiler) override;
 	
 };

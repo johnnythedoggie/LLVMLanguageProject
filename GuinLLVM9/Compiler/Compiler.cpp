@@ -15,16 +15,26 @@
 #include "COutputFunction.hpp"
 #include "CTupleType.hpp"
 
+void addBuiltIn(Compiler* compiler, std::string id, CValue* value) {
+	compiler->scope->scopedIdentifierToValue[id] = ValueHandler::newConstantValue(compiler, value, id);
+}
+
 Compiler::Compiler() {
 	
-	valueForIdentifier["Int"] = ValueHandler::newConstantValue(this, new CIntType(), "Int");
-	valueForIdentifier["true"] = ValueHandler::newConstantValue(this, new CBoolValue(true), "true");
-	valueForIdentifier["false"] = ValueHandler::newConstantValue(this, new CBoolValue(false), "false");
-	valueForIdentifier["Bool"] = ValueHandler::newConstantValue(this, new CBoolType(), "Bool");
-	valueForIdentifier["Type"] = ValueHandler::newConstantValue(this, new CTypeType(), "Type");
-	valueForIdentifier["input"] = ValueHandler::newConstantValue(this, new CInputFunction(), "input");
-	valueForIdentifier["output"] = ValueHandler::newConstantValue(this, new COutputFunction(), "output");
-	valueForIdentifier["Void"] = ValueHandler::newConstantValue(this, new CTupleType({}), "Void");
+	scope = new Scope();
+	
+	addBuiltIn(this, "Int", new CIntType());
+	addBuiltIn(this, "true", new CBoolValue(true));
+	addBuiltIn(this, "false", new CBoolValue(false));
+	addBuiltIn(this, "Bool", new CBoolType());
+	addBuiltIn(this, "Type", new CTypeType());
+	addBuiltIn(this, "Void", new CTupleType({}));
+	
+	// should input and output be considered 'const'?
+	// They do have a constant value...
+	// They also mess up pure functions if they dont have to be captured
+	addBuiltIn(this, "input", new CInputFunction());
+	addBuiltIn(this, "output", new COutputFunction());
 	
 	llvmContext = new LLVMContext();
 	llvmModule = new Module("moduleName", *llvmContext);

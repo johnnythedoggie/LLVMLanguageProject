@@ -40,10 +40,10 @@ class Parser {
 	PValue* parseParenedValue(std::queue<Token>& tokens);
 	PInt* parseInt(std::queue<Token>& tokens);
 	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
+	PFunctionType* parseFunctionType(std::queue<Token>& tokens);
 	
 	PValue* addValueContinuations(PValue* value, std::queue<Token>& tokens);
 	
-	PFunctionType* parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens);
 	PStatement* parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens);
 	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value, std::queue<Token>& tokens);
 	PFunctionDefinition* parseOptionalFunctionDefinitionContinuation(PValue* value, std::queue<Token>& tokens);

@@ -8,12 +8,6 @@
 #include "CPureFunction.hpp"
 #include "CPureFunctionType.hpp"
 
-int CPureFunction::globalIdentifier = 0;
-
-std::string CPureFunction::identifierString() {
-	return "function" + std::to_string(identifier);
-}
-
 CType* CPureFunction::getConstantType() {
 	return new CPureFunctionType(inputType, outputType);
 }
@@ -32,8 +26,21 @@ void CPureFunction::makeFunction(Compiler* compiler) {
 	IRBuilder<>::InsertPoint previousLocation = compiler->llvmBuilder->saveIP();
 	compiler->llvmBuilder->SetInsertPoint(entryBlock);
 	
-	// virtual
-	this->makeBody(compiler, function->args().begin());
+	// Prepare a new scope
+	Scope* newScope = new Scope();
+	newScope->parentScope = compiler->scope;
+	newScope->argumentType = inputType;
+	newScope->returnType = outputType;
+	newScope->argument = function->args().begin();
+	newScope->isPureScope = true;
+	
+	compiler->scope = newScope;
+	
+	this->makeBody(compiler);
+	
+	// Put back how things were
+	compiler->scope = newScope->parentScope;
+	delete newScope;
 	
 	compiler->llvmBuilder->restoreIP(previousLocation);
 	

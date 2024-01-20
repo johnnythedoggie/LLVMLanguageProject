@@ -6,6 +6,7 @@
 //
 
 #include "PFunctionType.hpp"
+#include "CImpureFunctionType.hpp"
 #include "CPureFunctionType.hpp"
 #include "CTypeType.hpp"
 
@@ -14,7 +15,11 @@ CValue* PFunctionType::asConstantValue(Compiler* compiler) {
 	CType* right = dynamic_cast<CType*>(outputType->asConstantValue(compiler));
 	std::string errorMessage = "Function type composed from functions.";
 	if (!left || !right) throw errorMessage;
-	return new CPureFunctionType(left, right);
+	if (isPure) {
+		return new CPureFunctionType(left, right);
+	} else {
+		return new CImpureFunctionType(left, right);
+	}
 }
 
 CType* PFunctionType::getConstantType(Compiler* compiler) {

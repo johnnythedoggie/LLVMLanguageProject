@@ -14,11 +14,12 @@ class PFunctionType: public PValue {
 	
 public:
 	
+	bool isPure;
 	PValue* inputType;
 	PValue* outputType;
 	
-	PFunctionType(PValue* inputType, PValue* outputType)
-		: inputType(inputType), outputType(outputType) { }
+	PFunctionType(bool isPure, PValue* inputType, PValue* outputType)
+		: isPure(isPure), inputType(inputType), outputType(outputType) { }
 	
 	CValue* asConstantValue(Compiler* compiler) override;
 	CType* getConstantType(Compiler* compiler) override;

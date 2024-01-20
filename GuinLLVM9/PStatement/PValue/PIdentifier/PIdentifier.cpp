@@ -10,31 +10,36 @@
 
 Value* PIdentifier::asLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
-	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	return ValueHandler::getLLVMValue(compiler->valueForIdentifier[identifier], compiler);
+	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
+	if (!compilerValue) throw errorMessage;
+	return ValueHandler::getLLVMValue(compilerValue, compiler);
 }
 
 PVariance PIdentifier::getVariance(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
-	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	return compiler->valueForIdentifier[identifier]->variance;
+	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
+	if (!compilerValue) throw errorMessage;
+	return compilerValue->variance;
 }
 
 Value* PIdentifier::getMemoryLocation(Compiler* compiler) {
-	std::string errorMessage = "Error getting memory location.";
-	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	return ValueHandler::getLLVMLocation(compiler->valueForIdentifier[identifier], compiler);
+	std::string errorMessage = "Identifer cannot be used before it is defined.";
+	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
+	if (!compilerValue) throw errorMessage;
+	return ValueHandler::getLLVMLocation(compilerValue, compiler);
 }
 
 CValue* PIdentifier::asConstantValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
-	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	if (compiler->valueForIdentifier[identifier]->variance != PVariance::CONST) return nullptr;
-	return compiler->valueForIdentifier[identifier]->constantValue;
+	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
+	if (!compilerValue) throw errorMessage;
+	if (compilerValue->variance != PVariance::CONST) return nullptr;
+	return compilerValue->constantValue;
 }
 
 CType* PIdentifier::getConstantType(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
-	if (!compiler->valueForIdentifier.contains(identifier)) throw errorMessage;
-	return compiler->valueForIdentifier[identifier]->constantType;
+	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
+	if (!compilerValue) throw errorMessage;
+	return compilerValue->constantType;
 }

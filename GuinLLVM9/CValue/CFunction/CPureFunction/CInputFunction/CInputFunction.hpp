@@ -16,14 +16,10 @@ class CInputFunction: public CPureFunction {
 	
 public:
 	
-	Value* scanfFormat = nullptr;
-	
 	CInputFunction()
 	: CPureFunction(new CTupleType({}), new CIntType()) { }
 	
-	void makeFunction(Compiler* compiler) override;
-	
-	void makeBody(Compiler* compiler, Value* argument) override;
+	void makeBody(Compiler* compiler) override;
 	
 };
 

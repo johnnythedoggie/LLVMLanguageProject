@@ -8,19 +8,7 @@
 #include "CCustomPureFunction.hpp"
 #include "PReturn.hpp"
 
-void CCustomPureFunction::makeBody(Compiler* compiler, Value* argument) {
-	
-	// Prepare a new scope
-	auto savedIdentifiers = compiler->valueForIdentifier;
-	compiler->valueForIdentifier = {};
-	Scope savedScope = compiler->scope;
-	compiler->scope = { inputType, outputType, function->args().begin() };
-	
-	for (auto x : savedIdentifiers) {
-		if (x.second->variance == PVariance::CONST) {
-			compiler->valueForIdentifier[x.first] = x.second;
-		}
-	}
+void CCustomPureFunction::makeBody(Compiler* compiler) {
 	
 	bool foundReturn = false;
 	
@@ -42,9 +30,5 @@ void CCustomPureFunction::makeBody(Compiler* compiler, Value* argument) {
 	
 	if (!foundReturn) throw errorMessage;
 	if (!statements.empty()) throw errorMessage;
-	
-	// Put back how things were
-	compiler->valueForIdentifier = savedIdentifiers;
-	compiler->scope = savedScope;
 	
 }

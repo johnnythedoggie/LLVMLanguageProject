@@ -38,6 +38,7 @@ class Tokenizer {
 		IdentifierCharacter, // characters that can appear in an identifier
 		Digit, // characters that can appeat in a number literal
 		Symbol, // characters like '*', '^', and '='
+		LoneSymbol, // characters like '.' and '$' that must always be treated seperately
 		NewLine, // the newline character
 		OpenParen, // '('
 		CloseParen, // ')'

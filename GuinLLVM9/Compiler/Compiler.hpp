@@ -11,6 +11,7 @@
 #include "llvm.h"
 #include "CompilerValue.hpp"
 #include "Scope.hpp"
+//#include "CValue.hpp"
 
 class Compiler {
 	
@@ -22,12 +23,12 @@ public:
 	Module* llvmModule;
 	IRBuilder<>* llvmBuilder;
 	
-	std::map<std::string, CompilerValue*> valueForIdentifier;
-	Scope scope;
-	
+	Scope* scope;
 	
 	void close();
 	Compiler();
+	
+	//void addBuiltIn(std::string identifier, CValue* value);
 	
 };
 

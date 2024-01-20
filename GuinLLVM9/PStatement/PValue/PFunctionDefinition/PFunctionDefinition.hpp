@@ -9,7 +9,7 @@
 #define PFunctionDefinition_hpp
 
 #include "PValue.hpp"
-#include "CPureFunctionType.hpp"
+#include "CImpureFunctionType.hpp"
 #include <queue>
 
 class PFunctionDefinition: public PValue {
@@ -23,7 +23,7 @@ public:
 	: fucntionType(fucntionType), functionBody(functionBody) { }
 	
 	CValue* asConstantValue(Compiler* compiler) override;
-	CPureFunctionType* getConstantType(Compiler* compiler) override;
+	CFunctionType* getConstantType(Compiler* compiler) override;
 	
 	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;

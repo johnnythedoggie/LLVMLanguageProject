@@ -7,18 +7,13 @@
 
 #include "CInputFunction.hpp"
 
-void CInputFunction::makeFunction(Compiler* compiler) {
+void CInputFunction::makeBody(Compiler* compiler) {
 	Type* intType = Type::getInt32Ty(*compiler->llvmContext);
 	std::vector<Type*> scanfArgTypes = { Type::getInt8PtrTy(*compiler->llvmContext) };
 	FunctionType* scanfType = FunctionType::get(intType, scanfArgTypes, true);
 	Function::Create(scanfType, Function::ExternalLinkage, "scanf", *compiler->llvmModule);
-	this->scanfFormat = compiler->llvmBuilder->CreateGlobalStringPtr("%u", "scanf_format");
-	CPureFunction::makeFunction(compiler);
-	function->setName("input");
-}
-
-void CInputFunction::makeBody(Compiler* compiler, Value* argument) {
-	Type* intType = Type::getInt32Ty(*compiler->llvmContext);
+	Value* scanfFormat = compiler->llvmBuilder->CreateGlobalStringPtr("%u", "scanf_format");
+	
 	Function* scanf = compiler->llvmModule->getFunction("scanf");
 	Value* scanfArgument = compiler->llvmBuilder->CreateAlloca(intType, nullptr);
 	std::vector<Value*> scanfArgs = { scanfFormat, scanfArgument };

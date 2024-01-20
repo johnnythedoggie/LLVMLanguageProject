@@ -8,7 +8,7 @@
 #include "CPureFunctionType.hpp"
 
 std::string CPureFunctionType::identifierString() {
-	return "(" + inputType->identifierString() + ") -> " + outputType->identifierString();
+	return "pure (" + inputType->identifierString() + ") -> " + outputType->identifierString();
 }
 
 Type* CPureFunctionType::asLLVMType(Compiler* compiler) {

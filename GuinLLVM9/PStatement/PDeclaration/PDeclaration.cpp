@@ -11,7 +11,7 @@
 void PDeclaration::compile(Compiler* compiler) {
 	switch (variance) {
 		case PVariance::CONST: {
-			compiler->valueForIdentifier[identifier] = ValueHandler::newConstantValue(
+			compiler->scope->scopedIdentifierToValue[identifier] = ValueHandler::newConstantValue(
 			    compiler,
 			    value,
 			    identifier
@@ -19,7 +19,7 @@ void PDeclaration::compile(Compiler* compiler) {
 			break;
 		}
 		case PVariance::LET: {
-			compiler->valueForIdentifier[identifier] = ValueHandler::newStaticValue(
+			compiler->scope->scopedIdentifierToValue[identifier] = ValueHandler::newStaticValue(
 				 compiler,
 				 value,
 				 identifier
@@ -27,7 +27,7 @@ void PDeclaration::compile(Compiler* compiler) {
 			break;
 		}
 		case PVariance::VAR: {
-			compiler->valueForIdentifier[identifier] = ValueHandler::newDynamicValue(
+			compiler->scope->scopedIdentifierToValue[identifier] = ValueHandler::newDynamicValue(
 				compiler,
 				value,
 				identifier

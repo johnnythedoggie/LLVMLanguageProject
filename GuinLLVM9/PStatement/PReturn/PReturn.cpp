@@ -10,7 +10,7 @@
 void PReturn::compile(Compiler* compiler) {
 	std::string errorMessage = "Yeah that didn't work.";
 	CType* valueType = value->getConstantType(compiler);
-	CType* returnType = compiler->scope.returnType;
+	CType* returnType = compiler->scope->returnType;
 	if (!returnType) throw errorMessage;
 	if (valueType->identifierString() != returnType->identifierString()) throw errorMessage;
 	Value* llvmValue = value->asLLVMValue(compiler);

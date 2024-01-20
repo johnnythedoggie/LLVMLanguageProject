@@ -28,14 +28,12 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '`':
 		case '!':
 		case '@':
-		case '$':
 		case '%':
 		case '^':
 		case '&':
 		case '*':
 		case '-':
 		case '+':
-		case ':':
 		case '=':
 		case '|':
 		case '\\':
@@ -44,8 +42,11 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '>':
 		case ',':
 		case '?':
-		case '.':
 			return CharacterType::Symbol;
+		case '.':
+		case '$':
+		case ':':
+			return CharacterType::LoneSymbol;
 		case '#':
 			return CharacterType::CommentSymbol;
 	}
@@ -83,6 +84,7 @@ bool Tokenizer::shouldPushIndependently(CharacterType characterType) {
 		case CharacterType::OpenBracket:
 		case CharacterType::CloseBracket:
 		case CharacterType::CommentSymbol:
+		case CharacterType::LoneSymbol:
 			return true;
 		default:
 			return false;
@@ -97,6 +99,7 @@ Token::TokenType Tokenizer::getTokenTypeForCharacterType(CharacterType character
 			return Token::TokenType::AlphaIdentifier;
 		case CharacterType::Digit:
 			return Token::TokenType::IntegerLiteral;
+		case CharacterType::LoneSymbol:
 		case CharacterType::Symbol:
 			return Token::TokenType::Symbolidentifier;
 		case CharacterType::NewLine:

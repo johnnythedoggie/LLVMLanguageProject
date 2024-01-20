@@ -24,7 +24,7 @@ public:
 		CType* outputType
 	): statements(statements), CPureFunction(inputType, outputType) { }
 	
-	void makeBody(Compiler* compiler, Value* argument) override;
+	void makeBody(Compiler* compiler) override;
 	
 };
 

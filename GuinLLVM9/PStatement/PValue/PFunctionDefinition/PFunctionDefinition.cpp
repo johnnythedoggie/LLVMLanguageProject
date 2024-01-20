@@ -7,16 +7,22 @@
 
 #include "PFunctionDefinition.hpp"
 #include "CCustomPureFunction.hpp"
+#include "CCustomImpureFunction.hpp"
+#include "CImpureFunctionType.hpp"
 
 CValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
-	CPureFunctionType* ft = getConstantType(compiler);
+	CFunctionType* ft = getConstantType(compiler);
 	CType* inputType = ft->inputType;
 	CType* outputType = ft->outputType;
-	return new CCustomPureFunction(functionBody, inputType, outputType);
+	if (ft->isPure) {
+		return new CCustomPureFunction(functionBody, inputType, outputType);
+	} else {
+		return new CCustomImpureFunction(functionBody, inputType, outputType);
+	}
 }
 
-CPureFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
-	auto ft = dynamic_cast<CPureFunctionType*>(fucntionType->asConstantValue(compiler));
+CFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
+	auto ft = dynamic_cast<CFunctionType*>(fucntionType->asConstantValue(compiler));
 	std::string errorMessage = "Cannot define function of non constant function type.";
 	if (!ft) throw errorMessage;
 	return ft;

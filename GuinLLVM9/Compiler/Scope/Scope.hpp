@@ -11,14 +11,33 @@
 #include "llvm.h"
 #include "CompilerValue.hpp"
 
-class Scope {
-	
-public:
+class Compiler;
+
+struct Scope {
 	
 	CType* argumentType = nullptr;
 	CType* returnType = nullptr;
 	Value* argument = nullptr;
-	// maybe more stuff to access out of scope identifiers
+	
+	Value* captureArgument = nullptr;
+	
+	IRBuilder<>::InsertPoint parentInsertPoint;
+	
+	std::map<std::string, CompilerValue*> scopedIdentifierToValue = {};
+	
+	bool isPureScope = true;
+	
+	int numCapturedValues = 0;
+	
+	std::vector<CompilerValue*> capturedValues = {};
+	
+	
+	
+	std::map<std::string, CompilerValue*> capturedIdentifierToValue = {};
+	
+	Scope* parentScope = nullptr;
+	
+	CompilerValue* valueForIdentifier(Compiler* compiler, std::string id);
 	
 };
 

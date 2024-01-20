@@ -9,7 +9,7 @@
 
 
 Value* PArgument::asLLVMValue(Compiler* compiler) {
-	return compiler->scope.argument;
+	return compiler->scope->argument;
 }
 
 CValue* PArgument::asConstantValue(Compiler* compiler) {
@@ -17,7 +17,7 @@ CValue* PArgument::asConstantValue(Compiler* compiler) {
 }
 
 CType* PArgument::getConstantType(Compiler* compiler) {
-	return compiler->scope.argumentType;
+	return compiler->scope->argumentType;
 }
 
 PVariance PArgument::getVariance(Compiler* compiler) {

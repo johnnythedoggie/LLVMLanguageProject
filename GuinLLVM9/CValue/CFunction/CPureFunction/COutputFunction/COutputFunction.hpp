@@ -16,14 +16,10 @@ class COutputFunction: public CPureFunction {
 	
 public:
 	
-	Value* printfFormat = nullptr;
-	
 	COutputFunction()
 	: CPureFunction(new CIntType(), new CTupleType({})) { }
 	
-	void makeFunction(Compiler* compiler) override;
-	
-	void makeBody(Compiler* compiler, Value* argument) override;
+	void makeBody(Compiler* compiler) override;
 	
 };
 

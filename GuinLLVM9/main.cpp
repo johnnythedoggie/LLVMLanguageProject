@@ -13,13 +13,41 @@
 #include "Parser.h"
 #include "Compiler.hpp"
 
-int main() {
+// #include <fstream>
+// I don't understand why fstream doesn't work
+// I want to get input from a file but I cannot.
+
+int main(int argc, char* argv[]) {
 	
-	auto tokens = Tokenizer::getTokensFrom(R"(
-		var x = (a = (a = 1, b = 2), b = 2)
-		x.a.b = 2
-		output x.a.b
-	)");
+	std::string input = R"(
+  
+const call = pure (impure Void -> Void) -> Void {
+ $()
+ return ()
+}
+
+const if = pure Bool -> (pure (impure Void -> Void) -> Void) {
+ return call
+}
+
+
+
+var x = 0
+
+(if true) (impure Void -> Void {
+ 
+ x = input()
+ 
+ return()
+ 
+})
+
+output(x)
+
+  
+)";
+	
+	auto tokens = Tokenizer::getTokensFrom(input);
 	
 	auto statements = Parser().parse(tokens);
 	
@@ -36,7 +64,6 @@ int main() {
 	
 	compiler->llvmModule->print(outs(), nullptr);
 
-	
 	return 0;
 	
 }

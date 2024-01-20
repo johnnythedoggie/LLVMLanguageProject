@@ -84,6 +84,7 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 
 PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	PValue* result = nullptr;
+	if (!result) result = parseFunctionType(tokens);
 	if (!result) result = parseIdentifier(tokens);
 	if (!result) result = parseParenedValue(tokens);
 	if (!result) result = parseInt(tokens);
@@ -108,8 +109,6 @@ PValue* Parser::parseValue(std::queue<Token>& tokens) {
 }
 
 PValue* Parser::addValueContinuations(PValue* value, std::queue<Token>& tokens) {
-	PFunctionType* functionType = parseOptionalFunctionTypeContinuation(value, tokens);
-	if (functionType) value = functionType;
 	PFunctionDefinition* functionDefinition = parseOptionalFunctionDefinitionContinuation(value, tokens);
 	if (functionDefinition) value = functionDefinition;
 	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value, tokens);
@@ -169,7 +168,17 @@ PValue* Parser::parseParenedValue(std::queue<Token>& tokens) {
 			}
 			finalValue = new PTupleType(elements);
 		} else {
-			finalValue = addValueContinuations(new PIdentifier(label), tokens);
+			// not a tuple
+			// this is embarrasing, I took too much from the queue
+			// its hard to put it all back, but I'll do it
+			std::queue<Token> copy = tokens;
+			tokens = {};
+			tokens.push({ Token::TokenType::AlphaIdentifier, label });
+			while (!copy.empty()) {
+				tokens.push(copy.front());
+				copy.pop();
+			}
+			finalValue = parseValue(tokens);
 		}
 	} else {
 		finalValue = parseValue(tokens);
@@ -214,15 +223,25 @@ std::queue<PStatement*> Parser::parse(std::queue<Token>& tokens) {
 	return results;
 }
 
-PFunctionType* Parser::parseOptionalFunctionTypeContinuation(PValue* value, std::queue<Token>& tokens) {
-	if (!value) return nullptr;
+PFunctionType* Parser::parseFunctionType(std::queue<Token>& tokens) {
 	if (tokens.empty()) return nullptr;
-	if (tokens.front().value != "->") return nullptr;
+	bool isPure;
+	if (tokens.front().value == "pure") {
+		isPure = true;
+	} else if (tokens.front().value == "impure") {
+		isPure = false;
+	} else {
+		return nullptr;
+	}
 	tokens.pop();
-	PValue* rightValue = parseProtectedValue(tokens);
-	std::string errorMessage = "Function type requires a right hand side.";
-	if (!rightValue) throw errorMessage;
-	return new PFunctionType(value, rightValue);
+	std::string errorMessage = "Erorr parsing function type.";
+	PValue* inputType = parseProtectedValue(tokens);
+	if (!inputType) throw errorMessage;
+	if (tokens.front().value != "->") throw errorMessage;
+	tokens.pop();
+	PValue* outputType = parseProtectedValue(tokens);
+	if (!outputType) throw errorMessage;
+	return new PFunctionType(isPure, inputType, outputType);
 }
 
 PStatement* Parser::parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens) {
