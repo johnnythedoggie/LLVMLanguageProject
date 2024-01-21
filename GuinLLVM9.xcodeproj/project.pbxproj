@@ -51,6 +51,7 @@
 		FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509702B51F92B0012BFFA /* PArgument.cpp */; };
 		FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509742B51FFF40012BFFA /* CNeverType.cpp */; };
 		FB95097A2B5201770012BFFA /* PReturn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509782B5201770012BFFA /* PReturn.cpp */; };
+		FBBF99192B5DCAF300BD4D48 /* PSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -154,6 +155,8 @@
 		FB9509752B51FFF40012BFFA /* CNeverType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CNeverType.hpp; sourceTree = "<group>"; };
 		FB9509782B5201770012BFFA /* PReturn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PReturn.cpp; sourceTree = "<group>"; };
 		FB9509792B5201770012BFFA /* PReturn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PReturn.hpp; sourceTree = "<group>"; };
+		FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PSelect.cpp; sourceTree = "<group>"; };
+		FBBF99182B5DCAF300BD4D48 /* PSelect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PSelect.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +353,7 @@
 				FB055DA52B55EDE100F3A234 /* PTupleType */,
 				FB055DB12B577B1E00F3A234 /* PTupleElementAccess */,
 				FB055DA12B55ED4800F3A234 /* PTuple */,
+				FBBF991A2B5DCAF700BD4D48 /* PSelect */,
 			);
 			path = PValue;
 			sourceTree = "<group>";
@@ -597,6 +601,15 @@
 			path = CFunctionType;
 			sourceTree = "<group>";
 		};
+		FBBF991A2B5DCAF700BD4D48 /* PSelect */ = {
+			isa = PBXGroup;
+			children = (
+				FBBF99182B5DCAF300BD4D48 /* PSelect.hpp */,
+				FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */,
+			);
+			path = PSelect;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -692,6 +705,7 @@
 				FB9509092B5067A10012BFFA /* CType.cpp in Sources */,
 				FB9509362B50AD3D0012BFFA /* CTypeType.cpp in Sources */,
 				FB5F54452B59FBE700F30CD6 /* CFunctionType.cpp in Sources */,
+				FBBF99192B5DCAF300BD4D48 /* PSelect.cpp in Sources */,
 				FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */,
 				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
 				FB055DA82B55F81C00F3A234 /* CTupleType.cpp in Sources */,

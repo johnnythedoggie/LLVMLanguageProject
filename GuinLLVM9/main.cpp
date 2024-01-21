@@ -22,12 +22,15 @@ int main(int argc, char* argv[]) {
 	std::string input = R"(
   
 const call = pure (impure Void -> Void) -> Void {
- $()
- return ()
+	$()
+	return ()
+}
+const ignore = pure (impure Void -> Void) -> Void {
+	return ()
 }
 
 const if = pure Bool -> (pure (impure Void -> Void) -> Void) {
- return call
+	return #select($, call, ignore)
 }
 
 
@@ -35,11 +38,8 @@ const if = pure Bool -> (pure (impure Void -> Void) -> Void) {
 var x = 0
 
 (if true) (impure Void -> Void {
- 
- x = input()
- 
- return()
- 
+	x = input()
+	return ()
 })
 
 output(x)

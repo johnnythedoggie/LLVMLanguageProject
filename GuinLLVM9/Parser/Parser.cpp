@@ -13,19 +13,12 @@ void Parser::formatTokens(std::queue<Token>& tokens) const {
 	
 	std::queue<Token> formattedTokens = {};
 	
-	bool isInComment = false;
 	bool isPrecededByNewLine = true;
 	
 	while (!tokens.empty()) {
 		Token token = tokens.front();
 		
-		if (token.type == Token::TokenType::CommentStart) {
-			isInComment = true;
-		} else if (token.value == "\n") {
-			isInComment = false;
-		}
-		
-		bool shouldPush = !isInComment && !(isPrecededByNewLine && token.type == Token::TokenType::NewLine);
+		bool shouldPush = !isPrecededByNewLine || token.type != Token::TokenType::NewLine;
 		
 		isPrecededByNewLine = token.type == Token::TokenType::NewLine;
 		
@@ -84,6 +77,7 @@ PDeclaration* Parser::parseDeclaration(std::queue<Token>& tokens) {
 
 PValue* Parser::parseProtectedValue(std::queue<Token>& tokens) {
 	PValue* result = nullptr;
+	if (!result) result = parseSelect(tokens);
 	if (!result) result = parseFunctionType(tokens);
 	if (!result) result = parseIdentifier(tokens);
 	if (!result) result = parseParenedValue(tokens);
@@ -296,4 +290,28 @@ PReturn* Parser::parseReturn(std::queue<Token>& tokens) {
 	PValue* value = parseValue(tokens);
 	if (!value) throw errorMessage;
 	return new PReturn(value);
+}
+
+PSelect* Parser::parseSelect(std::queue<Token>& tokens) {
+	if (tokens.empty()) return nullptr;
+	if (tokens.front().value != "#") return nullptr;
+	tokens.pop();
+	std::string errorMessage = "Error parsing select.";
+	if (tokens.front().value != "select") throw errorMessage;
+	tokens.pop();
+	if (tokens.front().value != "(") throw errorMessage;
+	tokens.pop();
+	PValue* condition = parseValue(tokens);
+	if (!condition) throw errorMessage;
+	if (tokens.front().value != ",") throw errorMessage;
+	tokens.pop();
+	PValue* caseTrue = parseValue(tokens);
+	if (!caseTrue) throw errorMessage;
+	if (tokens.front().value != ",") throw errorMessage;
+	tokens.pop();
+	PValue* caseFalse = parseValue(tokens);
+	if (!caseFalse) throw errorMessage;
+	if (tokens.front().value != ")") throw errorMessage;
+	tokens.pop();
+	return new PSelect(condition, caseTrue, caseFalse);
 }

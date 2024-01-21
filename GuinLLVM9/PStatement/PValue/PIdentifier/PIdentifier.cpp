@@ -12,7 +12,9 @@ Value* PIdentifier::asLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
 	if (!compilerValue) throw errorMessage;
-	return ValueHandler::getLLVMValue(compilerValue, compiler);
+	Value* result = ValueHandler::getLLVMValue(compilerValue, compiler);
+	result->setName(identifier);
+	return result;
 }
 
 PVariance PIdentifier::getVariance(Compiler* compiler) {

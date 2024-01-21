@@ -26,6 +26,7 @@
 #include "PTuple.hpp"
 #include "PTupleType.hpp"
 #include "PTupleElementAccess.hpp"
+#include "PSelect.hpp"
 
 class Parser {
 	
@@ -41,6 +42,7 @@ class Parser {
 	PInt* parseInt(std::queue<Token>& tokens);
 	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
 	PFunctionType* parseFunctionType(std::queue<Token>& tokens);
+	PSelect* parseSelect(std::queue<Token>& tokens);
 	
 	PValue* addValueContinuations(PValue* value, std::queue<Token>& tokens);
 	
