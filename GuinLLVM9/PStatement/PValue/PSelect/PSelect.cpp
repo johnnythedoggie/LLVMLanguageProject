@@ -9,14 +9,15 @@
 #include "CBoolValue.hpp"
 #include "CBoolType.hpp"
 
+// TODO: Combine some of this logic with other functions
 Value* PSelect::asLLVMValue(Compiler* compiler) {
 	std::string errorMessage = "Invalid arguments to select statement.";
 	std::string conditionType = condition->getConstantType(compiler)->identifierString();
 	std::string boolType = CBoolType().identifierString();
-	if (conditionType != boolType) throw errorMessage;
+	assert(conditionType == boolType && "First argument to #select must be a Bool.");
 	std::string trueType = caseTrue->getConstantType(compiler)->identifierString();
 	std::string falseType = caseFalse->getConstantType(compiler)->identifierString();
-	if (trueType != falseType) throw errorMessage;
+	assert(trueType == falseType && "Second and third argunents to #select must be the same type.");
 	Value* llvmCond = condition->asLLVMValue(compiler);
 	Value* llvmTrue = caseTrue->asLLVMValue(compiler);
 	Value* llvmFalse = caseFalse->asLLVMValue(compiler);
@@ -24,13 +25,12 @@ Value* PSelect::asLLVMValue(Compiler* compiler) {
 }
 
 CValue* PSelect::asConstantValue(Compiler* compiler) {
-	std::string errorMessage = "Invalid arguments to select statement.";
 	std::string conditionType = condition->getConstantType(compiler)->identifierString();
 	std::string boolType = CBoolType().identifierString();
-	if (conditionType != boolType) throw errorMessage;
+	assert(conditionType == boolType && "First argument to #select must be a Bool.");
 	std::string trueType = caseTrue->getConstantType(compiler)->identifierString();
 	std::string falseType = caseFalse->getConstantType(compiler)->identifierString();
-	if (trueType != falseType) throw errorMessage;
+	assert(trueType == falseType && "Second and third argunents to #select must be the same type.");
 	CBoolValue* booleanCondition = dynamic_cast<CBoolValue*>(condition->asConstantValue(compiler));
 	if (!booleanCondition) return nullptr;
 	if (booleanCondition->value) {
@@ -41,10 +41,9 @@ CValue* PSelect::asConstantValue(Compiler* compiler) {
 }
 
 CType* PSelect::getConstantType(Compiler* compiler) {
-	std::string errorMessage = "Invalid arguments to select statement.";
 	std::string trueType = caseTrue->getConstantType(compiler)->identifierString();
 	std::string falseType = caseFalse->getConstantType(compiler)->identifierString();
-	if (trueType != falseType) throw errorMessage;
+	assert(trueType == falseType && "Second and third argunents to #select must be the same type.");
 	return caseTrue->getConstantType(compiler);
 }
 

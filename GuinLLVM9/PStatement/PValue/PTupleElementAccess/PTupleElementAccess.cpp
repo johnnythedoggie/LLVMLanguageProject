@@ -12,16 +12,15 @@
 int PTupleElementAccess::indexOfLabel(Compiler* compiler) const {
 	CType* type = tuple->getConstantType(compiler);
 	CTupleType* tupleType = dynamic_cast<CTupleType*>(type);
-	std::string errorMessage = "Invalid use of tuple element access.";
-	if (!tupleType) throw errorMessage;
+	assert(tupleType && "Element access is only valid on tuples.");
 	int index = -1;
 	for (int i = 0; i < tupleType->elements.size(); i += 1) {
 		if (tupleType->elements[i].label == label) {
-			if (index != -1) throw errorMessage;
+			assert(index == -1 && "Tuple cannot have repeated labels.");
 			index = i;
 		}
 	}
-	if (index == -1) throw errorMessage;
+	assert(index != -1 && "Tuple does not contain requested label.");
 	return index;
 }
 
@@ -35,8 +34,7 @@ CValue* PTupleElementAccess::asConstantValue(Compiler* compiler) {
 	CValue* constantValue = tuple->asConstantValue(compiler);
 	if (!constantValue) return nullptr;
 	CTuple* constantTuple = dynamic_cast<CTuple*>(constantValue);
-	std::string errorMessage = "Invalid use of tuple element access.";
-	if (!constantTuple) throw errorMessage;
+	assert(constantTuple && "Element access is only valid on tuples.");
 	int index = indexOfLabel(compiler);
 	return constantTuple->elements[index].value;
 }
@@ -44,8 +42,7 @@ CValue* PTupleElementAccess::asConstantValue(Compiler* compiler) {
 CType* PTupleElementAccess::getConstantType(Compiler* compiler) {
 	CType* type = tuple->getConstantType(compiler);
 	CTupleType* tupleType = dynamic_cast<CTupleType*>(type);
-	std::string errorMessage = "Invalid use of tuple element access.";
-	if (!tupleType) throw errorMessage;
+	assert(tupleType && "Element access is only valid on tuples.");
 	int index = indexOfLabel(compiler);
 	return tupleType->elements[index].type;
 }

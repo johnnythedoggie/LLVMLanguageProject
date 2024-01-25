@@ -9,10 +9,9 @@
 
 void PAssignment::compile(Compiler* compiler) {
 	Value* memLocation = left->getMemoryLocation(compiler);
-	std::string errorMessage = "Failed to compile assignment.";
-	if (!memLocation) throw errorMessage;
+	assert(memLocation && "Cannot assign to value with no memory location.");
 	std::string leftType = left->getConstantType(compiler)->identifierString();
 	std::string rightType = right->getConstantType(compiler)->identifierString();
-	if (leftType != rightType) throw errorMessage;
+	assert(leftType == rightType && "Cannot assign value to variable of different type.");
 	compiler->llvmBuilder->CreateStore(right->asLLVMValue(compiler), memLocation);
 }

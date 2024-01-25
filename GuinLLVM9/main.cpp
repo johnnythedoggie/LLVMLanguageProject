@@ -17,19 +17,41 @@
 // I don't understand why fstream doesn't work
 // I want to get input from a file but I cannot.
 
+/*
+ 
+ Way better error handleing
+ 
+ Unnamed tuple elements if type can be innfered
+ Left associative function calls
+ 
+ sum(a, b)
+ difference(a, b)
+ areEqual(a, b)
+ 
+ and(a, b)
+ or(a, b)
+ not(a)
+ 
+ 
+ */
+
+
+
 int main(int argc, char* argv[]) {
 	
 	std::string input = R"(
-  
-const call = pure (impure Void -> Void) -> Void {
+
+const IfReturnType = pure (impure Void -> Void) -> Void
+
+const call = IfReturnType {
 	$()
 	return ()
 }
-const ignore = pure (impure Void -> Void) -> Void {
+const ignore = IfReturnType {
 	return ()
 }
 
-const if = pure Bool -> (pure (impure Void -> Void) -> Void) {
+const if = pure Bool -> IfReturnType {
 	return #select($, call, ignore)
 }
 
@@ -44,12 +66,20 @@ var x = 0
 
 output(x)
 
+let x = (a = 4, b = false)
+
+let f = pure (a: Int, b: Bool) -> Int {
+	return #select($.b, $.a, 0)
+}
+
+output(f(x))
+
   
 )";
 	
 	auto tokens = Tokenizer::getTokensFrom(input);
 	
-	auto statements = Parser().parse(tokens);
+	auto statements = Parser(tokens).parse();
 	
 	Compiler* compiler = new Compiler();
 	

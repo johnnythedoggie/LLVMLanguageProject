@@ -8,29 +8,9 @@
 #ifndef Tokenizer_h
 #define Tokenizer_h
 
+#include "Token.h"
 #include <queue>
-#include <string>
 #include <iostream>
-#include <cassert>
-
-struct Token {
-	
-	enum class TokenType {
-		AlphaIdentifier,
-		Symbolidentifier,
-		IntegerLiteral,
-		OpenParen,
-		CloseParen,
-		OpenBracket,
-		CloseBracket,
-		NewLine,
-		CommentStart
-	};
-	
-	TokenType type;
-	std::string value;
-	
-};
 
 class Tokenizer {
 	
@@ -45,7 +25,6 @@ class Tokenizer {
 		OpenBracket, // '{'
 		CloseBracket, // '}'
 		WhiteSpace, // spaces and tabs
-		CommentSymbol, // The '#' symbol used to start comments
 		Unkown // all other characters
 	};
 	

@@ -23,8 +23,7 @@ CValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
 
 CFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
 	auto ft = dynamic_cast<CFunctionType*>(fucntionType->asConstantValue(compiler));
-	std::string errorMessage = "Cannot define function of non constant function type.";
-	if (!ft) throw errorMessage;
+	assert(ft && "Function must be of constant function type.");
 	return ft;
 }
 

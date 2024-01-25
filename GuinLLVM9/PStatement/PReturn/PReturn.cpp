@@ -8,11 +8,11 @@
 #include "PReturn.hpp"
 
 void PReturn::compile(Compiler* compiler) {
-	std::string errorMessage = "Yeah that didn't work.";
 	CType* valueType = value->getConstantType(compiler);
 	CType* returnType = compiler->scope->returnType;
-	if (!returnType) throw errorMessage;
-	if (valueType->identifierString() != returnType->identifierString()) throw errorMessage;
+	assert(returnType && "Cannot return from outer scope.");
+	assert(valueType->identifierString() == returnType->identifierString()
+		   && "The value returned must match the return type of the scope.");
 	Value* llvmValue = value->asLLVMValue(compiler);
 	compiler->llvmBuilder->CreateRet(llvmValue);
 }

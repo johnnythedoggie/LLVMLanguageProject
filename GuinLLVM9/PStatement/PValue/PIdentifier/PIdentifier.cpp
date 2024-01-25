@@ -9,39 +9,34 @@
 #include "ValueHandler.hpp"
 
 Value* PIdentifier::asLLVMValue(Compiler* compiler) {
-	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
-	if (!compilerValue) throw errorMessage;
+	assert(compilerValue && "Identifer cannot be used before it is defined.");
 	Value* result = ValueHandler::getLLVMValue(compilerValue, compiler);
 	result->setName(identifier);
 	return result;
 }
 
 PVariance PIdentifier::getVariance(Compiler* compiler) {
-	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
-	if (!compilerValue) throw errorMessage;
+	assert(compilerValue && "Identifer cannot be used before it is defined.");
 	return compilerValue->variance;
 }
 
 Value* PIdentifier::getMemoryLocation(Compiler* compiler) {
-	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
-	if (!compilerValue) throw errorMessage;
+	assert(compilerValue && "Identifer cannot be used before it is defined.");
 	return ValueHandler::getLLVMLocation(compilerValue, compiler);
 }
 
 CValue* PIdentifier::asConstantValue(Compiler* compiler) {
-	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
-	if (!compilerValue) throw errorMessage;
+	assert(compilerValue && "Identifer cannot be used before it is defined.");
 	if (compilerValue->variance != PVariance::CONST) return nullptr;
 	return compilerValue->constantValue;
 }
 
 CType* PIdentifier::getConstantType(Compiler* compiler) {
-	std::string errorMessage = "Identifer cannot be used before it is defined.";
 	CompilerValue* compilerValue = compiler->scope->valueForIdentifier(compiler, identifier);
-	if (!compilerValue) throw errorMessage;
+	assert(compilerValue && "Identifer cannot be used before it is defined.");
 	return compilerValue->constantType;
 }

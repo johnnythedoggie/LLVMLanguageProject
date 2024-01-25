@@ -28,35 +28,49 @@
 #include "PTupleElementAccess.hpp"
 #include "PSelect.hpp"
 
+/**
+ 
+ This is a temporary Parser for Guin.  It takes a queue of tokens as an input and parses them into a queue of PStatements.
+ 
+ The end goal is to have a parser that can handle a more generic grammar that is then given the Guin grammer as input.
+ 
+ */
 class Parser {
 	
-	void formatTokens(std::queue<Token>& tokens) const;
+	std::queue<Token> tokens;
 	
-	PReturn* parseReturn(std::queue<Token>& tokens);
-	PArgument* parseArgument(std::queue<Token>& tokens);
-	PStatement* parseStatement(std::queue<Token>& tokens);
-	PDeclaration* parseDeclaration(std::queue<Token>& tokens);
-	PValue* parseProtectedValue(std::queue<Token>& tokens);
-	PValue* parseValue(std::queue<Token>& tokens);
-	PValue* parseParenedValue(std::queue<Token>& tokens);
-	PInt* parseInt(std::queue<Token>& tokens);
-	PIdentifier* parseIdentifier(std::queue<Token>& tokens);
-	PFunctionType* parseFunctionType(std::queue<Token>& tokens);
-	PSelect* parseSelect(std::queue<Token>& tokens);
+	/// Removes excess newlines, ensures tokens ends with a newline
+	void formatTokens();
 	
-	PValue* addValueContinuations(PValue* value, std::queue<Token>& tokens);
+	/// Checks if `tokens` is at the end of a line
+	bool atEndOfLine() const;
 	
-	PStatement* parseOptionalAssignmentContinuation(PValue* value, std::queue<Token>& tokens);
-	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value, std::queue<Token>& tokens);
-	PFunctionDefinition* parseOptionalFunctionDefinitionContinuation(PValue* value, std::queue<Token>& tokens);
+	// These parse a specific pattern
+	PReturn* parseReturn();
+	PArgument* parseArgument();
+	PStatement* parseStatement();
+	PDeclaration* parseDeclaration();
+	PValue* parseProtectedValue();
+	PValue* parseValue();
+	PValue* parseParenedValue();
+	PInt* parseInt();
+	PIdentifier* parseIdentifier();
+	PFunctionType* parseFunctionType();
+	PSelect* parseSelect();
 	
-	bool atEndOfLine(const std::queue<Token>& tokens) const;
+	// Continuations are additonal tokens that may follow a value
+	// Such as an assignment, where the '=' token signals a continuation
+	PValue* addValueContinuations(PValue* value);
+	PStatement* parseOptionalAssignmentContinuation(PValue* value);
+	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value);
+	PFunctionDefinition* parseOptionalFunctionDefinitionContinuation(PValue* value);
 	
 public:
 	
-	std::map<std::string, PValue*> constIdentifierAlias = {};
+	Parser(const std::queue<Token>& tokens) : tokens(tokens) { }
 	
-	std::queue<PStatement*> parse(std::queue<Token>& tokens);
+	/// Returns the tokens parsed as statements.
+	std::queue<PStatement*> parse();
 	
 };
 

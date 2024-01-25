@@ -9,6 +9,7 @@
 #include "CPureFunctionType.hpp"
 #include "CImpureFunctionType.hpp"
 #include "CImpureFunction.hpp"
+#include <cassert>
 
 CValue* PFunctionCall::asConstantValue(Compiler* compiler) {
 	return nullptr;
@@ -28,14 +29,14 @@ Value* PFunctionCall::asLLVMValue(Compiler* compiler) {
 	if (pureFunctionType) {
 		std::string functionInputType = pureFunctionType->inputType->identifierString();
 		std::string argumentType = argumentValue->getConstantType(compiler)->identifierString();
-		if (functionInputType != argumentType) throw errorMessage;
+		assert(functionInputType == argumentType && "Argument type must match fucntion input type.");
 		Value* function = functionValue->asLLVMValue(compiler);
 		Value* argument = argumentValue->asLLVMValue(compiler);
 		return compiler->llvmBuilder->CreateCall(pureFunctionType->getLLVMFunctionType(compiler), function, { argument });
 	} else if (impureFunctionType) {
 		std::string functionInputType = impureFunctionType->inputType->identifierString();
 		std::string argumentType = argumentValue->getConstantType(compiler)->identifierString();
-		if (functionInputType != argumentType) throw errorMessage;
+		assert(functionInputType == argumentType && "Argument type must match fucntion input type.");
 		Value* functionCaptureListPair = functionValue->asLLVMValue(compiler);
 		Value* function = compiler->llvmBuilder->CreateExtractValue(functionCaptureListPair, 0);
 		Value* captureArgument = compiler->llvmBuilder->CreateExtractValue(functionCaptureListPair, 1);
@@ -43,7 +44,7 @@ Value* PFunctionCall::asLLVMValue(Compiler* compiler) {
 		
 		return compiler->llvmBuilder->CreateCall(impureFunctionType->getLLVMFunctionType(compiler), function, { argument, captureArgument });
 	} else {
-		throw errorMessage;
+		assert(false && "Cannot call non-function value.");
 	}
 }
 

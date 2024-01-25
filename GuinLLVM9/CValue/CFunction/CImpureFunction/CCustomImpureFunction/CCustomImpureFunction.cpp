@@ -7,6 +7,7 @@
 
 #include "CCustomImpureFunction.hpp"
 #include "PReturn.hpp"
+#include <cassert>
 
 void CCustomImpureFunction::makeBody(Compiler* compiler) {
 	
@@ -27,10 +28,7 @@ void CCustomImpureFunction::makeBody(Compiler* compiler) {
 		
 	}
 	
-	std::string errorMessage = "Function must end with a return.";
-	
-	if (!foundReturn) throw errorMessage;
-	if (!statements.empty()) throw errorMessage;
+	assert(foundReturn && statements.empty() && "Function must end with a return.");
 	
 	captureList = compiler->scope->capturedValues;
 	

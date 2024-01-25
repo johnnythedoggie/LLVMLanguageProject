@@ -7,6 +7,7 @@
 
 #include "CCustomPureFunction.hpp"
 #include "PReturn.hpp"
+#include <cassert>
 
 void CCustomPureFunction::makeBody(Compiler* compiler) {
 	
@@ -26,9 +27,6 @@ void CCustomPureFunction::makeBody(Compiler* compiler) {
 		
 	}
 	
-	std::string errorMessage = "Function must end with a return.";
-	
-	if (!foundReturn) throw errorMessage;
-	if (!statements.empty()) throw errorMessage;
+	assert(foundReturn && statements.empty() && "Function must end with a return");
 	
 }

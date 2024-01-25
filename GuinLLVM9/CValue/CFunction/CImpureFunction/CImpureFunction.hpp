@@ -45,7 +45,7 @@ public:
 				);
 				captureValues.push_back(castedIntoOpaque);
 			} else {
-				throw 3456;
+				assert(false && "Compiler Error.");
 			}
 		}
 		

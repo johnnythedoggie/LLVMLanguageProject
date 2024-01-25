@@ -155,6 +155,7 @@
 		FB9509752B51FFF40012BFFA /* CNeverType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CNeverType.hpp; sourceTree = "<group>"; };
 		FB9509782B5201770012BFFA /* PReturn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PReturn.cpp; sourceTree = "<group>"; };
 		FB9509792B5201770012BFFA /* PReturn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PReturn.hpp; sourceTree = "<group>"; };
+		FB9A235A2B63234B0063A6CE /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
 		FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PSelect.cpp; sourceTree = "<group>"; };
 		FBBF99182B5DCAF300BD4D48 /* PSelect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PSelect.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +219,7 @@
 		FB3EC8212B250E5900581DE6 /* Tokenizer */ = {
 			isa = PBXGroup;
 			children = (
+				FB9A235A2B63234B0063A6CE /* Token.h */,
 				FB3EC8202B250D5900581DE6 /* Tokenizer.h */,
 				FB3EC81B2B2425E100581DE6 /* Tokenizer.cpp */,
 			);

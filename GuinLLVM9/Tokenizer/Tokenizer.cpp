@@ -6,6 +6,7 @@
 //
 
 #include "Tokenizer.h"
+#include <cassert>
 
 Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 	
@@ -46,9 +47,8 @@ Tokenizer::CharacterType Tokenizer::characterTypeOf(char character) {
 		case '.':
 		case '$':
 		case ':':
-			return CharacterType::LoneSymbol;
 		case '#':
-			return CharacterType::CommentSymbol;
+			return CharacterType::LoneSymbol;
 	}
 	
 	if (isalpha(character) || character == '_') {
@@ -83,7 +83,6 @@ bool Tokenizer::shouldPushIndependently(CharacterType characterType) {
 		case CharacterType::CloseParen:
 		case CharacterType::OpenBracket:
 		case CharacterType::CloseBracket:
-		case CharacterType::CommentSymbol:
 		case CharacterType::LoneSymbol:
 			return true;
 		default:
@@ -112,8 +111,6 @@ Token::TokenType Tokenizer::getTokenTypeForCharacterType(CharacterType character
 			return Token::TokenType::OpenBracket;
 		case CharacterType::CloseBracket:
 			return Token::TokenType::CloseBracket;
-		case CharacterType::CommentSymbol:
-			return Token::TokenType::CommentStart;
 			
 		default:
 			assert(false && "Cannot get token tyoe for this character type.");

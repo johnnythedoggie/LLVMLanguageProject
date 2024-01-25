@@ -13,8 +13,7 @@
 CValue* PFunctionType::asConstantValue(Compiler* compiler) {
 	CType* left = dynamic_cast<CType*>(inputType->asConstantValue(compiler));
 	CType* right = dynamic_cast<CType*>(outputType->asConstantValue(compiler));
-	std::string errorMessage = "Function type composed from functions.";
-	if (!left || !right) throw errorMessage;
+	assert(left && right && "Function type must be composed of constant types.");
 	if (isPure) {
 		return new CPureFunctionType(left, right);
 	} else {
