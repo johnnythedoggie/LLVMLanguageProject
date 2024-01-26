@@ -1,0 +1,59 @@
+const or = pure (a: Bool, b: Bool) -> Bool {
+	return not(and(not($.a), not($.b)))
+}
+
+
+
+const if = pure Bool -> pure (impure Void -> Void) -> Void {
+	const ReturnType = pure (impure Void -> Void) -> Void
+	const call = ReturnType {
+		$()
+	}
+	const ignore = ReturnType { }
+	return #select($, call, ignore)
+}
+
+var while = impure (condition: impure Void -> Bool, action: impure Void -> Void) -> Void { }
+while = {
+	let arg = $
+	if (arg.condition()) {
+		arg.action()
+		while(arg)
+	}
+}
+
+const product = pure (a: Int, b: Int) -> Int {
+	let a = $.a
+	var b = $.b
+	var result = 0
+	
+	var repeat = impure Void -> Void { }
+	repeat = {
+		if (not(equal(b, 0))) {
+			result = sum(result, a)
+			b = difference(b, 1)
+			repeat()
+		}
+	}
+	repeat()
+	
+	return result
+}
+
+const factorial = pure Int -> Int {
+	let n = $
+	var result = 1
+	var x = 0
+	
+	var repeat = impure Void -> Void { }
+	repeat = {
+		if (not(equal(x, n))) {
+			x = sum(x, 1)
+			result = product(result, x)
+			repeat()
+		}
+	}
+	repeat()
+	
+	return result
+}

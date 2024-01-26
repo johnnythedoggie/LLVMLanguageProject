@@ -15,6 +15,8 @@
 struct CTupleElement {
 	std::string label;
 	CValue* value;
+	
+	CTupleElement(std::string label, CValue* value) : label(label), value(value) { }
 };
 
 class CTuple: public CValue {
@@ -25,7 +27,7 @@ public:
 	
 	CTuple(std::vector<CTupleElement> elements) : elements(elements) { }
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	

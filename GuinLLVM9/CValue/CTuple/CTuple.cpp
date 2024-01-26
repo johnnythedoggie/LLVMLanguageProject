@@ -7,12 +7,12 @@
 
 #include "CTuple.hpp"
 
-std::string CTuple::identifierString() {
+std::string CTuple::id() {
 	std::string str = "( ";
 	for (CTupleElement element : elements) {
 		str += element.label;
 		str += " = ";
-		str += element.value->identifierString();
+		str += element.value->id();
 		str += ", ";
 	}
 	str += ")";

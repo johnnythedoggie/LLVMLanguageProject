@@ -16,17 +16,19 @@ class PFunctionDefinition: public PValue {
 	
 public:
 	
-	PValue* fucntionType;
+	CFunctionType* functionType;
 	std::queue<PStatement*> functionBody;
 	
-	PFunctionDefinition(PValue* fucntionType, std::queue<PStatement*> functionBody)
-	: fucntionType(fucntionType), functionBody(functionBody) { }
+	PFunctionDefinition(std::queue<PStatement*> functionBody)
+	 : functionBody(functionBody) { }
 	
 	CValue* asConstantValue(Compiler* compiler) override;
 	CFunctionType* getConstantType(Compiler* compiler) override;
 	
 	Value* asLLVMValue(Compiler* compiler) override;
 	PVariance getVariance(Compiler* compiler) override;
+	
+	void expectedType(CType* type) override;
 	
 };
 

@@ -19,9 +19,9 @@ void CImpureFunction::makeFunction(Compiler* compiler) {
 	std::vector<Type*> argTypes = { inputType->asLLVMType(compiler), opaqueContextLLVMType->getPointerTo() };
 	FunctionType* type = FunctionType::get(outputType->asLLVMType(compiler), argTypes, false);
 	
-	Function::Create(type, Function::ExternalLinkage, identifierString(), *compiler->llvmModule);
+	Function::Create(type, Function::ExternalLinkage, id(), *compiler->llvmModule);
 	
-	function = compiler->llvmModule->getFunction(identifierString());
+	function = compiler->llvmModule->getFunction(id());
 	
 	BasicBlock* entryBlock = BasicBlock::Create(*compiler->llvmContext, "entry", function);
 	

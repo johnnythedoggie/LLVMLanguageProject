@@ -14,6 +14,11 @@
 #include "CInputFunction.hpp"
 #include "COutputFunction.hpp"
 #include "CTupleType.hpp"
+#include "CSumFunction.hpp"
+#include "CDifferenceFunction.hpp"
+#include "CIntEqualFunction.hpp"
+#include "CNotFunction.hpp"
+#include "CAndFunction.hpp"
 
 void addBuiltIn(Compiler* compiler, std::string id, CValue* value) {
 	compiler->scope->scopedIdentifierToValue[id] = ValueHandler::newConstantValue(compiler, value, id);
@@ -29,10 +34,15 @@ Compiler::Compiler() {
 	addBuiltIn(this, "Bool", new CBoolType());
 	addBuiltIn(this, "Type", new CTypeType());
 	addBuiltIn(this, "Void", new CTupleType({}));
+	addBuiltIn(this, "Void", new CTupleType({}));
+	addBuiltIn(this, "sum", new CSumFunction());
+	addBuiltIn(this, "difference", new CDifferenceFunction());
+	addBuiltIn(this, "equal", new CIntEqualFunction());
+	addBuiltIn(this, "not", new CNotFunction());
+	addBuiltIn(this, "and", new CAndFunction());
 	
 	// should input and output be considered 'const'?
-	// They do have a constant value...
-	// They also mess up pure functions if they dont have to be captured
+	// they are right now, but it could mess things up later
 	addBuiltIn(this, "input", new CInputFunction());
 	addBuiltIn(this, "output", new COutputFunction());
 	

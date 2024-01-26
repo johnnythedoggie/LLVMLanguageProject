@@ -17,7 +17,7 @@ public:
 	CImpureFunctionType(CType* inputType, CType* outputType)
 	: CFunctionType(false, inputType, outputType) { }
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	FunctionType* getLLVMFunctionType(Compiler* compiler);
 	

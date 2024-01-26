@@ -17,7 +17,7 @@ class CValue {
 	
 public:
 	
-	virtual std::string identifierString() = 0;
+	virtual std::string id() = 0;
 	
 	virtual CType* getConstantType() = 0;
 	virtual Value* getLLVMValue(Compiler* compiler) = 0;

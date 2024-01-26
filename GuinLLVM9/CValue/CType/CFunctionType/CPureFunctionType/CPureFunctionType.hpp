@@ -17,7 +17,7 @@ public:
 	CPureFunctionType(CType* inputType, CType* outputType)
 	: CFunctionType(true, inputType, outputType) { }
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	FunctionType* getLLVMFunctionType(Compiler* compiler);
 	

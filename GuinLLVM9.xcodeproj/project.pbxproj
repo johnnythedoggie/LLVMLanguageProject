@@ -51,6 +51,11 @@
 		FB9509722B51F92B0012BFFA /* PArgument.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509702B51F92B0012BFFA /* PArgument.cpp */; };
 		FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509742B51FFF40012BFFA /* CNeverType.cpp */; };
 		FB95097A2B5201770012BFFA /* PReturn.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9509782B5201770012BFFA /* PReturn.cpp */; };
+		FB9A235D2B632BAD0063A6CE /* CSumFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9A235B2B632BAD0063A6CE /* CSumFunction.cpp */; };
+		FB9A23612B632DDD0063A6CE /* CDifferenceFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9A235F2B632DDD0063A6CE /* CDifferenceFunction.cpp */; };
+		FB9A23652B632E4D0063A6CE /* CIntEqualFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9A23632B632E4D0063A6CE /* CIntEqualFunction.cpp */; };
+		FB9A23692B6335320063A6CE /* CNotFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9A23672B6335320063A6CE /* CNotFunction.cpp */; };
+		FB9A236D2B63365D0063A6CE /* CAndFunction.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB9A236B2B63365D0063A6CE /* CAndFunction.cpp */; };
 		FBBF99192B5DCAF300BD4D48 /* PSelect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +100,7 @@
 		FB5F54402B58E19D00F30CD6 /* CCustomImpureFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CCustomImpureFunction.hpp; sourceTree = "<group>"; };
 		FB5F54432B59FBE700F30CD6 /* CFunctionType.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CFunctionType.cpp; sourceTree = "<group>"; };
 		FB5F54442B59FBE700F30CD6 /* CFunctionType.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CFunctionType.hpp; sourceTree = "<group>"; };
-		FB5F54462B59FD9C00F30CD6 /* input.guin */ = {isa = PBXFileReference; lastKnownFileType = text; path = input.guin; sourceTree = "<group>"; };
+		FB5F54462B59FD9C00F30CD6 /* GSL.guin */ = {isa = PBXFileReference; lastKnownFileType = text; path = GSL.guin; sourceTree = "<group>"; };
 		FB606E3A2B08799E00AFF855 /* GuinLLVM9 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GuinLLVM9; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB606E3D2B08799E00AFF855 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		FB606E442B087B7C00AFF855 /* GuinLLVM9.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GuinLLVM9.entitlements; sourceTree = "<group>"; };
@@ -156,6 +161,16 @@
 		FB9509782B5201770012BFFA /* PReturn.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PReturn.cpp; sourceTree = "<group>"; };
 		FB9509792B5201770012BFFA /* PReturn.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PReturn.hpp; sourceTree = "<group>"; };
 		FB9A235A2B63234B0063A6CE /* Token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Token.h; sourceTree = "<group>"; };
+		FB9A235B2B632BAD0063A6CE /* CSumFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CSumFunction.cpp; sourceTree = "<group>"; };
+		FB9A235C2B632BAD0063A6CE /* CSumFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CSumFunction.hpp; sourceTree = "<group>"; };
+		FB9A235F2B632DDD0063A6CE /* CDifferenceFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CDifferenceFunction.cpp; sourceTree = "<group>"; };
+		FB9A23602B632DDD0063A6CE /* CDifferenceFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CDifferenceFunction.hpp; sourceTree = "<group>"; };
+		FB9A23632B632E4D0063A6CE /* CIntEqualFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CIntEqualFunction.cpp; sourceTree = "<group>"; };
+		FB9A23642B632E4D0063A6CE /* CIntEqualFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CIntEqualFunction.hpp; sourceTree = "<group>"; };
+		FB9A23672B6335320063A6CE /* CNotFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CNotFunction.cpp; sourceTree = "<group>"; };
+		FB9A23682B6335320063A6CE /* CNotFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CNotFunction.hpp; sourceTree = "<group>"; };
+		FB9A236B2B63365D0063A6CE /* CAndFunction.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CAndFunction.cpp; sourceTree = "<group>"; };
+		FB9A236C2B63365D0063A6CE /* CAndFunction.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CAndFunction.hpp; sourceTree = "<group>"; };
 		FBBF99172B5DCAF300BD4D48 /* PSelect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PSelect.cpp; sourceTree = "<group>"; };
 		FBBF99182B5DCAF300BD4D48 /* PSelect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = PSelect.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,7 +322,7 @@
 				FB606E442B087B7C00AFF855 /* GuinLLVM9.entitlements */,
 				FB9508F92B4FB8E50012BFFA /* test.ll */,
 				FB606E3D2B08799E00AFF855 /* main.cpp */,
-				FB5F54462B59FD9C00F30CD6 /* input.guin */,
+				FB5F54462B59FD9C00F30CD6 /* GSL.guin */,
 				FB3EC82B2B2517B900581DE6 /* llvm.h */,
 				FB3EC8212B250E5900581DE6 /* Tokenizer */,
 				FB9508E92B4FA6DA0012BFFA /* CValue */,
@@ -504,9 +519,14 @@
 			children = (
 				FB9509552B50CE810012BFFA /* CPureFunction.hpp */,
 				FB9509542B50CE810012BFFA /* CPureFunction.cpp */,
+				FB9509672B51C4720012BFFA /* CCustomPureFunction */,
 				FB95095B2B50D7880012BFFA /* CInputFunction */,
 				FB9509632B51C4400012BFFA /* COutputFunction */,
-				FB9509672B51C4720012BFFA /* CCustomPureFunction */,
+				FB9A235E2B632D7B0063A6CE /* CSumFunction */,
+				FB9A23622B632E120063A6CE /* CDifferenceFunction */,
+				FB9A23662B6335170063A6CE /* CIntEqualFunction */,
+				FB9A236A2B6335460063A6CE /* CNotFunction */,
+				FB9A236E2B6336900063A6CE /* CAndFunction */,
 			);
 			path = CPureFunction;
 			sourceTree = "<group>";
@@ -592,6 +612,51 @@
 			path = PReturn;
 			sourceTree = "<group>";
 		};
+		FB9A235E2B632D7B0063A6CE /* CSumFunction */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A235C2B632BAD0063A6CE /* CSumFunction.hpp */,
+				FB9A235B2B632BAD0063A6CE /* CSumFunction.cpp */,
+			);
+			path = CSumFunction;
+			sourceTree = "<group>";
+		};
+		FB9A23622B632E120063A6CE /* CDifferenceFunction */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A23602B632DDD0063A6CE /* CDifferenceFunction.hpp */,
+				FB9A235F2B632DDD0063A6CE /* CDifferenceFunction.cpp */,
+			);
+			path = CDifferenceFunction;
+			sourceTree = "<group>";
+		};
+		FB9A23662B6335170063A6CE /* CIntEqualFunction */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A23642B632E4D0063A6CE /* CIntEqualFunction.hpp */,
+				FB9A23632B632E4D0063A6CE /* CIntEqualFunction.cpp */,
+			);
+			path = CIntEqualFunction;
+			sourceTree = "<group>";
+		};
+		FB9A236A2B6335460063A6CE /* CNotFunction */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A23682B6335320063A6CE /* CNotFunction.hpp */,
+				FB9A23672B6335320063A6CE /* CNotFunction.cpp */,
+			);
+			path = CNotFunction;
+			sourceTree = "<group>";
+		};
+		FB9A236E2B6336900063A6CE /* CAndFunction */ = {
+			isa = PBXGroup;
+			children = (
+				FB9A236C2B63365D0063A6CE /* CAndFunction.hpp */,
+				FB9A236B2B63365D0063A6CE /* CAndFunction.cpp */,
+			);
+			path = CAndFunction;
+			sourceTree = "<group>";
+		};
 		FBBF99162B5B7A7C00BD4D48 /* CFunctionType */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +736,7 @@
 			files = (
 				FB5F543A2B58DA4700F30CD6 /* CFunction.cpp in Sources */,
 				FB9509462B50B9230012BFFA /* PFunctionType.cpp in Sources */,
+				FB9A23652B632E4D0063A6CE /* CIntEqualFunction.cpp in Sources */,
 				FB95092A2B5088DF0012BFFA /* CIntValue.cpp in Sources */,
 				FB9509272B5083C90012BFFA /* ValueHandler.cpp in Sources */,
 				FB95097A2B5201770012BFFA /* PReturn.cpp in Sources */,
@@ -680,6 +746,7 @@
 				FB95096A2B51C8770012BFFA /* PFunctionDefinition.cpp in Sources */,
 				FB3EC81E2B24360900581DE6 /* Parser.cpp in Sources */,
 				FB9509422B50B7930012BFFA /* CPureFunctionType.cpp in Sources */,
+				FB9A23692B6335320063A6CE /* CNotFunction.cpp in Sources */,
 				FB055DB02B577AC900F3A234 /* PTupleElementAccess.cpp in Sources */,
 				FB055DA02B55ED3A00F3A234 /* PTuple.cpp in Sources */,
 				FB9508F32B4FAD720012BFFA /* CompilerValue.cpp in Sources */,
@@ -688,6 +755,7 @@
 				FB9508FA2B4FB8E50012BFFA /* test.ll in Sources */,
 				FB3EC82C2B2517B900581DE6 /* llvm.h in Sources */,
 				FB9508E02B4F936B0012BFFA /* PValue.cpp in Sources */,
+				FB9A23612B632DDD0063A6CE /* CDifferenceFunction.cpp in Sources */,
 				FB9508D72B4F926A0012BFFA /* PStatement.cpp in Sources */,
 				FB9509662B51C46E0012BFFA /* CCustomPureFunction.cpp in Sources */,
 				FB95096E2B51F6390012BFFA /* Scope.cpp in Sources */,
@@ -709,7 +777,9 @@
 				FB5F54452B59FBE700F30CD6 /* CFunctionType.cpp in Sources */,
 				FBBF99192B5DCAF300BD4D48 /* PSelect.cpp in Sources */,
 				FB9509762B51FFF40012BFFA /* CNeverType.cpp in Sources */,
+				FB9A236D2B63365D0063A6CE /* CAndFunction.cpp in Sources */,
 				FB9508E82B4F94AD0012BFFA /* PIdentifier.cpp in Sources */,
+				FB9A235D2B632BAD0063A6CE /* CSumFunction.cpp in Sources */,
 				FB055DA82B55F81C00F3A234 /* CTupleType.cpp in Sources */,
 				FB95092E2B508A310012BFFA /* CIntType.cpp in Sources */,
 				FB95093A2B50B0000012BFFA /* CBoolValue.cpp in Sources */,

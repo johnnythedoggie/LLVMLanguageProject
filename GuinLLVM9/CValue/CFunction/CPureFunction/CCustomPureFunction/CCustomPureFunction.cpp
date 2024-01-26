@@ -7,11 +7,13 @@
 
 #include "CCustomPureFunction.hpp"
 #include "PReturn.hpp"
+#include "CTuple.hpp"
+#include "CTupleType.hpp"
 #include <cassert>
 
 void CCustomPureFunction::makeBody(Compiler* compiler) {
 	
-	bool foundReturn = false;
+	bool needsReturn = true;
 	
 	while(!statements.empty()) {
 		
@@ -19,14 +21,18 @@ void CCustomPureFunction::makeBody(Compiler* compiler) {
 		statements.pop();
 		statement->compile(compiler);
 		
-		PReturn* value = dynamic_cast<PReturn*>(statement);
-		if (value) {
-			foundReturn = true;
+		if (dynamic_cast<PReturn*>(statement)) {
+			needsReturn = false;
 			break;
 		}
 		
 	}
 	
-	assert(foundReturn && statements.empty() && "Function must end with a return");
+	if (needsReturn && outputType->id() == CTupleType({}).id()) {
+		compiler->llvmBuilder->CreateRet(CTuple({}).getLLVMValue(compiler));
+		needsReturn = false;
+	}
+	
+	assert(!needsReturn && statements.empty() && "Non-Void function must end with a return.");
 	
 }

@@ -22,9 +22,8 @@ CValue* PFunctionDefinition::asConstantValue(Compiler* compiler) {
 }
 
 CFunctionType* PFunctionDefinition::getConstantType(Compiler* compiler) {
-	auto ft = dynamic_cast<CFunctionType*>(fucntionType->asConstantValue(compiler));
-	assert(ft && "Function must be of constant function type.");
-	return ft;
+	assert(functionType && "Function does not have enough type information.");
+	return functionType;
 }
 
 Value* PFunctionDefinition::asLLVMValue(Compiler* compiler) {
@@ -34,3 +33,8 @@ Value* PFunctionDefinition::asLLVMValue(Compiler* compiler) {
 PVariance PFunctionDefinition::getVariance(Compiler* compiler) {
 	return PVariance::CONST;
 }
+
+void PFunctionDefinition::expectedType(CType* type) {
+	functionType = dynamic_cast<CFunctionType*>(type);
+	assert(functionType && "Function must be of constant function type.");
+};

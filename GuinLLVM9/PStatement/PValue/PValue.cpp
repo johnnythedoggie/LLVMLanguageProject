@@ -18,3 +18,7 @@ Value* PValue::getMemoryLocation(Compiler* compiler) {
 void PValue::compile(Compiler* compiler) {
 	asLLVMValue(compiler);
 }
+
+void PValue::expectedType(CType* type) {
+	// do nothing
+}

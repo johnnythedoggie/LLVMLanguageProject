@@ -9,6 +9,6 @@
 
 int CFunction::globalIdentifier = 0;
 
-std::string CFunction::identifierString() {
+std::string CFunction::id() {
 	return "function" + std::to_string(identifier);
 }

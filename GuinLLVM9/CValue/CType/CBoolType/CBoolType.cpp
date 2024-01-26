@@ -7,7 +7,7 @@
 
 #include "CBoolType.hpp"
 
-std::string CBoolType::identifierString() {
+std::string CBoolType::id() {
 	return "Bool";
 }
 

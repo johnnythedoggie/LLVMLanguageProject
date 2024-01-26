@@ -28,7 +28,8 @@ CValue* PTuple::asConstantValue(Compiler* compiler) {
 	for (const PTupleElement& element : elements) {
 		CValue* value = element.value->asConstantValue(compiler);
 		if (!value) return nullptr;
-		constantElements.push_back({element.label, value});
+		assert(element.hasLabel);
+		constantElements.push_back(CTupleElement(element.label, value));
 	}
 	return new CTuple(constantElements);
 }
@@ -37,7 +38,8 @@ CType* PTuple::getConstantType(Compiler* compiler) {
 	std::vector<CTupleTypeElement> constantElements = {};
 	for (const PTupleElement& element : elements) {
 		CType* type = element.value->getConstantType(compiler);
-		constantElements.push_back({element.label, type});
+		assert(element.hasLabel);
+		constantElements.push_back(CTupleTypeElement(element.label, type));
 	}
 	return new CTupleType(constantElements);
 }
@@ -49,4 +51,19 @@ PVariance PTuple::getVariance(Compiler* compiler) {
 		}
 	}
 	return PVariance::CONST;
+}
+
+void PTuple::expectedType(CType* type) {
+	CTupleType* tupleType = dynamic_cast<CTupleType*>(type);
+	assert(tupleType && "Incorrect use of tuple type.");
+	assert(elements.size() == tupleType->elements.size());
+	for (int i = 0; i < elements.size(); i += 1) {
+		elements[i].value->expectedType(tupleType->elements[i].type);
+		if (elements[i].hasLabel) {
+			assert(elements[i].label == tupleType->elements[i].label);
+		} else {
+			elements[i].hasLabel = true;
+			elements[i].label = tupleType->elements[i].label;
+		}
+	}
 }

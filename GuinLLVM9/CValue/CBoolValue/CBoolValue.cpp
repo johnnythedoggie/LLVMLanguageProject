@@ -8,7 +8,7 @@
 #include "CBoolValue.hpp"
 #include "CBoolType.hpp"
 
-std::string CBoolValue::identifierString() {
+std::string CBoolValue::id() {
 	return value ? "true" : "false";
 }
 

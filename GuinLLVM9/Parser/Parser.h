@@ -57,13 +57,23 @@ class Parser {
 	PIdentifier* parseIdentifier();
 	PFunctionType* parseFunctionType();
 	PSelect* parseSelect();
+	PFunctionDefinition* parseFunctionLiteral();
 	
 	// Continuations are additonal tokens that may follow a value
 	// Such as an assignment, where the '=' token signals a continuation
-	PValue* addValueContinuations(PValue* value);
 	PStatement* parseOptionalAssignmentContinuation(PValue* value);
 	PFunctionCall* parseOptionalFunctionCallContinuation(PValue* value);
-	PFunctionDefinition* parseOptionalFunctionDefinitionContinuation(PValue* value);
+	
+	/// Temporary value storage for parsing tuples
+	struct TElement {
+		bool hasIdentifier;
+		std::string identifier;
+		bool isType;
+		PValue* value;
+	};
+	
+	/// Parse a TElement
+	TElement* parseTElement();
 	
 public:
 	

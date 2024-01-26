@@ -74,6 +74,7 @@ PValue* Parser::parseProtectedValue() {
 	if (!result) result = parseParenedValue();
 	if (!result) result = parseInt();
 	if (!result) result = parseArgument();
+	if (!result) result = parseFunctionLiteral();
 	
 	if (!result) return nullptr;
 	
@@ -90,14 +91,11 @@ PValue* Parser::parseProtectedValue() {
 
 PValue* Parser::parseValue() {
 	PValue* value = parseProtectedValue();
-	return addValueContinuations(value);
-}
-
-PValue* Parser::addValueContinuations(PValue* value) {
-	PFunctionDefinition* functionDefinition = parseOptionalFunctionDefinitionContinuation(value);
-	if (functionDefinition) value = functionDefinition;
 	PFunctionCall* functionCall = parseOptionalFunctionCallContinuation(value);
-	if (functionCall) value = functionCall;
+	while (functionCall) {
+		value = functionCall;
+		functionCall = parseOptionalFunctionCallContinuation(value);
+	}
 	return value;
 }
 
@@ -170,8 +168,7 @@ PFunctionCall* Parser::parseOptionalFunctionCallContinuation(PValue* value) {
 	return new PFunctionCall(value, argument);
 }
 
-PFunctionDefinition* Parser::parseOptionalFunctionDefinitionContinuation(PValue* value) {
-	if (!value) return nullptr;
+PFunctionDefinition* Parser::parseFunctionLiteral() {
 	if (tokens.empty()) return nullptr;
 	if (tokens.front().value != "{") return nullptr;
 	tokens.pop();
@@ -184,7 +181,7 @@ PFunctionDefinition* Parser::parseOptionalFunctionDefinitionContinuation(PValue*
 	}
 	assert(tokens.front().value == "}" && "Expected matching close brace.");
 	tokens.pop();
-	return new PFunctionDefinition(value, statements);
+	return new PFunctionDefinition(statements);
 }
 
 PArgument* Parser::parseArgument() {
@@ -229,79 +226,166 @@ PSelect* Parser::parseSelect() {
 
 // TODO: Needs refactor
 // This handles too much in one function - should be broken down into sub-cases
+//PValue* Parser::parseParenedValue() {
+//	if (tokens.empty()) return nullptr;
+//	if (tokens.front().value != "(") return nullptr;
+//	tokens.pop();
+//	if (tokens.front().value == "\n") tokens.pop();
+//	PValue* finalValue = nullptr;
+//	if (tokens.front().value == ")") {
+//		finalValue = new PTuple({});
+//	} else if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
+//		// maybe a tuple
+//		std::string label = tokens.front().value;
+//		tokens.pop();
+//		if (tokens.front().value == "=") {
+//			tokens.pop();
+//			PValue* value = parseValue();
+//			assert(value && "Expected value after '=' in tuple value.");
+//			std::vector<PTupleElement> elements = {};
+//			elements.push_back(PTupleElement(label, value));
+//			while (tokens.front().value == ",") {
+//				tokens.pop();
+//				if (tokens.front().value == "\n") tokens.pop();
+//				assert(tokens.front().type == Token::TokenType::AlphaIdentifier
+//					&& "Expected identifier in tuple value.");
+//				std::string label = tokens.front().value;
+//				tokens.pop();
+//				assert(tokens.front().value == "="
+//					&& "Expected symbol '=' in tuple value.");
+//				tokens.pop();
+//				PValue* value = parseValue();
+//				assert(value && "Expected value after '=' in tuple value.");
+//				elements.push_back(PTupleElement(label, value));
+//			}
+//			finalValue = new PTuple(elements);
+//		} else if (tokens.front().value == ":") {
+//			tokens.pop();
+//			PValue* value = parseValue();
+//			assert(value && "Expected type after ':' in tuple type.");
+//			std::vector<PTupleTypeElement> elements = {};
+//			elements.push_back(PTupleTypeElement(label, value));
+//			while (tokens.front().value == ",") {
+//				tokens.pop();
+//				if (tokens.front().value == "\n") tokens.pop();
+//				assert(tokens.front().type == Token::TokenType::AlphaIdentifier
+//					&& "Expected identifier in tuple type.");
+//				std::string label = tokens.front().value;
+//				tokens.pop();
+//				assert(tokens.front().value == ":"
+//					&& "Expected ':' after identifier in tuple type.");
+//				tokens.pop();
+//				PValue* value = parseValue();
+//				assert(value && "Expected type after ':' in tuple type.");
+//				elements.push_back(PTupleTypeElement(label, value));
+//			}
+//			finalValue = new PTupleType(elements);
+//		} else {
+//			// not a tuple
+//			// this is embarrasing, I took too much from the queue
+//			// its hard to put it all back, but I'll do it
+//			std::queue<Token> copy = tokens;
+//			tokens = {};
+//			tokens.push({ Token::TokenType::AlphaIdentifier, label });
+//			while (!copy.empty()) {
+//				tokens.push(copy.front());
+//				copy.pop();
+//			}
+//			finalValue = parseValue();
+//		}
+//	} else {
+//		finalValue = parseValue();
+//	}
+//	assert(finalValue && "Invalid parenthesized value.");
+//	if (tokens.front().value == "\n") tokens.pop();
+//	assert(tokens.front().value == ")" && "Expected matching close parenthese.");
+//	tokens.pop();
+//	return finalValue;
+//}
+
+Parser::TElement* Parser::parseTElement() {
+	if (tokens.empty()) return nullptr;
+	Parser::TElement* result = new TElement();
+	if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
+		std::string identifier = tokens.front().value;
+		tokens.pop();
+		if (tokens.front().value == "=" || tokens.front().value == ":") {
+			// it has an identifier!
+			result->hasIdentifier = true;
+			result->identifier = identifier;
+			result->isType = (tokens.front().value == ":");
+			tokens.pop();
+		} else {
+			// it doesn't have an identifier
+			// result tokens to how it was before
+			result->hasIdentifier = false;
+			auto copy = tokens;
+			tokens = {};
+			tokens.push({ Token::TokenType::AlphaIdentifier, identifier });
+			while (!copy.empty()) {
+				tokens.push(copy.front());
+				copy.pop();
+			}
+		}
+	} else {
+		// it doesnt have an identifier
+		result->hasIdentifier = false;
+	}
+	// All cases arrive here
+	result->value = parseValue();
+	assert(result->value && "Expected value in tuple element.");
+	return result;
+}
+
 PValue* Parser::parseParenedValue() {
 	if (tokens.empty()) return nullptr;
 	if (tokens.front().value != "(") return nullptr;
 	tokens.pop();
 	if (tokens.front().value == "\n") tokens.pop();
-	PValue* finalValue = nullptr;
+	
 	if (tokens.front().value == ")") {
-		finalValue = new PTuple({});
-	} else if (tokens.front().type == Token::TokenType::AlphaIdentifier) {
-		// maybe a tuple
-		std::string label = tokens.front().value;
 		tokens.pop();
-		if (tokens.front().value == "=") {
-			tokens.pop();
-			PValue* value = parseValue();
-			assert(value && "Expected value after '=' in tuple value.");
-			std::vector<PTupleElement> elements = {};
-			elements.push_back(PTupleElement(label, value));
-			while (tokens.front().value == ",") {
-				tokens.pop();
-				if (tokens.front().value == "\n") tokens.pop();
-				assert(tokens.front().type == Token::TokenType::AlphaIdentifier
-					&& "Expected identifier in tuple value.");
-				std::string label = tokens.front().value;
-				tokens.pop();
-				assert(tokens.front().value == "="
-					&& "Expected symbol '=' in tuple value.");
-				tokens.pop();
-				PValue* value = parseValue();
-				assert(value && "Expected value after '=' in tuple value.");
-				elements.push_back(PTupleElement(label, value));
-			}
-			finalValue = new PTuple(elements);
-		} else if (tokens.front().value == ":") {
-			tokens.pop();
-			PValue* value = parseValue();
-			assert(value && "Expected type after ':' in tuple type.");
-			std::vector<PTupleTypeElement> elements = {};
-			elements.push_back(PTupleTypeElement(label, value));
-			while (tokens.front().value == ",") {
-				tokens.pop();
-				if (tokens.front().value == "\n") tokens.pop();
-				assert(tokens.front().type == Token::TokenType::AlphaIdentifier
-					&& "Expected identifier in tuple type.");
-				std::string label = tokens.front().value;
-				tokens.pop();
-				assert(tokens.front().value == ":"
-					&& "Expected ':' after identifier in tuple type.");
-				tokens.pop();
-				PValue* value = parseValue();
-				assert(value && "Expected type after ':' in tuple type.");
-				elements.push_back(PTupleTypeElement(label, value));
-			}
-			finalValue = new PTupleType(elements);
-		} else {
-			// not a tuple
-			// this is embarrasing, I took too much from the queue
-			// its hard to put it all back, but I'll do it
-			std::queue<Token> copy = tokens;
-			tokens = {};
-			tokens.push({ Token::TokenType::AlphaIdentifier, label });
-			while (!copy.empty()) {
-				tokens.push(copy.front());
-				copy.pop();
-			}
-			finalValue = parseValue();
-		}
-	} else {
-		finalValue = parseValue();
+		return new PTuple({});
 	}
-	assert(finalValue && "Invalid parenthesized value.");
-	if (tokens.front().value == "\n") tokens.pop();
+	
+	bool isTupleType;
+	std::vector<PTupleTypeElement> tupleTypeElements = {};
+	std::vector<PTupleElement> tupleElements = {};
+	
+	TElement* element = parseTElement();
+	isTupleType = (element->hasIdentifier && element->isType);
+	
+	if (isTupleType) {
+		tupleTypeElements.emplace_back(element->identifier, element->value);
+	} else {
+		tupleElements.emplace_back(element->hasIdentifier, element->identifier, element->value);
+	}
+	
+	while (tokens.front().value == ",") {
+		tokens.pop();
+		if (tokens.front().value == "\n") tokens.pop();
+		TElement* element = parseTElement();
+		if (isTupleType) {
+			assert(element->hasIdentifier && element->isType);
+			tupleTypeElements.emplace_back(element->identifier, element->value);
+		} else {
+			assert(!element->hasIdentifier || !element->isType);
+			tupleElements.emplace_back(element->hasIdentifier, element->identifier, element->value);
+		}
+	}
+	
+	
 	assert(tokens.front().value == ")" && "Expected matching close parenthese.");
 	tokens.pop();
-	return finalValue;
+	
+	if (tupleElements.size() == 1 && !tupleElements[0].hasLabel) {
+		return tupleElements[0].value;
+	}
+	
+	if (isTupleType) {
+		return new PTupleType(tupleTypeElements);
+	} else {
+		return new PTuple(tupleElements);
+	}
+	
 }

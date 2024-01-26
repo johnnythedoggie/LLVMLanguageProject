@@ -7,7 +7,7 @@
 
 #include "CTypeType.hpp"
 
-std::string CTypeType::identifierString() {
+std::string CTypeType::id() {
 	return "Type";
 }
 

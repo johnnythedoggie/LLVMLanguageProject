@@ -8,7 +8,7 @@
 #include "CIntValue.hpp"
 #include "CIntType.hpp"
 
-std::string CIntValue::identifierString() {
+std::string CIntValue::id() {
 	return std::to_string(value);
 }
 

@@ -8,10 +8,11 @@
 #include "PReturn.hpp"
 
 void PReturn::compile(Compiler* compiler) {
-	CType* valueType = value->getConstantType(compiler);
 	CType* returnType = compiler->scope->returnType;
+	value->expectedType(returnType);
+	CType* valueType = value->getConstantType(compiler);
 	assert(returnType && "Cannot return from outer scope.");
-	assert(valueType->identifierString() == returnType->identifierString()
+	assert(valueType->id() == returnType->id()
 		   && "The value returned must match the return type of the scope.");
 	Value* llvmValue = value->asLLVMValue(compiler);
 	compiler->llvmBuilder->CreateRet(llvmValue);

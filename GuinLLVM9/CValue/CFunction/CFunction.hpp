@@ -30,7 +30,7 @@ public:
 	CFunction(CType* inputType, CType* outputType)
 	: identifier(globalIdentifier++), inputType(inputType), outputType(outputType) { }
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	virtual void makeFunction(Compiler* compiler) = 0;
 	

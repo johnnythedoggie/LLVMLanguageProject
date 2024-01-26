@@ -7,7 +7,7 @@
 
 #include "CNeverType.hpp"
 
-std::string CNeverType::identifierString() {
+std::string CNeverType::id() {
 	return "Never";
 }
 

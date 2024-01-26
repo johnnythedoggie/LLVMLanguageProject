@@ -8,12 +8,12 @@
 #include "CTupleType.hpp"
 
 
-std::string CTupleType::identifierString() {
+std::string CTupleType::id() {
 	std::string str = "( ";
 	for (CTupleTypeElement element : elements) {
 		str += element.label;
 		str += ": ";
-		str += element.type->identifierString();
+		str += element.type->id();
 		str += ", ";
 	}
 	str += ")";

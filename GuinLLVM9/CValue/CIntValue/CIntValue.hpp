@@ -20,7 +20,7 @@ public:
 	
 	CType* getConstantType() override;
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	Value* getLLVMValue(Compiler* compiler) override;
 	

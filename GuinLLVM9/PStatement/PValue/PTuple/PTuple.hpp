@@ -11,10 +11,13 @@
 #include "PValue.hpp"
 
 struct PTupleElement {
+	
+	bool hasLabel;
 	std::string label;
 	PValue* value;
 	
-	PTupleElement(std::string label, PValue* value): label(label), value(value) { }
+	PTupleElement(bool hasLabel, std::string label, PValue* value)
+	 : hasLabel(hasLabel), label(label), value(value) { }
 };
 
 class PTuple: public PValue {
@@ -31,6 +34,8 @@ public:
 	CType* getConstantType(Compiler* compiler) override;
 	
 	PVariance getVariance(Compiler* compiler) override;
+	
+	void expectedType(CType* type) override;
 	
 };
 

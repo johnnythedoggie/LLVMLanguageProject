@@ -7,8 +7,8 @@
 
 #include "CImpureFunctionType.hpp"
 
-std::string CImpureFunctionType::identifierString() {
-	return "impure (" + inputType->identifierString() + ") -> " + outputType->identifierString();
+std::string CImpureFunctionType::id() {
+	return "impure (" + inputType->id() + ") -> " + outputType->id();
 }
 
 StructType* CImpureFunctionType::asLLVMType(Compiler* compiler) {

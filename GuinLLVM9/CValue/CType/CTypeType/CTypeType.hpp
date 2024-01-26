@@ -16,7 +16,7 @@ public:
 	
 	CTypeType() { };
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	Type* asLLVMType(Compiler* compiler) override;
 	

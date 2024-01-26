@@ -7,7 +7,7 @@
 
 #include "CIntType.hpp"
 
-std::string CIntType::identifierString() {
+std::string CIntType::id() {
 	return "Int";
 }
 

@@ -13,6 +13,8 @@
 struct CTupleTypeElement {
 	std::string label;
 	CType* type;
+	
+	CTupleTypeElement(std::string label, CType* type) : label(label), type(type) { }
 };
 
 class CTupleType: public CType {
@@ -23,7 +25,7 @@ public:
 	
 	CTupleType(std::vector<CTupleTypeElement> elements) : elements(elements) { }
 	
-	std::string identifierString() override;
+	std::string id() override;
 	
 	Type* asLLVMType(Compiler* compiler) override;
 	

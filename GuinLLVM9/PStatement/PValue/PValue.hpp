@@ -29,7 +29,7 @@ public:
 	
 	void compile(Compiler* compiler) override;
 	
-	
+	virtual void expectedType(CType* type);
 	
 };
 

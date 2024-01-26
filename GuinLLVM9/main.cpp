@@ -13,73 +13,41 @@
 #include "Parser.h"
 #include "Compiler.hpp"
 
-// #include <fstream>
-// I don't understand why fstream doesn't work
-// I want to get input from a file but I cannot.
+#include <iostream>
+#include <fstream>
+#include <sstream>
 
 /*
  
- Way better error handleing
- 
- Unnamed tuple elements if type can be innfered
- Left associative function calls
- 
- sum(a, b)
- difference(a, b)
- areEqual(a, b)
- 
- and(a, b)
- or(a, b)
- not(a)
- 
+ Takes a source file as input, then outputs the resulting LLVM to the console.
  
  */
-
-
-
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
 	
-	std::string input = R"(
-
-const IfReturnType = pure (impure Void -> Void) -> Void
-
-const call = IfReturnType {
-	$()
-	return ()
-}
-const ignore = IfReturnType {
-	return ()
-}
-
-const if = pure Bool -> IfReturnType {
-	return #select($, call, ignore)
-}
-
-
-
-var x = 0
-
-(if true) (impure Void -> Void {
-	x = input()
-	return ()
-})
-
-output(x)
-
-let x = (a = 4, b = false)
-
-let f = pure (a: Int, b: Bool) -> Int {
-	return #select($.b, $.a, 0)
-}
-
-output(f(x))
-
-  
-)";
+	if (argc != 2) {
+		std::cerr << "Usage: " << argv[0] << " <filename>" << std::endl;
+		return 1;
+	}
 	
-	auto tokens = Tokenizer::getTokensFrom(input);
+	std::string filename = argv[1];
 	
-	auto statements = Parser(tokens).parse();
+	std::ifstream file(filename);
+	
+	if (!file.is_open()) {
+		std::cerr << "Error opening file: " << filename << std::endl;
+		return 1;
+	}
+	
+	std::stringstream buffer;
+	buffer << file.rdbuf();
+	std::string file_contents = buffer.str();
+	
+	file.close();
+	
+	// Tokenize, Parse, and Compile
+	
+	std::queue<Token> tokens = Tokenizer::getTokensFrom(file_contents);
+	std::queue<PStatement*> statements = Parser(tokens).parse();
 	
 	Compiler* compiler = new Compiler();
 	
@@ -93,7 +61,7 @@ output(f(x))
 	compiler->close();
 	
 	compiler->llvmModule->print(outs(), nullptr);
-
+	
 	return 0;
 	
 }
